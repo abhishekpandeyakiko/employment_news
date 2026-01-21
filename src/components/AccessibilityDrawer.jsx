@@ -12,7 +12,11 @@ import {
   MdImage,
   MdMouse,
   MdContrast,
+  MdVerticalAlignTop,
+  MdRecordVoiceOver,
 } from "react-icons/md";
+import { Link } from "react-router-dom";
+import Translate from "./Translate";
 
 export default function AccessibilityDrawer({ isOpen, onClose }) {
   const [fontSize, setFontSize] = useState(16);
@@ -84,18 +88,32 @@ export default function AccessibilityDrawer({ isOpen, onClose }) {
       document.body.classList.remove("focus-visible");
     }
 
+    // Screen Reader Mode
+    if (screenReader) {
+      document.body.classList.add("screen-reader-mode");
+    } else {
+      document.body.classList.remove("screen-reader-mode");
+    }
+
+    // Keyboard Navigation Mode
+    if (keyboardNav) {
+      document.body.classList.add("keyboard-nav-mode");
+    } else {
+      document.body.classList.remove("keyboard-nav-mode");
+    }
+
     return () => {
       document.documentElement.style.fontSize = "16px";
       document.body.classList.remove(
         "theme-light", "theme-dark", "high-contrast",
         "highlight-links", "hide-images",
         "cursor-normal", "cursor-large", "cursor-extra-large",
-        "focus-visible"
+        "focus-visible", "screen-reader-mode", "keyboard-nav-mode"
       );
       document.documentElement.style.removeProperty('--line-height');
       document.documentElement.style.removeProperty('--letter-spacing');
     };
-  }, [fontSize, theme, highContrast, highlightLinks, textSpacing, hideImages, cursorSize, focusVisible]);
+  }, [fontSize, theme, highContrast, highlightLinks, textSpacing, hideImages, cursorSize, focusVisible, screenReader, keyboardNav]);
 
   const increaseFontSize = () => setFontSize((prev) => Math.min(prev + 2, 32));
   const decreaseFontSize = () => setFontSize((prev) => Math.max(prev - 2, 12));
@@ -119,17 +137,15 @@ export default function AccessibilityDrawer({ isOpen, onClose }) {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] transition-colors duration-300 ${
-        isOpen ? "bg-black/50" : "bg-transparent pointer-events-none"
-      }`}
+      className={`fixed inset-0 z-[100] transition-colors duration-300 ${isOpen ? "bg-black/50" : "bg-transparent pointer-events-none"
+        }`}
       aria-hidden={!isOpen}
       onClick={onClose}
     >
       {/* Drawer */}
       <div
-        className={`accessibility-drawer absolute right-0 top-0 h-full w-[360px] bg-white shadow-lg flex flex-col transition-transform duration-300 ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`accessibility-drawer absolute right-0 top-0 h-full w-[360px] bg-white shadow-lg flex flex-col transition-transform duration-300 ${isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
         style={{ zIndex: 110 }}
         onClick={(e) => e.stopPropagation()}
         tabIndex={-1}
@@ -148,6 +164,37 @@ export default function AccessibilityDrawer({ isOpen, onClose }) {
 
         {/* Content (scrollable) */}
         <div className="flex-1 overflow-y-auto p-4 space-y-6">
+          {/* Quick Actions */}
+          <div className="space-y-3">
+            <h3 className="text-base font-semibold text-gray-800 flex items-center">
+              <MdVerticalAlignTop className="w-5 h-5 mr-2 text-primary-600" />
+              Quick Actions
+            </h3>
+            <button
+              onClick={() => {
+                const main = document.getElementById('main-content');
+                if (main) {
+                  main.focus();
+                  main.scrollIntoView({ behavior: 'smooth' });
+                  onClose();
+                }
+              }}
+              className="w-full text-left px-4 py-3 bg-primary-50 hover:bg-primary-100 text-primary-700 rounded-lg font-medium flex items-center justify-between transition-colors border border-primary-100"
+            >
+              <span><Translate text="skip-to-main-content" /></span>
+              <MdVerticalAlignTop className="w-5 h-5 rotate-180" />
+            </button>
+
+            <Link
+              to="/screen-reader-access"
+              onClick={onClose}
+              className="w-full text-left px-4 py-3 bg-primary-50 hover:bg-primary-100 text-primary-700 rounded-lg font-medium flex items-center justify-between transition-colors border border-primary-100"
+            >
+              <span><Translate text="screen_reader" /></span>
+              <MdRecordVoiceOver className="w-5 h-5" />
+            </Link>
+          </div>
+
           {/* Theme Selection */}
           <div className="space-y-3">
             <h3 className="text-base font-semibold text-gray-800 flex items-center">

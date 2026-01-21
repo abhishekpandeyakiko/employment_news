@@ -11,55 +11,55 @@ import Loader from "../components/Loader";
 
 // Main HomePage Component
 const HomePage = () => {
-        const [loading, setLoading] = useState(false);
-        const [announcements,setAnnouncement]=useState([]);
-        const [jobHighlight,setJobHighlight]=useState([]);
-        const [slider,setSlider]=useState([]);
-        const [sliderTime,setSliderTime]=useState([]);
-        const [advertis,setAdvertis]=useState([]);
-        const [articleLead,setArticleLead]=useState([]);
-        const [articleSpecial,setArticleSpecial]=useState([]);
-        const [footerLogo,setFooterLogo]=useState([]);
-        const [footerUrl,setFooterUrl]=useState([]);
-        const [social,setSocial]=useState([]);
-        useEffect(()=>{
-            async function fetchData() {
-            try {
-              setLoading(true);
-              const savedLang =await localStorage.getItem("appLang") || "en";
-              const response = await getPosts(`home-api?lang=${savedLang}`)
-              setLoading(false);
-              setAnnouncement(response.announcement.data)
-              setJobHighlight(response.jobHighlight)
-              setSlider(response.slider)
-              setSliderTime(response.sliderTime)
-              setAdvertis(response.advertisement)
-              setArticleLead(response.articleLead)
-              setArticleSpecial(response.articleSpecial)
-              setFooterLogo(response.footerLogo)
-              setFooterUrl(response.footerUrl)
-              setSocial(response.social)
-            } catch (error) {
-               setLoading(false);
-              console.error('Error fetching data:', error);
-            }
-          }
-      
-          fetchData();
-      },[])
-  return(
-  <div>
-    {loading?<Loader/>:
-    <>
-    <Announcements announcements={announcements} />
-    <JobHighlights jobHighlight={jobHighlight} carouselImages={slider} sliderTime={sliderTime} />
-    <NoticeBoard advertis={advertis} />
-    <Editorial article={articleLead} articleSpecial={articleSpecial} />
-    <SocialMediaSection data={social} />
-    <LogoCarousel logos={footerLogo} footerUrl={footerUrl} />
-    </>
-   }
-  </div>);
+  const [loading, setLoading] = useState(false);
+  const [announcements, setAnnouncement] = useState([]);
+  const [jobHighlight, setJobHighlight] = useState([]);
+  const [slider, setSlider] = useState([]);
+  const [sliderTime, setSliderTime] = useState([]);
+  const [advertis, setAdvertis] = useState([]);
+  const [articleLead, setArticleLead] = useState([]);
+  const [articleSpecial, setArticleSpecial] = useState([]);
+  const [footerLogo, setFooterLogo] = useState([]);
+  const [footerUrl, setFooterUrl] = useState([]);
+  const [social, setSocial] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        setLoading(true);
+        const savedLang = await localStorage.getItem("appLang") || "en";
+        const response = await getPosts(`home-api?lang=${savedLang}`)
+        setLoading(false);
+        setAnnouncement(response.announcement.data)
+        setJobHighlight(response.jobHighlight)
+        setSlider(response.slider)
+        setSliderTime(response.sliderTime)
+        setAdvertis(response.advertisement)
+        setArticleLead(response.articleLead)
+        setArticleSpecial(response.articleSpecial)
+        setFooterLogo(response.footerLogo)
+        setFooterUrl(response.footerUrl)
+        setSocial(response.social)
+      } catch (error) {
+        setLoading(false);
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    fetchData();
+  }, [])
+  return (
+    <div>
+      {loading ? <Loader /> :
+        <>
+          <JobHighlights jobHighlight={jobHighlight} carouselImages={slider} sliderTime={sliderTime} />
+          <Announcements announcements={announcements} />
+          <NoticeBoard advertis={advertis} />
+          <Editorial article={articleLead} articleSpecial={articleSpecial} />
+          <SocialMediaSection data={social} />
+          <LogoCarousel logos={footerLogo} footerUrl={footerUrl} />
+        </>
+      }
+    </div>);
 };
 
 export default HomePage;

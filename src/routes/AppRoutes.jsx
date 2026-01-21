@@ -14,6 +14,7 @@ import GrievanceForm from "../pages/GrievanceForm";
 import EditorialList from "../pages/EditorialList";
 import ArticleDetail from "../pages/ArticleDetail";
 import AllarchivePage from "../pages/AllarchivePage";
+import ScreenReaderAccess from "../pages/ScreenReaderAccess";
 
 const AppRoutes = () => {
   return (
@@ -32,6 +33,7 @@ const AppRoutes = () => {
         <Route path="sales-points" element={<SalesPointsPage />} />
         <Route path="editorial-list" element={<EditorialList />} />
         <Route path="archives" element={<AllarchivePage />} />
+        <Route path="screen-reader-access" element={<ScreenReaderAccess />} />
       </Route>
     </Routes>
   );

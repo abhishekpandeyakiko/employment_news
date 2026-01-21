@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import { FaFacebookF, FaTwitter, FaInstagram, FaSearch } from "react-icons/fa";
 import { MdAccessibilityNew } from "react-icons/md";
 import { FaChevronDown } from "react-icons/fa6";
@@ -33,12 +34,21 @@ export default function TopBar({ data }) {
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center px-1 sm:px-4 py-1 sm:py-2 gap-y-1 text-[10px] xs:text-xs sm:text-sm">
         {/* Left Side */}
         <div className="flex items-center space-x-4 text-primary-700">
-          <a href="#" className="hover:underline text-lg"><Translate text="screen_reader" /></a>
-          <span className="text-primary-700 ">|</span><ExternalLinkOpener
-            url="https://www.publicationsdivision.nic.in/"
-            className="hover:underline font-semibold text-lg"
-            text={<><span><Translate text="publications" /></span></>}
-          /></div>
+          <button
+            onClick={() => {
+              const target = document.getElementById('skip-target') || document.getElementById('main-content');
+              if (target) {
+                target.focus();
+                target.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="hover:underline text-[14px] font-medium cursor-pointer"
+          >
+            <Translate text="skip-to-main-content" />
+          </button>
+          <span className="text-primary-700 ">|</span>
+          <Link to="/screen-reader-access" className="hover:underline text-[14px] font-medium"><Translate text="screen_reader" /></Link>
+        </div>
         {/* Right Side */}
         <div className="flex items-center space-x-2 xs:space-x-3 sm:space-x-4 text-primary-700 relative text-base">
           <a href={data.facebook_url} aria-label="Facebook"><FaFacebookF className="w-3 h-3 xs:w-4 xs:h-4" /></a>

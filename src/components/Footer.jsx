@@ -18,10 +18,19 @@ export default function Footer({ data }) {
     return '';
   }
   function RelatedSites({ related_sites }) {
+    const sanitizeUrl = (url) => {
+      if (!url) return "#";
+      // Prevent javascript: protocol
+      if (url.toLowerCase().startsWith('javascript:')) {
+        return "#";
+      }
+      return url;
+    };
+
     if (related_sites != undefined) {
       return (<>
         {related_sites.map((word, index) => (
-          <li key={index}><a href={word.url}>{word.title}</a></li>
+          <li key={index}><a href={sanitizeUrl(word.url)} target="_blank" rel="noopener noreferrer">{word.title}</a></li>
         ))}
       </>
       )
@@ -29,9 +38,17 @@ export default function Footer({ data }) {
     return '';
   }
   function MapIframe({ src }) {
+    const sanitizeUrl = (url) => {
+      if (!url) return "";
+      if (url.toLowerCase().startsWith('javascript:')) {
+        return "";
+      }
+      return url;
+    };
+
     return (
       <iframe
-        src={src}
+        src={sanitizeUrl(src)}
         width="200"
         height="200"
         style={{ border: 0 }}
@@ -72,6 +89,8 @@ export default function Footer({ data }) {
             {/* <li>AICTE Placement Portal</li> */}
           </ul>
 
+
+
           {/* Helpline */}
           <div className="mt-4 sm:mt-5">
             <h3 className="font-semibold mb-3 text-base sm:text-lg"><Translate text="helpline" /></h3>
@@ -90,6 +109,11 @@ export default function Footer({ data }) {
               </div>
             </div>
           </div>
+          <div className="mt-4 text-xs sm:text-sm text-gray-200">
+            <p className="font-medium">
+              <Translate text="website_last_updated" /> <br></br> 21/01/2026 17:38:30
+            </p>
+          </div>
         </div>
 
         {/* Locations */}
@@ -102,13 +126,6 @@ export default function Footer({ data }) {
         </div>
       </div>
 
-      {/* Bottom Bar */}
-      {/* <div className="bg-primary-100 py-2 sm:py-2.5 text-primary-600 text-center px-4 sm:px-6 text-xs sm:text-sm md:text-base border-t border-primary-500">
-        <p>
-          Web Information Manager: Bhupendra Kainthola <br />
-          Email: abq@gmail.com
-        </p>
-      </div> */}
     </footer>
   );
 }

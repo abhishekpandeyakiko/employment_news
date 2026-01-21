@@ -56,7 +56,7 @@ export default function Navbar() {
             ${mobileOpen ? 'flex animate-slide-down' : 'hidden'}
             absolute sm:static left-0 right-0 top-full bg-white border-b border-primary-100 z-50 sm:bg-transparent sm:border-0 sm:relative
             transition-all duration-300
-            text-base sm:text-sm
+            text-base
           `}
           style={mobileOpen ? { boxShadow: '0 8px 24px rgba(0,0,0,0.08)' } : {}}
         >
@@ -72,7 +72,7 @@ export default function Navbar() {
                 idx == 2 ? <a
                   href="https://i5l.95d.mytemp.website/empnews/backend/members"
                   className={`
-                    block px-4 py-2 sm:px-6 sm:py-3 transition text-xl ${idx == 2 ? `text-red-900` : ``}
+                    block px-4 py-2 sm:px-6 sm:py-3 transition text-base ${idx == 2 ? `text-red-900` : ``}
                     ${location.pathname === item.href
                       ? "text-primary-600 font-semibold after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full bg-primary-50 after:bg-primary-600"
                       : "hover:text-primary-700"}
@@ -88,7 +88,7 @@ export default function Navbar() {
                 </a> :
                   <Link
                     to={item.href}
-                    className={`block px-4 py-2 sm:px-6 sm:py-3 transition text-xl ${idx == 2 ? `text-red-900` : ``}
+                    className={`block px-4 py-2 sm:px-6 sm:py-3 transition text-base ${idx == 2 ? `text-red-900` : ``}
                     ${location.pathname === item.href
                         ? "text-primary-600 font-semibold after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full bg-primary-50 after:bg-primary-600"
                         : "hover:text-primary-700"}
@@ -105,7 +105,7 @@ export default function Navbar() {
               ) : (
                 <span
                   className={`
-                    block px-4 py-2 sm:px-6 sm:py-3 transition text-xl 
+                    block px-4 py-2 sm:px-6 sm:py-3 transition text-base 
                     ${item.submenu ? "pr-8" : ""}
                   `}
                 >
@@ -126,7 +126,7 @@ export default function Navbar() {
                       {sub.href.startsWith("/") ? (
                         <Link
                           to={sub.href}
-                          className={`text-xl block px-4 py-2 sm:px-6 sm:py-2 hover:bg-primary-50 text-primary-700 whitespace-nowrap rounded transition`}
+                          className={`text-base block px-4 py-2 sm:px-6 sm:py-2 hover:bg-primary-50 text-primary-700 whitespace-nowrap rounded transition`}
                           onClick={() => setMobileOpen(false)}
                         >
                           {sub.name}
@@ -134,7 +134,7 @@ export default function Navbar() {
                       ) : (
                         <a
                           href={sub.href}
-                          className={`block px-4 py-2 sm:px-6 sm:py-2 hover:bg-primary-50 text-primary-700 whitespace-nowrap rounded transition`}
+                          className={`text-base block px-4 py-2 sm:px-6 sm:py-2 hover:bg-primary-50 text-primary-700 whitespace-nowrap rounded transition`}
                           onClick={() => setMobileOpen(false)}
                         >
                           {sub.name}

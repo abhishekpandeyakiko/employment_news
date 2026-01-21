@@ -233,4 +233,19 @@ body {
   top: 6px;
 }
 
+/* Screen Reader Mode */
+.screen-reader-mode .animate-marquee,
+.screen-reader-mode .scroll-container {
+  animation-play-state: paused !important;
+}
 
+.screen-reader-mode [aria-hidden="true"] {
+  display: none !important;
+}
+
+/* Keyboard Navigation Mode */
+.keyboard-nav-mode *:focus {
+  outline: 4px solid #0056b3 !important;
+  outline-offset: 4px !important;
+  box-shadow: 0 0 0 6px rgba(0, 86, 179, 0.4) !important;
+}
