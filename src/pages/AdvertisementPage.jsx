@@ -2,239 +2,99 @@ import React, { useEffect, useState } from "react";
 import { getPosts } from "../utils/networkApi";
 import Loader from "../components/Loader";
 import Translate from "../components/Translate";
-
-const advertisements = [
-  {
-    title: "Central Adoption Resource Authority",
-    issue: "Issue no 26,27 September - 03 October 2025",
-    link: "#"
-  },
-  {
-    title: "NATIONAL DISASTER MANAGEMENT AUTHORITY",
-    issue: "Issue no 26,27 September - 03 October 2025",
-    link: "#"
-  },
-  {
-    title: "M/O Fisheries Animal Husbandry & Dairying, Fisheries Survey of India",
-    issue: "Issue no 26,27 September - 03 October 2025",
-    link: "#"
-  },
-  {
-    title: "Steel Authority of India, Salem Steel Plant",
-    issue: "Issue no 26,27 September - 03 October 2025",
-    link: "#"
-  },
-  {
-    title: "National Institute of Corporate Affairs",
-    issue: "Issue no 25,20 - 26 September 2025",
-    link: "#"
-  },
-  {
-    title: "Directorate General of Commercial Intelligence and Statistics, M/O COMMERCE & INDUSTRY",
-    issue: "Issue no 25,20 - 26 September 2025",
-    link: "#"
-  },
-  {
-    title: "National Institute of Technology Warangal",
-    issue: "Issue no 25,20 - 26 September 2025",
-    link: "#"
-  },
-  {
-    title: "Andaman and Nicobar Administration Secretariat",
-    issue: "Issue no 25,20 - 26 September 2025",
-    link: "#"
-  },
-  {
-    title: "Raman Research Institute",
-    issue: "Issue no 25,20 - 26 September 2025",
-    link: "#"
-  },
-  {
-    title: "NSIC TECHNICAL SERVICES CENTRE",
-    issue: "Issue no 24,13 - 19 September 2025",
-    link: "#"
-  },
-  {
-    title: "National Institute of Hydrology ,Roorkee",
-    issue: "Issue no 24,13 - 19 September 2025",
-    link: "#"
-  },
-  {
-    title: "Andaman and Nicobar Administration Secretariat",
-    issue: "Issue no 23,06 September - 12 September 2025",
-    link: "#"
-  },
-  {
-    title: "Indian Oil Corporation Limited",
-    issue: "Issue no 23,06 September - 12 September 2025",
-    link: "#"
-  },
-  {
-    title: "Rajiv Gandhi Institute of Petroleum Technology",
-    issue: "Issue no 23,06 September - 12 September 2025",
-    link: "#"
-  },
-  {
-    title: "Indian Oil Corporation Limited",
-    issue: "Issue no 23,06 September - 12 September 2025",
-    link: "#"
-  },
-  {
-    title: "Goa Shipyard Limited",
-    issue: "Issue no 23,06 September - 12 September 2025",
-    link: "#"
-  },
-  {
-    title: "Indian Institute of Technology Mandi",
-    issue: "Issue no 22,30 August - 05 September 2025",
-    link: "#"
-  },
-  {
-    title: "National Cooperative Development Corporation",
-    issue: "Issue no 22,30 August - 05 September 2025",
-    link: "#"
-  },
-  {
-    title: "PONDICHERRY UINVERSITY",
-    issue: "Issue no 22,30 August - 05 September 2025",
-    link: "#"
-  },
-  {
-    title: "Goa Shipyard Limited",
-    issue: "Issue no 22,30 August - 05 September 2025",
-    link: "#"
-  },
-  {
-    title: "Footwear Design and Development Institute",
-    issue: "Issue no 21, 23 - 29 August 2025",
-    link: "#"
-  },
-  {
-    title: "Sanjay Gandhi Post Graduate Institute of Medical Sciences",
-    issue: "Issue no 21, 23 - 29 August 2025",
-    link: "#"
-  },
-  {
-    title: "Central Adoption Resource Authority",
-    issue: "Issue no 20, 16 - 22 August 2025",
-    link: "#"
-  },
-  {
-    title: "Indian Institute of Management Amritsar",
-    issue: "Issue no 20, 16 - 22 August 2025",
-    link: "#"
-  },
-  {
-    title: "Tirumala Tirupati Devsthanams, Sri Venkatsewara College",
-    issue: "Issue no 20, 16 - 22 August 2025",
-    link: "#"
-  },
-  {
-    title: "ICAR- Krishi Vigyan Kendra",
-    issue: "Issue no 20, 16 - 22 August 2025",
-    link: "#"
-  },
-  {
-    title: "M/O Home Affairs, National Fire Services College",
-    issue: "Issue no 20, 16 - 22 August 2025",
-    link: "#"
-  },
-  {
-    title: "Hooghly Cochin Shipyard Limited",
-    issue: "Issue no 20, 16 - 22 August 2025",
-    link: "#"
-  },
-  {
-    title: "Centre for Development of Telematics",
-    issue: "Issue no 20, 16 - 22 August 2025",
-    link: "#"
-  },
-  {
-    title: "Sainik School Purulia",
-    issue: "Issue no 19, 09 - 15 August 2025",
-    link: "#"
-  },
-  {
-    title: "NATIONAL COOPERATIVE DEVELOPMENT CORPORATION",
-    issue: "Issue no 19, 09 - 15 August 2025",
-    link: "#"
-  },
-  {
-    title: "PONDICHERRY UINVERSITY",
-    issue: "Issue no 19, 09 - 15 August 2025",
-    link: "#"
-  },
-  {
-    title: "NATIONAL DISASTER MANAGEMENT AUTHORITY",
-    issue: "Issue no 19, 09 - 15 August 2025",
-    link: "#"
-  },
-  {
-    title: "KHUDA BAKSHS ORIENTAL PUBLIC LIBRARY, PATNA",
-    issue: "Issue no 19, 09 - 15 August 2025",
-    link: "#"
-  },
-  {
-    title: "NATIONAL DISASTER MANAGEMENT AUTHORITY",
-    issue: "Issue no 19, 09 - 15 August 2025",
-    link: "#"
-  },
-  {
-    title: "NATIONAL DISASTER MANAGEMENT AUTHORITY",
-    issue: "Issue no 19, 09 - 15 August 2025",
-    link: "#"
-  },
-  {
-    title: "NATIONAL DISASTER MANAGEMENT AUTHORITY",
-    issue: "Issue no 19, 09 - 15 August 2025",
-    link: "#"
-  },
-  {
-    title: "LAL BAHADUR SHASTRI NATIONAL ACADEMY OF ADMINISTRATION",
-    issue: "Issue advertisemant section each assocuated will a link to open make it like to open a l=ink ites kind of or in any other eay this is advertisement page",
-    link: "#"
-  }
-];
+import { HiMegaphone } from "react-icons/hi2";
 
 export default function AdvertisementPage() {
-      const [loading, setLoading] = useState(false);
-      const [data,setData]=useState([]);
-      useEffect(()=>{
-          async function fetchData() {
-          try {
-            setLoading(true);
-            const savedLang =await localStorage.getItem("appLang") || "en";
-            const response = await getPosts(`advertiserment?lang=${savedLang}`)
-            setLoading(false);
-            setData(response.data)
-          } catch (error) {
-             setLoading(false);
-            console.error('Error fetching data:', error);
-          }
-        }
-    
-        fetchData();
-    },[])
-  
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        setLoading(true);
+        const savedLang = (await localStorage.getItem("appLang")) || "en";
+        const response = await getPosts(`advertiserment?lang=${savedLang}`);
+        setLoading(false);
+        setData(response.data);
+      } catch (error) {
+        setLoading(false);
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
   return (
-    <section className="w-full min-h-[80vh] bg-primary-50 py-6 px-4 sm:px-6 md:px-8">
-      {loading&&<Loader/>}
-      <div className="w-full max-w-4xl mx-auto">
-  <h1 className="text-2xl md:text-3xl font-bold text-primary-600 mb-4 text-center"><Translate text={'advertisements'} /></h1>
-        <ul className="divide-y divide-primary-100">
-          {data.map((ad, idx) => (
-            <li key={idx} className="py-2 flex flex-row items-start justify-start">
-              <div className="flex-1 min-w-0">
-                <a href={ad.link} target="_blank" rel="noopener noreferrer" className="font-semibold text-primary-700 hover:underline block text-left">
-                  {ad.title}
-                </a>
-                <span className="block text-xs text-gray-500 mt-0.5 text-left">{ad.issue_no}</span>
-              </div>
-              <a href={ad.pdf} target="_blank" rel="noopener noreferrer" className="ml-4 mt-0.5 text-primary-500 hover:text-primary-600 font-medium underline whitespace-nowrap">View</a>
-            </li>
-          ))}
-        </ul>
+    <section className="w-full min-h-screen bg-primary-50/30 pb-16">
+      {loading && <Loader />}
+
+      {/* Dark & Compact Header */}
+      <div className="w-full py-8 px-4 relative overflow-hidden bg-gradient-to-br from-primary-900 to-primary-800 text-white border-b border-primary-950">
+        <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-2xl"></div>
+        <div className="max-w-5xl mx-auto flex flex-col items-center relative z-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-md rounded-full border border-white/10 mb-4 shadow-sm">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary-300"></span>
+            </span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-white/90">Promotion Hub</span>
+          </div>
+          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-center mb-2">
+            <Translate text={'advertisements'} />
+          </h1>
+          <p className="text-primary-100/70 text-xs md:text-sm font-medium max-w-lg text-center leading-relaxed italic">
+            "Your platform for reach and visibility across the recruitment landscape."
+          </p>
+        </div>
+      </div>
+
+      {/* Content Wrapper with 15px spacing */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-[15px]">
+        <div className="bg-white rounded-[24px] border border-[#dadce0] overflow-hidden shadow-sm">
+          <div className="bg-gray-50/50 px-6 py-4 border-b border-gray-100 flex items-center gap-3">
+            <div className="p-2 bg-primary-50 rounded-lg">
+              <HiMegaphone className="text-primary-600 text-lg" />
+            </div>
+            <span className="text-sm font-bold text-gray-700 uppercase tracking-wider">Latest Notices</span>
+          </div>
+
+          <ul className="divide-y divide-gray-50">
+            {data.map((ad, idx) => (
+              <li key={idx} className="group hover:bg-primary-50/30 transition duration-200">
+                <div className="px-6 py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="flex-1 min-w-0">
+                    <a
+                      href={ad.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-base font-bold text-left text-gray-800 hover:text-primary-600 transition duration-200 block truncate"
+                    >
+                      {ad.title}
+                    </a>
+                    <div className="flex items-center gap-2 mt-1">
+                      <span className="text-[10px] bg-gray-100 text-gray-500 px-2 py-0.5 rounded font-bold uppercase tracking-tight">Issue</span>
+                      <span className="text-xs text-gray-400 font-medium italic">{ad.issue_no}</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center">
+                    <a
+                      href={ad.pdf}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-primary-100 bg-white text-primary-600 text-xs font-bold hover:bg-primary-600 hover:text-white hover:border-primary-600 transition duration-300 shadow-sm"
+                    >
+                      View Notice
+                    </a>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );
 }
+

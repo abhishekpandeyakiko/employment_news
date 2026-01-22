@@ -202,3 +202,29 @@ body {
 [aria-invalid="true"]:focus {
   box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.25) !important;
 }
+
+/* About Us content styles for raw HTML */
+.about-content h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #006B7A;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid #009DB3;
+  padding-left: 1rem;
+}
+
+.about-content p {
+  margin-bottom: 1.25rem;
+  text-align: justify;
+}
+
+.about-content ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.about-content li {
+  margin-bottom: 0.5rem;
+}

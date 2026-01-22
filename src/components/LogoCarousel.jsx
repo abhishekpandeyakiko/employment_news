@@ -43,7 +43,7 @@ export default function LogoCarousel({ logos, footerUrl }) {
           - Width: max-content to fit all items
         */}
         <div
-          className="flex gap-8 sm:gap-28 animate-scroll-left w-max"
+          className="flex gap-6 sm:gap-16 animate-scroll-left w-max"
           style={{
             animationPlayState: userPaused ? "paused" : undefined
           }}
@@ -57,8 +57,8 @@ export default function LogoCarousel({ logos, footerUrl }) {
             <div key={`original-${idx}`} className="shrink-0">
               <ExternalLinkOpener
                 url={footerUrl[idx]}
-                text={<img src={src} alt="" className="h-12 sm:h-16 object-contain" />} // Increased height slightly for better visibility if needed, or stick to h-6 sm:h-16
-                className="block hover:opacity-80 transition-opacity"
+                text={<img src={src} alt="" className="h-10 sm:h-14 object-contain grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer" />}
+                className="block"
               />
             </div>
           ))}
@@ -68,8 +68,8 @@ export default function LogoCarousel({ logos, footerUrl }) {
             <div key={`duplicate-${idx}`} className="shrink-0">
               <ExternalLinkOpener
                 url={footerUrl[idx]}
-                text={<img src={src} alt="" className="h-12 sm:h-16 object-contain" />}
-                className="block hover:opacity-80 transition-opacity"
+                text={<img src={src} alt="" className="h-10 sm:h-14 object-contain grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer" />}
+                className="block"
               />
             </div>
           ))}
