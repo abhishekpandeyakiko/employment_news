@@ -193,7 +193,7 @@ export default function AccessibilityDrawer({ isOpen, onClose }) {
           <h2 className="text-lg font-semibold">Accessibility Options</h2>
           <button
             onClick={onClose}
-            className="p-1 hover:bg-primary-600 rounded focus:outline-none focus:ring-2 focus:ring-white"
+            className="p-1 hover:bg-primary-600 rounded focus:ring-2 focus:ring-white"
             aria-label="Close accessibility drawer"
           >
             <MdClose className="w-6 h-6" />

@@ -49,7 +49,7 @@ export default function JobHighlights({ jobHighlight, carouselImages, sliderTime
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <button
                 onClick={() => setPaused(!paused)}
-                aria-label={paused ? "Play slider" : "Pause slider"}
+                aria-label={paused ? "Play job highlights slider" : "Pause job highlights slider"}
                 className="bg-black/40 hover:bg-black/60 text-white p-3 rounded-full backdrop-blur-sm transition-all pointer-events-auto"
               >
                 {paused ? <FaPlay size={24} /> : <FaPause size={24} />}
@@ -59,7 +59,7 @@ export default function JobHighlights({ jobHighlight, carouselImages, sliderTime
           {/* Left Arrow */}
           <button
             onClick={prevSlide}
-            aria-label="Previous slide"
+            aria-label="Previous job highlight slide"
             className="absolute top-1/2 left-2 sm:left-4 -translate-y-1/2 cursor-pointer p-1 sm:p-2 rounded-full text-white bg-gray-500 bg-opacity-50 hover:bg-opacity-75 transition"
           >
             <FaChevronLeft size={18} className="sm:w-6 sm:h-6" />
@@ -67,7 +67,7 @@ export default function JobHighlights({ jobHighlight, carouselImages, sliderTime
           {/* Right Arrow */}
           <button
             onClick={nextSlide}
-            aria-label="Next slide"
+            aria-label="Next job highlight slide"
             className="absolute top-1/2 right-2 sm:right-4 -translate-y-1/2 cursor-pointer p-1 sm:p-2 rounded-full text-white bg-gray-500 bg-opacity-50 hover:bg-opacity-75 transition"
           >
             <FaChevronRight size={18} className="sm:w-6 sm:h-6" />
@@ -103,7 +103,7 @@ export default function JobHighlights({ jobHighlight, carouselImages, sliderTime
 
           {/* Button */}
           <div className="pt-1">
-            <button className="w-full bg-white text-primary-700 font-semibold py-1 sm:py-2 px-2 sm:px-4 rounded-sm shadow-md border border-primary-400 text-xs sm:text-base">
+            <button className="w-full bg-white text-primary-700 font-semibold py-1 sm:py-2 px-2 sm:px-4 rounded-sm shadow-md border border-primary-400 text-xs sm:text-base" aria-label="See more job highlights">
               <Translate text={'see-more'} />
             </button>
           </div>

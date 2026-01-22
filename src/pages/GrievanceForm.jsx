@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage, useField } from "formik";
 import * as Yup from "yup";
 import { createPost } from "../utils/networkApi";
 import Loader from "../components/Loader";
@@ -20,16 +20,71 @@ const initialValues = {
   file: null,
 };
 
+// Accessible error message: announced by screen readers and visually obvious
+const AccessibleErrorMessage = ({ name, id }) => {
+  return (
+    <ErrorMessage name={name}>
+      {(msg) => (
+        <div
+          id={id}
+          role="alert"
+          aria-live="polite"
+          className="text-red-600 text-sm mt-1 mb-3 flex items-start gap-2"
+        >
+          <span className="sr-only">Error: </span>
+          <span aria-hidden="true" className="text-red-600 font-bold">!</span>
+          <span>{msg}</span>
+        </div>
+      )}
+    </ErrorMessage>
+  );
+};
+
+// Accessible Field: adds aria-invalid + aria-describedby that points to the error message
+const AccessibleField = ({ name, id, errorId, as, className = "", ...props }) => {
+  const [field, meta] = useField(name);
+  const hasError = Boolean(meta.touched && meta.error);
+  const Component = as || "input";
+
+  return (
+    <>
+      <Component
+        {...field}
+        {...props}
+        id={id}
+        name={name}
+        aria-invalid={hasError ? "true" : "false"}
+        aria-describedby={hasError ? errorId : undefined}
+        className={`${className} ${hasError ? "border-red-500 focus:ring-red-500" : ""}`}
+      />
+      {hasError ? <AccessibleErrorMessage name={name} id={errorId} /> : null}
+    </>
+  );
+};
+
 const validationSchema = Yup.object({
-  name: Yup.string().required("Name is required"),
-  address: Yup.string().required("Address is required"),
-  mobile: Yup.string().matches(/^\d{10}$/, "Enter a valid 10-digit mobile number").required("Mobile is required"),
-  subject: Yup.string().required("Grievance subject is required"),
-  category: Yup.string().required("Category is required"),
-  email: Yup.string().email("Invalid email").required("Email is required"),
-  pincode: Yup.string().matches(/^\d{6}$/, "Enter a valid 6-digit pincode").required("Pincode is required"),
-  text: Yup.string().required("Grievance text is required"),
-  captcha: Yup.string().required("Captcha is required"),
+  name: Yup.string()
+    .required("Name is required. Enter your full name.")
+    .min(2, "Name is too short. Enter at least 2 characters."),
+  address: Yup.string()
+    .required("Address is required. Enter your full address."),
+  mobile: Yup.string()
+    .required("Mobile number is required. Enter your 10-digit number.")
+    .matches(/^\d{10}$/, "Mobile number is invalid. Enter exactly 10 digits (no spaces)."),
+  subject: Yup.string()
+    .required("Subject is required. Enter a short subject."),
+  category: Yup.string()
+    .required("Category is required. Select one option."),
+  email: Yup.string()
+    .required("Email is required. Enter your email address.")
+    .email("Email is invalid. Enter a valid email address."),
+  pincode: Yup.string()
+    .required("Pincode is required. Enter your 6-digit pincode.")
+    .matches(/^\d{6}$/, "Pincode is invalid. Enter exactly 6 digits."),
+  text: Yup.string()
+    .required("Grievance details are required. Describe your issue."),
+  captcha: Yup.string()
+    .required("Captcha is required. Type the characters shown."),
   // file: not required
 });
 
@@ -38,6 +93,9 @@ const validationSchema = Yup.object({
 export default function GrievanceForm() {
   const { t } = useTranslation();
   const canvasRef = useRef(null);
+
+  const [captcha, setCaptcha] = useState("");
+  const [loading, setLoading] = useState(false);
 
 
   const generateCaptchaText = (length = 5) => {
@@ -51,6 +109,7 @@ export default function GrievanceForm() {
 
   const generateCaptcha = () => {
     const canvas = canvasRef.current;
+    if (!canvas) return;
     const ctx = canvas.getContext("2d");
 
     // Generate captcha
@@ -97,17 +156,18 @@ export default function GrievanceForm() {
     generateCaptcha();
   }, []);
 
-
-  const [captcha, setCaptcha] = useState();
-  const [loading, setLoading] = useState(false);
   const handleRefreshCaptcha = () => {
-    setCaptcha(generateCaptcha());
+    generateCaptcha();
   };
 
-  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+  const handleSubmit = async (values, { setSubmitting, resetForm, setFieldError }) => {
     try {
       if (values.captcha !== captcha) {
-        alert("Captcha did not match. Please try again.");
+        setFieldError(
+          "captcha",
+          "Captcha does not match. Re-check and type the same characters (or refresh captcha)."
+        );
+        generateCaptcha();
         return false;
       }
       setSubmitting(true);
@@ -130,7 +190,7 @@ export default function GrievanceForm() {
           icon: 'success',
           confirmButtonText: 'OK'
         });
-        setCaptcha(generateCaptcha()); // If you have captcha logic
+        generateCaptcha(); // Regenerate captcha after success
       }
 
     } catch (error) {
@@ -153,51 +213,113 @@ export default function GrievanceForm() {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {({ setFieldValue, values }) => (
-            <Form className="bg-white rounded-lg shadow p-6 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+          {({ setFieldValue }) => (
+            <Form className="bg-white rounded-lg shadow p-6 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-6" noValidate>
               <div>
                 <label htmlFor="name" className="block font-semibold text-primary-700 mb-1 text-left"><Translate text={"name"} /> :</label>
-                <Field type="text" id="name" name="name" placeholder={t("enter-name")} className="w-full border border-primary-200 rounded px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-primary-200" aria-required="true" />
-                <ErrorMessage name="name" component="div" className="text-red-500 text-xs mb-4" />
+                <AccessibleField
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder={t("enter-name")}
+                  errorId="name-error"
+                  aria-required="true"
+                  className="w-full border border-primary-200 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-200"
+                />
 
                 <label htmlFor="address" className="block font-semibold text-primary-700 mb-1 text-left"><Translate text={"address"} /> :</label>
-                <Field type="text" id="address" name="address" placeholder={t("enter-address")} className="w-full border border-primary-200 rounded px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-primary-200" aria-required="true" />
-                <ErrorMessage name="address" component="div" className="text-red-500 text-xs mb-4" />
+                <AccessibleField
+                  type="text"
+                  id="address"
+                  name="address"
+                  placeholder={t("enter-address")}
+                  errorId="address-error"
+                  aria-required="true"
+                  className="w-full border border-primary-200 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-200"
+                />
 
                 <label htmlFor="mobile" className="block font-semibold text-primary-700 mb-1 text-left"><Translate text={"mobile"} /> :</label>
-                <Field type="text" id="mobile" name="mobile" placeholder={t("enter-mobile-number")} className="w-full border border-primary-200 rounded px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-primary-200" aria-required="true" />
-                <ErrorMessage name="mobile" component="div" className="text-red-500 text-xs mb-4" />
+                <AccessibleField
+                  type="tel"
+                  id="mobile"
+                  name="mobile"
+                  placeholder={t("enter-mobile-number")}
+                  errorId="mobile-error"
+                  aria-required="true"
+                  inputMode="numeric"
+                  maxLength={10}
+                  className="w-full border border-primary-200 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-200"
+                />
 
                 <label htmlFor="subject" className="block font-semibold text-primary-700 mb-1 text-left"><Translate text={"grievance-subject"} /> :</label>
-                <Field type="text" id="subject" name="subject" placeholder={t("enter-grievance-subject")} className="w-full border border-primary-200 rounded px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-primary-200" aria-required="true" />
-                <ErrorMessage name="subject" component="div" className="text-red-500 text-xs mb-4" />
+                <AccessibleField
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  placeholder={t("enter-grievance-subject")}
+                  errorId="subject-error"
+                  aria-required="true"
+                  className="w-full border border-primary-200 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-200"
+                />
 
                 <label htmlFor="file" className="block font-semibold text-primary-700 mb-1 text-left"><Translate text={"upload-attachment"} />  :</label>
                 <input type="file" id="file" name="file" onChange={e => setFieldValue("file", e.target.files[0])} className="mb-4" />
               </div>
               <div>
                 <label htmlFor="category" className="block font-semibold text-primary-700 mb-1 text-left"><Translate text={"select-category"} /></label>
-                <Field as="select" id="category" name="category" className="w-full border border-primary-200 rounded px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-primary-200" aria-required="true">
-                  <option>RTI Related</option>
-                  <option>General</option>
-                  <option>Technical</option>
-                  <option>Other</option>
-                </Field>
-                <ErrorMessage name="category" component="div" className="text-red-500 text-xs mb-4" />
+                <AccessibleField
+                  as="select"
+                  id="category"
+                  name="category"
+                  errorId="category-error"
+                  aria-required="true"
+                  className="w-full border border-primary-200 rounded px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-primary-200"
+                >
+                  <option value="">Select category</option>
+                  <option value="RTI Related">RTI Related</option>
+                  <option value="General">General</option>
+                  <option value="Technical">Technical</option>
+                  <option value="Other">Other</option>
+                </AccessibleField>
 
                 <label htmlFor="email" className="block font-semibold text-primary-700 mb-1 text-left"><Translate text={"email"} /> :</label>
 
-                <Field type="email" name="email" placeholder={t("enter-email")} className="w-full border border-primary-200 rounded px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-primary-200" />
-                <ErrorMessage name="email" component="div" className="text-red-500 text-xs mb-4" />
+                <AccessibleField
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder={t("enter-email")}
+                  errorId="email-error"
+                  aria-required="true"
+                  inputMode="email"
+                  className="w-full border border-primary-200 rounded px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-primary-200"
+                />
 
                 <label htmlFor="pincode" className="block font-semibold text-primary-700 mb-1 text-left"><Translate text={"pincode"} />  :</label>
 
-                <Field type="text" id="pincode" name="pincode" placeholder={t("enter-pincode")} className="w-full border border-primary-200 rounded px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-primary-200" aria-required="true" />
-                <ErrorMessage name="pincode" component="div" className="text-red-500 text-xs mb-4" />
+                <AccessibleField
+                  type="text"
+                  id="pincode"
+                  name="pincode"
+                  placeholder={t("enter-pincode")}
+                  errorId="pincode-error"
+                  aria-required="true"
+                  inputMode="numeric"
+                  maxLength={6}
+                  className="w-full border border-primary-200 rounded px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-primary-200"
+                />
 
                 <label htmlFor="text" className="block font-semibold text-primary-700 mb-1 text-left"><Translate text={"grievance-text"} /> :</label>
-                <Field as="textarea" id="text" name="text" placeholder={t("enter-grievance-text")} rows={4} className="w-full border border-primary-200 rounded px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-primary-200" aria-required="true" />
-                <ErrorMessage name="text" component="div" className="text-red-500 text-xs mb-4" />
+                <AccessibleField
+                  as="textarea"
+                  id="text"
+                  name="text"
+                  placeholder={t("enter-grievance-text")}
+                  rows={4}
+                  errorId="text-error"
+                  aria-required="true"
+                  className="w-full border border-primary-200 rounded px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-primary-200"
+                />
               </div>
               <div className="md:col-span-2 flex flex-col md:flex-row md:items-center gap-4 mt-2">
                 <div className="flex items-center gap-2">
@@ -209,9 +331,17 @@ export default function GrievanceForm() {
                     height={40}
                     className="border rounded"
                   />
-                  <Field type="text" id="captcha" name="captcha" placeholder={t("enter-captcha")} className="border border-primary-200 rounded px-3 py-2 w-32 focus:outline-none focus:ring-2 focus:ring-primary-200" aria-required="true" />
+                  <AccessibleField
+                    type="text"
+                    id="captcha"
+                    name="captcha"
+                    placeholder={t("enter-captcha")}
+                    errorId="captcha-error"
+                    aria-required="true"
+                    autoComplete="off"
+                    className="border border-primary-200 rounded px-3 py-2 w-32 focus:outline-none focus:ring-2 focus:ring-primary-200"
+                  />
                   <button type="button" onClick={handleRefreshCaptcha} className="ml-2 text-primary-700 hover:text-primary-800 text-xl" title="Refresh Captcha" aria-label="Refresh Captcha">⟳</button>
-                  <ErrorMessage name="captcha" component="div" className="text-red-500 text-xs ml-2" />
                 </div>
                 <button type="submit" className="ml-auto bg-primary-700 hover:bg-primary-800 text-white font-semibold px-6 py-2 rounded shadow transition">{<Translate text={"submit-form"} />}</button>
               </div>

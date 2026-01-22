@@ -51,19 +51,22 @@ export default function TopBar({ data }) {
         </div>
         {/* Right Side */}
         <div className="flex items-center space-x-2 xs:space-x-3 sm:space-x-4 text-primary-700 relative text-base">
-          <a href={data.facebook_url} aria-label="Facebook"><FaFacebookF className="w-3 h-3 xs:w-4 xs:h-4" /></a>
-          <a href={data.twitter_url} aria-label="Twitter"><FaTwitter className="w-3 h-3 xs:w-4 xs:h-4" /></a>
-          <a href={data.instagram_url} aria-label="Instagram"><FaInstagram className="w-3 h-3 xs:w-4 xs:h-4" /></a>
-          <span className="text-primary-700">|</span>
+          <a href={data.facebook_url} aria-label="Visit our Facebook page"><FaFacebookF className="w-3 h-3 xs:w-4 xs:h-4" aria-hidden="true" /></a>
+          <a href={data.twitter_url} aria-label="Visit our Twitter page"><FaTwitter className="w-3 h-3 xs:w-4 xs:h-4" aria-hidden="true" /></a>
+          <a href={data.instagram_url} aria-label="Visit our Instagram page"><FaInstagram className="w-3 h-3 xs:w-4 xs:h-4" aria-hidden="true" /></a>
+          <span className="text-primary-700" aria-hidden="true">|</span>
 
           {/* Language Dropdown */}
           <div className="relative">
             <button
               className="flex items-center space-x-1 cursor-pointer focus:outline-none"
               onClick={() => setLangOpen((prev) => !prev)}
+              aria-expanded={langOpen}
+              aria-haspopup="true"
+              aria-label="Language Selector"
             >
               <span>{i18n.language == 'en' ? "English" : "हिंदी"}</span>
-              <FaChevronDown className="w-3 h-3" />
+              <FaChevronDown className="w-3 h-3" aria-hidden="true" />
             </button>
             {langOpen && (
               <div className="absolute right-0 mt-1 bg-white border border-gray-200 rounded shadow z-20 min-w-[80px]">
@@ -86,7 +89,7 @@ export default function TopBar({ data }) {
           <span className="text-gray-600">|</span>
           <button
             onClick={() => setAccessibilityOpen(true)}
-            className="p-1 hover:bg-gray-100 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
+            className="p-1 hover:bg-gray-100 rounded focus:ring-2 focus:ring-primary-500"
             aria-label="Open accessibility options"
           >
             <MdAccessibilityNew className="w-5 h-5 text-primary-600" />

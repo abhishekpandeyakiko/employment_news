@@ -9,13 +9,24 @@ body {
 }
 
 @keyframes marquee {
-  0%   { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 .animate-marquee {
   animation: marquee 25s linear infinite;
   will-change: transform;
+}
+
+/* Pause marquee on hover/focus for accessibility */
+.animate-marquee:hover,
+.animate-marquee:focus-within {
+  animation-play-state: paused;
 }
 
 .scroll-container {
@@ -32,6 +43,7 @@ body {
   0% {
     transform: translateY(0);
   }
+
   100% {
     transform: translateY(-50%);
   }
@@ -39,10 +51,14 @@ body {
 
 /* Accessibility Styles */
 
-/* Theme Styles */
-.theme-light {
-  /* Default light theme - no additional styles needed */
+/* Default Focus Indicator for GIGW 3.0 */
+:focus-visible {
+  outline: 3px solid #009DB3;
+  outline-offset: 2px;
 }
+
+/* Theme Styles */
+.theme-light {}
 
 .theme-dark {
   background-color: #1a1a1a !important;
@@ -60,7 +76,7 @@ body {
 .theme-dark .bg-gray-200,
 .theme-dark .bg-primary-50,
 .theme-dark .bg-primary-100,
-.theme-dark .bg-primary-600{
+.theme-dark .bg-primary-600 {
   background-color: #2d2d2d !important;
   color: #ffffff !important;
 }
@@ -94,117 +110,76 @@ body {
 .high-contrast .bg-gray-200,
 .high-contrast .bg-primary-50,
 .high-contrast .bg-primary-100,
-.high-contrast .bg-primary-500{
+.high-contrast .bg-primary-500 {
   background-color: #000000 !important;
   color: #ffffff !important;
 }
 
+.high-contrast .text-primary-600,
+.high-contrast .text-primary-700,
 .high-contrast .text-gray-600,
 .high-contrast .text-gray-700,
-.high-contrast .text-gray-800,
-.high-contrast .text-gray-900 {
-  color: #ffffff !important;
+.high-contrast .text-gray-800 {
+  color: #ffff00 !important;
+  /* Yellow text for high contrast */
 }
 
-.high-contrast .text-black {
-  color: #ffffff !important;
-}
-
+.high-contrast .border-primary-100,
 .high-contrast .border-gray-200,
-.high-contrast .border-gray-300,
-.high-contrast .border-gray-400 {
+.high-contrast .border-gray-300 {
   border-color: #ffffff !important;
 }
 
-.high-contrast a {
-  color: #ffff00 !important;
-  text-decoration: underline !important;
-}
-
-.high-contrast a:hover {
-  color: #ffffff !important;
-  background-color: #ffff00 !important;
-}
-
+.high-contrast a,
 .high-contrast button {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  border: 2px solid #ffffff !important;
-}
-
-.high-contrast button:hover {
-  background-color: #ffff00 !important;
-  color: #000000 !important;
-}
-
-.high-contrast input,
-.high-contrast textarea,
-.high-contrast select {
-  background-color: #ffffff !important;
-  color: #000000 !important;
-  border: 2px solid #ffffff !important;
-}
-
-.high-contrast .text-primary-600 {
-  color: #ffffff !important;
-}
-
-
-/* Text Spacing */
-:root {
-  --line-height: 1.5;
-  --letter-spacing: 0px;
-}
-
-body {
-  line-height: var(--line-height);
-  letter-spacing: var(--letter-spacing);
+  text-decoration: underline;
+  color: #00ffff !important;
+  /* Cyan links */
 }
 
 /* Highlight Links */
-.highlight-links a {
-  background-color: #ffff00 !important;
-  color: #000000 !important;
-  padding: 2px 4px !important;
+.highlight-links a,
+.highlight-links button {
+  background-color: yellow !important;
+  color: black !important;
   text-decoration: underline !important;
   font-weight: bold !important;
-  border-radius: 2px !important;
-}
-
-.highlight-links a:hover {
-  background-color: #ffeb3b !important;
 }
 
 /* Hide Images */
-.hide-images img {
+.hide-images img,
+.hide-images svg {
   display: none !important;
 }
 
-.hide-images .bg-image,
-.hide-images [style*="background-image"] {
-  background-image: none !important;
+/* Cursor Sizes */
+.cursor-large,
+.cursor-large a,
+.cursor-large button {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="black"><path d="M0 0l20 12-10 2-2 10z"/></svg>'), auto !important;
 }
 
-/* Cursor Size */
-.cursor-normal {
-  cursor: default;
+.cursor-extra-large,
+.cursor-extra-large a,
+.cursor-extra-large button {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="black"><path d="M0 0l20 12-10 2-2 10z"/></svg>'), auto !important;
 }
 
-.cursor-large * {
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23000" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>'), auto !important;
+/* Enhanced Focus Indicators */
+.focus-visible *:focus-visible {
+  outline: 4px solid #ff0000 !important;
+  outline-offset: 4px !important;
+  box-shadow: 0 0 0 4px #ffff00 !important;
+  z-index: 9999;
 }
 
-.cursor-extra-large * {
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="%23000" d="M16 2C8.27 2 2 8.27 2 16s6.27 14 14 14 14-6.27 14-14S23.73 2 16 2zm-4 20l-8-8 2.83-2.83L12 16.17l10.17-10.17L25 8l-13 13z"/></svg>'), auto !important;
-}
-
-.focus-visible *:focus {
-  outline: 3px solid #ff6b35 !important;
+/* Keyboard Navigation Mode */
+.keyboard-nav-mode *:focus {
+  outline: 3px solid #009DB3 !important;
   outline-offset: 2px !important;
-  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.3) !important;
 }
 
-/* Screen Reader Only Text */
+/* Screen-reader only utility (used for accessible error prefix "Error:") */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -217,35 +192,12 @@ body {
   border: 0;
 }
 
-/* Skip Links */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 6px;
-  background: #000;
-  color: #fff;
-  padding: 8px;
-  text-decoration: none;
-  z-index: 1000;
+/* Invalid fields: clear visual affordance in addition to error text */
+[aria-invalid="true"] {
+  border-color: #dc2626 !important;
+  border-width: 2px !important;
 }
 
-.skip-link:focus {
-  top: 6px;
-}
-
-/* Screen Reader Mode */
-.screen-reader-mode .animate-marquee,
-.screen-reader-mode .scroll-container {
-  animation-play-state: paused !important;
-}
-
-.screen-reader-mode [aria-hidden="true"] {
-  display: none !important;
-}
-
-/* Keyboard Navigation Mode */
-.keyboard-nav-mode *:focus {
-  outline: 4px solid #0056b3 !important;
-  outline-offset: 4px !important;
-  box-shadow: 0 0 0 6px rgba(0, 86, 179, 0.4) !important;
+[aria-invalid="true"]:focus {
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.25) !important;
 }

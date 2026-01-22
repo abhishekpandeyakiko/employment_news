@@ -3,6 +3,8 @@ import ExternalLinkOpener from "./ExternalLinkOpener";
 
 export default function LogoCarousel({ logos, footerUrl }) {
   const containerRef = useRef(null);
+  const animationRef = useRef(null);
+  const pausedRef = useRef(false);
 
 
   useEffect(() => {
@@ -26,16 +28,19 @@ export default function LogoCarousel({ logos, footerUrl }) {
     const speed = 0.5; // adjust for faster/slower scroll
 
     const scroll = () => {
-      scrollPos += speed;
-      if (scrollPos >= container.scrollWidth / 2) {
-        // ✅ Reset scroll seamlessly when first set finishes
-        scrollPos = 0;
+      if (!pausedRef.current) {
+        scrollPos += speed;
+        if (scrollPos >= container.scrollWidth / 2) {
+          scrollPos = 0;
+        }
+        container.scrollLeft = scrollPos;
       }
-      container.scrollLeft = scrollPos;
-      requestAnimationFrame(scroll);
+      animationRef.current = requestAnimationFrame(scroll);
     };
 
-    requestAnimationFrame(scroll);
+    animationRef.current = requestAnimationFrame(scroll);
+
+    return () => cancelAnimationFrame(animationRef.current);
   }, []);
 
   return (
@@ -43,8 +48,14 @@ export default function LogoCarousel({ logos, footerUrl }) {
       <h2 className="sr-only">Other Important Sites</h2>
       <div
         ref={containerRef}
-        className="flex gap-8 sm:gap-28 animate-scroll whitespace-nowrap"
+        className="flex gap-8 sm:gap-28 whitespace-nowrap overflow-hidden"
         style={{ minWidth: "max-content" }}
+        onMouseEnter={() => (pausedRef.current = true)}
+        onMouseLeave={() => (pausedRef.current = false)}
+        onFocus={() => (pausedRef.current = true)}
+        onBlur={() => (pausedRef.current = false)}
+        tabIndex="0"
+        aria-label="Scrolling list of important sites, tab or hover to pause"
       >
         {logos.map((src, idx) => (
           <ExternalLinkOpener
