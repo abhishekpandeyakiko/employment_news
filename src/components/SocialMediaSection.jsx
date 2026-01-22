@@ -30,10 +30,9 @@ const getEmbedUrl = (embedType, embedId) => {
             return `https://www.instagram.com/p/${embedId}/embed`;
 
         case "Youtube":
-            // Instagram post embed
-            // To get post code: Visit post, copy URL, extract the code after /p/
-            // Example: https://www.instagram.com/p/ABC123XYZ/ -> embedId: "ABC123XYZ"
-            return `https://www.instagram.com/p/${embedId}/embed`;
+            // Youtube embed
+            // Example: https://www.youtube.com/watch?v=VIDEO_ID -> embedId: "VIDEO_ID"
+            return `https://www.youtube.com/embed/${embedId}?cc_load_policy=1`;
 
         default:
             return null;
@@ -107,7 +106,7 @@ const SocialMediaCard = ({ card }) => {
                         allow="encrypted-media"
                         onLoad={handleLoad}
                         onError={handleError}
-                        title={`${card.platform} embed for ${card.account}`}
+                        title={`${card.platform} embed: ${card.account || 'Social Media Content'}`}
                         loading="lazy"
                         className="w-full h-full"
                     />
@@ -122,9 +121,15 @@ export default function SocialMediaSection({ data }) {
     const [canLeft, setCanLeft] = useState(false);
     const [canRight, setCanRight] = useState(true);
 
-    const CARD_WIDTH_PX = 320; // w-80 = 20rem = 320px
-    const GAP_PX = 16; // gap-4 = 1rem
-    const SCROLL_AMOUNT = CARD_WIDTH_PX + GAP_PX;
+    const getScrollAmount = () => {
+        if (containerRef.current && containerRef.current.children.length > 0) {
+            const card = containerRef.current.children[0];
+            const style = window.getComputedStyle(containerRef.current);
+            const gap = parseFloat(style.gap) || 16;
+            return card.clientWidth + gap;
+        }
+        return 336; // Fallback
+    };
 
     const updateButtons = () => {
         const el = containerRef.current;
@@ -151,8 +156,8 @@ export default function SocialMediaSection({ data }) {
         };
     }, []);
 
-    const scrollLeft = () => containerRef.current?.scrollBy({ left: -SCROLL_AMOUNT, behavior: "smooth" });
-    const scrollRight = () => containerRef.current?.scrollBy({ left: SCROLL_AMOUNT, behavior: "smooth" });
+    const scrollLeft = () => containerRef.current?.scrollBy({ left: -getScrollAmount(), behavior: "smooth" });
+    const scrollRight = () => containerRef.current?.scrollBy({ left: getScrollAmount(), behavior: "smooth" });
 
     return (
         <section className="bg-primary-800 p-2 sm:p-6">

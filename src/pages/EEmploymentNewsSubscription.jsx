@@ -5,15 +5,15 @@ export default function EEmploymentNewsSubscription() {
   return (
     <section className="w-full min-h-[80vh] bg-primary-50 py-8 px-4 sm:px-6 md:px-8">
       <div className="w-full max-w-4xl mx-auto">
-  <h1 className="text-2xl md:text-3xl font-bold text-primary-600 mb-4 text-center">How To Subscribe: e-Employment News</h1>
-  <p className="text-base md:text-lg text-gray-600 mb-4 text-justify">
+        <h1 className="text-2xl md:text-3xl font-bold text-primary-600 mb-4 text-center">How To Subscribe: e-Employment News</h1>
+        <p className="text-base md:text-lg text-gray-600 mb-4 text-justify">
           Employment News is available in e-version as well as print version. You can subscribe to any of them or both.
         </p>
         <RegisterPaySubscribeFlow />
         <div className="overflow-x-auto mb-8">
           <table className="min-w-[280px] w-full border border-primary-200 rounded-lg shadow text-center bg-white">
             <thead>
-              <tr className="bg-primary-500 text-white">
+              <tr className="bg-primary-700 text-white">
                 <th className="py-2 px-2 sm:px-4 text-sm sm:text-base font-semibold">Subscription Plan</th>
                 <th className="py-2 px-2 sm:px-4 text-sm sm:text-base font-semibold">e-Version</th>
               </tr>
@@ -42,8 +42,8 @@ export default function EEmploymentNewsSubscription() {
             </tbody>
           </table>
         </div>
-  <h2 className="text-lg sm:text-xl font-semibold text-primary-500 mb-2 mt-6 text-left">e-Employment News</h2>
-  <ol className="list-decimal list-inside text-gray-800 mb-4 ml-2 sm:ml-6 text-justify space-y-2 text-sm sm:text-base">
+        <h2 className="text-lg sm:text-xl font-semibold text-primary-700 mb-2 mt-6 text-left">e-Employment News</h2>
+        <ol className="list-decimal list-inside text-gray-800 mb-4 ml-2 sm:ml-6 text-justify space-y-2 text-sm sm:text-base">
           <li>
             <span className="font-medium">How to register for subscribing to e- Employment News?</span>
             <ol className="list-[lower-alpha] list-inside ml-2 sm:ml-6 mt-1 space-y-1 text-sm sm:text-base">

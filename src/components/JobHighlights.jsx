@@ -63,7 +63,7 @@ export default function JobHighlights({ jobHighlight, carouselImages, sliderTime
         {/* Job Highlights Section */}
         <div id="skip-target" tabIndex="-1" className="col-span-1 md:col-span-3 mt-2 md:mt-0 focus:outline-none scroll-mt-32">
           <a href="https://i5l.95d.mytemp.website/empnews/backend/members" className="flex items-center mb-2 text-primary-700">
-            <IoBagSharp size={18} className="sm:w-6 sm:h-6" />
+            <IoBagSharp size={18} className="sm:w-6 sm:h-6" aria-hidden="true" />
             <h2 className="text-base sm:text-lg font-semibold ml-2"><Translate text={'job-highlights'} /></h2>
           </a>
 
@@ -81,7 +81,7 @@ export default function JobHighlights({ jobHighlight, carouselImages, sliderTime
                     {job.last_date} | {job.post} | {job.method_of_appointment} |{" "}
                     {job.organisation}
                   </span>
-                  <FaChevronRight size={12} className="sm:w-4 sm:h-4" />
+                  <FaChevronRight size={12} className="sm:w-4 sm:h-4" aria-hidden="true" />
                 </a>
               ))}
             </div>

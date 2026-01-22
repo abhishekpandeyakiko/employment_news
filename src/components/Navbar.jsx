@@ -83,7 +83,7 @@ export default function Navbar() {
                 >
                   {item.name}
                   {item.submenu && (
-                    <span className="ml-1 text-xs align-middle">▼</span>
+                    <span className="ml-1 text-xs align-middle" aria-hidden="true">▼</span>
                   )}
                 </a> :
                   <Link
@@ -99,7 +99,7 @@ export default function Navbar() {
                   >
                     {item.name}
                     {item.submenu && (
-                      <span className="ml-1 text-xs align-middle">▼</span>
+                      <span className="ml-1 text-xs align-middle" aria-hidden="true">▼</span>
                     )}
                   </Link>
               ) : (
@@ -111,14 +111,14 @@ export default function Navbar() {
                 >
                   {item.name}
                   {item.submenu && (
-                    <span className="ml-1 text-xs align-middle">▼</span>
+                    <span className="ml-1 text-xs align-middle" aria-hidden="true">▼</span>
                   )}
                 </span>
               )}
               {item.submenu && openDropdown === idx && (
                 <ul
                   className={`
-                    ${mobileOpen ? 'block absolute left-2 right-2 top-full mt-1 bg-white border border-primary-100 shadow-xl rounded-lg z-50 min-w-[180px] py-2 space-y-1' : 'absolute left-0 top-full mt-1 w-max bg-white border border-gray-200 shadow-lg rounded z-50 min-w-[220px]'}
+                    ${mobileOpen ? 'block absolute left-2 right-2 top-full mt-1 bg-white border border-primary-100 shadow-xl rounded-lg z-50 min-w-[11rem] py-2 space-y-1' : 'absolute left-0 top-full mt-1 w-max bg-white border border-gray-200 shadow-lg rounded z-50 min-w-[14rem]'}
                   `}
                 >
                   {item.submenu.map((sub, subIdx) => (

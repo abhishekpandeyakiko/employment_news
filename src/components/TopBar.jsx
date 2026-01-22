@@ -31,7 +31,7 @@ export default function TopBar({ data }) {
 
   return (
     <div className="w-full border-b border-primary-100">
-      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center px-1 sm:px-4 py-1 sm:py-2 gap-y-1 text-[10px] xs:text-xs sm:text-sm">
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center px-1 sm:px-4 py-1 sm:py-2 gap-y-1 text-xs sm:text-sm">
         {/* Left Side */}
         <div className="flex items-center space-x-4 text-primary-700">
           <button
@@ -42,12 +42,12 @@ export default function TopBar({ data }) {
                 target.scrollIntoView({ behavior: 'smooth' });
               }
             }}
-            className="hover:underline text-[14px] font-medium cursor-pointer"
+            className="hover:underline text-sm font-medium cursor-pointer"
           >
             <Translate text="skip-to-main-content" />
           </button>
           <span className="text-primary-700 ">|</span>
-          <Link to="/screen-reader-access" className="hover:underline text-[14px] font-medium"><Translate text="screen_reader" /></Link>
+          <Link to="/screen-reader-access" className="hover:underline text-sm font-medium"><Translate text="screen_reader" /></Link>
         </div>
         {/* Right Side */}
         <div className="flex items-center space-x-2 xs:space-x-3 sm:space-x-4 text-primary-700 relative text-base">
@@ -111,7 +111,7 @@ export default function TopBar({ data }) {
 
 
           </div>
-          <div className="ml-auto text-primary-700 text-[10px] xs:text-xs sm:text-sm pl-3">
+          <div className="ml-auto text-primary-700 text-xs sm:text-sm pl-3">
             <a href="#" className="hover:underline"><Translate text="eversion" /></a>
           </div>
         </div>

@@ -94,7 +94,7 @@ const EditorialSection = ({ article, articleSpecial }) => {
                                 className="flex justify-between items-center p-2 sm:p-4 bg-gray-50 cursor-pointer hover:bg-gray-100"
                             >
                                 <span>{item.title}</span>
-                                <span className="text-primary"><FaChevronRight size={12} className="sm:w-4 sm:h-4 text-primary-500" /></span>
+                                <span className="text-primary"><FaChevronRight size={12} className="sm:w-4 sm:h-4 text-primary-700" /></span>
                             </li>
                         ))}
                     </ul>

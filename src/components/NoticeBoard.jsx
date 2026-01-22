@@ -47,14 +47,14 @@ export default function CompanyLogoSlider({ advertis }) {
             aria-label="Previous advertisement"
             className="bg-gray-500 bg-opacity-40 hover:bg-opacity-70 text-white p-2 rounded-full shadow-md transition"
           >
-            <FaChevronLeft size={16} />
+            <FaChevronLeft size={16} aria-hidden="true" />
           </button>
           <button
             ref={nextRef}
             aria-label="Next advertisement"
             className="bg-gray-500 bg-opacity-40 hover:bg-opacity-70 text-white p-2 rounded-full shadow-md transition"
           >
-            <FaChevronRight size={16} />
+            <FaChevronRight size={16} aria-hidden="true" />
           </button>
         </div>
       </div>

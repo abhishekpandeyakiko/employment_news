@@ -10,7 +10,7 @@ export default function Announcements({ announcements }) {
     <div className="w-full bg-primary-700 text-white text-sm">
       <div className="max-w-8xl mx-auto flex items-center px-2 sm:px-6 md:px-12 py-2 space-x-2 sm:space-x-3">
         <div className="hidden sm:flex items-center bg-primary-700 px-3 py-1 rounded text-xs font-semibold space-x-2">
-          <FaExclamationTriangle className="w-3 h-3" />
+          <FaExclamationTriangle className="w-3 h-3" aria-hidden="true" />
           <span><Translate text={'announcements'} /></span>
           <button
             onClick={() => setPaused(!paused)}
@@ -18,15 +18,15 @@ export default function Announcements({ announcements }) {
             className="border border-white rounded-full p-1 hover:bg-primary-800 transition"
           >
             {paused ? (
-              <FaPlay className="w-2.5 h-2.5" />
+              <FaPlay className="w-2.5 h-2.5" aria-hidden="true" />
             ) : (
-              <FaPause className="w-2.5 h-2.5" />
+              <FaPause className="w-2.5 h-2.5" aria-hidden="true" />
             )}
           </button>
         </div>
 
         {/* Marquee Wrapper */}
-        <div className="relative flex-1 overflow-hidden bg-white px-2 sm:px-3 py-1 rounded font-bold text-[12px] sm:text-[13px] text-[#6C4713]">
+        <div className="relative flex-1 overflow-hidden bg-white px-2 sm:px-3 py-1 rounded font-bold text-xs sm:text-sm text-[#6C4713]">
           <div
             className={`flex gap-12 whitespace-nowrap ${paused ? "" : "animate-marquee"
               }`}
