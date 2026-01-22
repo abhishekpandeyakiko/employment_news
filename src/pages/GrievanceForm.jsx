@@ -41,10 +41,14 @@ const AccessibleErrorMessage = ({ name, id }) => {
 };
 
 // Accessible Field: adds aria-invalid + aria-describedby that points to the error message
-const AccessibleField = ({ name, id, errorId, as, className = "", ...props }) => {
+const AccessibleField = ({ name, id, errorId, describedByIds = [], as, className = "", ...props }) => {
   const [field, meta] = useField(name);
   const hasError = Boolean(meta.touched && meta.error);
   const Component = as || "input";
+  const describedBy = [
+    ...describedByIds.filter(Boolean),
+    ...(hasError ? [errorId] : []),
+  ].join(" ") || undefined;
 
   return (
     <>
@@ -54,7 +58,7 @@ const AccessibleField = ({ name, id, errorId, as, className = "", ...props }) =>
         id={id}
         name={name}
         aria-invalid={hasError ? "true" : "false"}
-        aria-describedby={hasError ? errorId : undefined}
+        aria-describedby={describedBy}
         className={`${className} ${hasError ? "border-red-500 focus:ring-red-500" : ""}`}
       />
       {hasError ? <AccessibleErrorMessage name={name} id={errorId} /> : null}
@@ -216,7 +220,9 @@ export default function GrievanceForm() {
           {({ setFieldValue }) => (
             <Form className="bg-white rounded-lg shadow p-6 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-6" noValidate>
               <div>
-                <label htmlFor="name" className="block font-semibold text-primary-700 mb-1 text-left"><Translate text={"name"} /> :</label>
+                <label htmlFor="name" className="block font-semibold text-primary-700 mb-1 text-left">
+                  <Translate text={"name"} /> <span className="text-red-600" aria-hidden="true">*</span>
+                </label>
                 <AccessibleField
                   type="text"
                   id="name"
@@ -224,10 +230,16 @@ export default function GrievanceForm() {
                   placeholder={t("enter-name")}
                   errorId="name-error"
                   aria-required="true"
+                  describedByIds={["name-help"]}
                   className="w-full border border-primary-200 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-200"
                 />
+                <div id="name-help" className="text-gray-600 text-xs mb-2">
+                  Enter your full name.
+                </div>
 
-                <label htmlFor="address" className="block font-semibold text-primary-700 mb-1 text-left"><Translate text={"address"} /> :</label>
+                <label htmlFor="address" className="block font-semibold text-primary-700 mb-1 text-left">
+                  <Translate text={"address"} /> <span className="text-red-600" aria-hidden="true">*</span>
+                </label>
                 <AccessibleField
                   type="text"
                   id="address"
@@ -235,10 +247,16 @@ export default function GrievanceForm() {
                   placeholder={t("enter-address")}
                   errorId="address-error"
                   aria-required="true"
+                  describedByIds={["address-help"]}
                   className="w-full border border-primary-200 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-200"
                 />
+                <div id="address-help" className="text-gray-600 text-xs mb-2">
+                  Enter your complete address (house/street, city, state).
+                </div>
 
-                <label htmlFor="mobile" className="block font-semibold text-primary-700 mb-1 text-left"><Translate text={"mobile"} /> :</label>
+                <label htmlFor="mobile" className="block font-semibold text-primary-700 mb-1 text-left">
+                  <Translate text={"mobile"} /> <span className="text-red-600" aria-hidden="true">*</span>
+                </label>
                 <AccessibleField
                   type="tel"
                   id="mobile"
@@ -246,12 +264,18 @@ export default function GrievanceForm() {
                   placeholder={t("enter-mobile-number")}
                   errorId="mobile-error"
                   aria-required="true"
+                  describedByIds={["mobile-help"]}
                   inputMode="numeric"
                   maxLength={10}
                   className="w-full border border-primary-200 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-200"
                 />
+                <div id="mobile-help" className="text-gray-600 text-xs mb-2">
+                  Enter a 10-digit mobile number (digits only).
+                </div>
 
-                <label htmlFor="subject" className="block font-semibold text-primary-700 mb-1 text-left"><Translate text={"grievance-subject"} /> :</label>
+                <label htmlFor="subject" className="block font-semibold text-primary-700 mb-1 text-left">
+                  <Translate text={"grievance-subject"} /> <span className="text-red-600" aria-hidden="true">*</span>
+                </label>
                 <AccessibleField
                   type="text"
                   id="subject"
@@ -259,20 +283,39 @@ export default function GrievanceForm() {
                   placeholder={t("enter-grievance-subject")}
                   errorId="subject-error"
                   aria-required="true"
+                  describedByIds={["subject-help"]}
                   className="w-full border border-primary-200 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-200"
                 />
+                <div id="subject-help" className="text-gray-600 text-xs mb-2">
+                  Enter a short subject for your grievance.
+                </div>
 
-                <label htmlFor="file" className="block font-semibold text-primary-700 mb-1 text-left"><Translate text={"upload-attachment"} />  :</label>
-                <input type="file" id="file" name="file" onChange={e => setFieldValue("file", e.target.files[0])} className="mb-4" />
+                <label htmlFor="file" className="block font-semibold text-primary-700 mb-1 text-left">
+                  <Translate text={"upload-attachment"} /> <span className="text-gray-600 font-normal">(optional)</span>
+                </label>
+                <input
+                  type="file"
+                  id="file"
+                  name="file"
+                  onChange={e => setFieldValue("file", e.target.files[0])}
+                  className="mb-1"
+                  aria-describedby="file-help"
+                />
+                <div id="file-help" className="text-gray-600 text-xs mb-4">
+                  Upload a supporting document (optional).
+                </div>
               </div>
               <div>
-                <label htmlFor="category" className="block font-semibold text-primary-700 mb-1 text-left"><Translate text={"select-category"} /></label>
+                <label htmlFor="category" className="block font-semibold text-primary-700 mb-1 text-left">
+                  <Translate text={"select-category"} /> <span className="text-red-600" aria-hidden="true">*</span>
+                </label>
                 <AccessibleField
                   as="select"
                   id="category"
                   name="category"
                   errorId="category-error"
                   aria-required="true"
+                  describedByIds={["category-help"]}
                   className="w-full border border-primary-200 rounded px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-primary-200"
                 >
                   <option value="">Select category</option>
@@ -281,8 +324,13 @@ export default function GrievanceForm() {
                   <option value="Technical">Technical</option>
                   <option value="Other">Other</option>
                 </AccessibleField>
+                <div id="category-help" className="text-gray-600 text-xs mb-2">
+                  Choose the category that best matches your issue.
+                </div>
 
-                <label htmlFor="email" className="block font-semibold text-primary-700 mb-1 text-left"><Translate text={"email"} /> :</label>
+                <label htmlFor="email" className="block font-semibold text-primary-700 mb-1 text-left">
+                  <Translate text={"email"} /> <span className="text-red-600" aria-hidden="true">*</span>
+                </label>
 
                 <AccessibleField
                   type="email"
@@ -291,11 +339,17 @@ export default function GrievanceForm() {
                   placeholder={t("enter-email")}
                   errorId="email-error"
                   aria-required="true"
+                  describedByIds={["email-help"]}
                   inputMode="email"
                   className="w-full border border-primary-200 rounded px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-primary-200"
                 />
+                <div id="email-help" className="text-gray-600 text-xs mb-2">
+                  Enter your email address for follow-up.
+                </div>
 
-                <label htmlFor="pincode" className="block font-semibold text-primary-700 mb-1 text-left"><Translate text={"pincode"} />  :</label>
+                <label htmlFor="pincode" className="block font-semibold text-primary-700 mb-1 text-left">
+                  <Translate text={"pincode"} /> <span className="text-red-600" aria-hidden="true">*</span>
+                </label>
 
                 <AccessibleField
                   type="text"
@@ -304,12 +358,18 @@ export default function GrievanceForm() {
                   placeholder={t("enter-pincode")}
                   errorId="pincode-error"
                   aria-required="true"
+                  describedByIds={["pincode-help"]}
                   inputMode="numeric"
                   maxLength={6}
                   className="w-full border border-primary-200 rounded px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-primary-200"
                 />
+                <div id="pincode-help" className="text-gray-600 text-xs mb-2">
+                  Enter your 6-digit pincode (digits only).
+                </div>
 
-                <label htmlFor="text" className="block font-semibold text-primary-700 mb-1 text-left"><Translate text={"grievance-text"} /> :</label>
+                <label htmlFor="text" className="block font-semibold text-primary-700 mb-1 text-left">
+                  <Translate text={"grievance-text"} /> <span className="text-red-600" aria-hidden="true">*</span>
+                </label>
                 <AccessibleField
                   as="textarea"
                   id="text"
@@ -318,12 +378,18 @@ export default function GrievanceForm() {
                   rows={4}
                   errorId="text-error"
                   aria-required="true"
+                  describedByIds={["text-help"]}
                   className="w-full border border-primary-200 rounded px-3 py-2 mb-3 focus:outline-none focus:ring-2 focus:ring-primary-200"
                 />
+                <div id="text-help" className="text-gray-600 text-xs mb-2">
+                  Describe the issue clearly (what happened and where).
+                </div>
               </div>
               <div className="md:col-span-2 flex flex-col md:flex-row md:items-center gap-4 mt-2">
                 <div className="flex items-center gap-2">
-                  <label htmlFor="captcha" className="font-semibold text-primary-700 text-left"><Translate text={"enter-captcha"} /> :</label>
+                  <label htmlFor="captcha" className="font-semibold text-primary-700 text-left">
+                    <Translate text={"enter-captcha"} /> <span className="text-red-600" aria-hidden="true">*</span>
+                  </label>
                   {/* <span className="rounded border border-primary-200 bg-primary-50 px-3 py-2 font-mono text-lg select-none">{captcha}</span> */}
                   <canvas
                     ref={canvasRef}
@@ -338,10 +404,14 @@ export default function GrievanceForm() {
                     placeholder={t("enter-captcha")}
                     errorId="captcha-error"
                     aria-required="true"
+                    describedByIds={["captcha-help"]}
                     autoComplete="off"
                     className="border border-primary-200 rounded px-3 py-2 w-32 focus:outline-none focus:ring-2 focus:ring-primary-200"
                   />
                   <button type="button" onClick={handleRefreshCaptcha} className="ml-2 text-primary-700 hover:text-primary-800 text-xl" title="Refresh Captcha" aria-label="Refresh Captcha">⟳</button>
+                </div>
+                <div id="captcha-help" className="text-gray-600 text-xs">
+                  Type the characters shown in the image.
                 </div>
                 <button type="submit" className="ml-auto bg-primary-700 hover:bg-primary-800 text-white font-semibold px-6 py-2 rounded shadow transition">{<Translate text={"submit-form"} />}</button>
               </div>

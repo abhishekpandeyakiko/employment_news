@@ -11,14 +11,16 @@ export default function JobHighlights({ jobHighlight, carouselImages, sliderTime
   const [paused, setPaused] = useState(false);
 
   // Auto-change carousel every 5s
+  // Auto-change carousel every 5s
   useEffect(() => {
     if (paused) return; // Stop auto-slide if paused
 
+    const delay = 5000;
     const interval = setInterval(() => {
       setCurrent((prev) =>
         prev === carouselImages.length - 1 ? 0 : prev + 1
       );
-    }, [sliderTime[current]]);
+    }, delay);
     return () => clearInterval(interval);
   }, [carouselImages.length, paused]);
 

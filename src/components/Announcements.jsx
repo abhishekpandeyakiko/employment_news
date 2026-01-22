@@ -26,15 +26,32 @@ export default function Announcements({ announcements }) {
         </div>
 
         {/* Marquee Wrapper */}
-        <div className="relative flex-1 overflow-hidden bg-white px-2 sm:px-3 py-1 rounded font-bold text-xs sm:text-sm text-[#6C4713]">
+        <div
+          className="relative flex-1 overflow-hidden bg-white px-2 sm:px-3 py-1 rounded font-bold text-xs sm:text-sm text-[#6C4713]"
+          role="region"
+          aria-label="Announcements"
+          aria-live="polite"
+        >
           <div
             className={`flex gap-12 whitespace-nowrap ${paused ? "" : "animate-marquee"
               }`}
           >
             {announcements.map((item, index) => (
-              <a href="#" key={index} className="hover:underline">
-                {item.title}
-              </a>
+              item?.url ? (
+                <a
+                  href={item.url}
+                  key={index}
+                  className="hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onFocus={() => setPaused(true)}
+                  onBlur={() => setPaused(false)}
+                >
+                  {item.title}
+                </a>
+              ) : (
+                <span key={index}>{item.title}</span>
+              )
             ))}
           </div>
         </div>

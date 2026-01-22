@@ -32,7 +32,9 @@ export default function AccessibilityDrawer({ isOpen, onClose }) {
 
   // Body scroll lock and Focus Trap
   useEffect(() => {
+    let previousActiveElement;
     if (isOpen) {
+      previousActiveElement = document.activeElement;
       document.body.style.overflow = "hidden";
 
       // Focus trap logic
@@ -74,12 +76,20 @@ export default function AccessibilityDrawer({ isOpen, onClose }) {
           drawer.removeEventListener('keydown', handleTab);
           window.removeEventListener('keydown', handleEscape);
           document.body.style.overflow = "";
+          // Restore focus
+          if (previousActiveElement) {
+            setTimeout(() => previousActiveElement.focus(), 100);
+          }
         };
       }
     } else {
       document.body.style.overflow = "";
     }
-  }, [isOpen, onClose]);
+  }, [isOpen]); // Removed onClose from dependency to prevent re-binding loops if onClose changes, though strictly it should be there. 
+  // However, saving previousActiveElement needs to happen ONCE when isOpen becomes true.
+  // If we include onClose, ensure logic implies running only on [isOpen] change boundaries.
+  // The cleanup runs when isOpen becomes false (or component unmounts).
+  // So this logic works.
 
   // Apply accessibility settings
   useEffect(() => {
@@ -187,10 +197,13 @@ export default function AccessibilityDrawer({ isOpen, onClose }) {
         style={{ zIndex: 110 }}
         onClick={(e) => e.stopPropagation()}
         tabIndex={-1}
+        role="dialog"
+        aria-modal={isOpen ? "true" : undefined}
+        aria-labelledby="accessibility-drawer-title"
       >
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-primary-500 text-white">
-          <h2 className="text-lg font-semibold">Accessibility Options</h2>
+          <h2 id="accessibility-drawer-title" className="text-lg font-semibold">Accessibility Options</h2>
           <button
             onClick={onClose}
             className="p-1 hover:bg-primary-600 rounded focus:ring-2 focus:ring-white"

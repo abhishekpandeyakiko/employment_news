@@ -28,23 +28,72 @@ export default function Navbar() {
   const location = useLocation();
 
   useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === 'Escape' && mobileOpen) {
-        setMobileOpen(false);
+    let previousActiveElement;
+    if (mobileOpen) {
+      previousActiveElement = document.activeElement;
+      document.body.style.overflow = "hidden";
+
+      const menu = document.getElementById('mobile-menu-container');
+      if (menu) {
+        // Focus trap
+        const focusableElements = menu.querySelectorAll(
+          'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (firstElement) {
+          setTimeout(() => firstElement.focus(), 100);
+        }
+
+        const handleTab = (e) => {
+          if (e.key === 'Tab') {
+            if (e.shiftKey) {
+              if (document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement.focus();
+              }
+            } else {
+              if (document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement.focus();
+              }
+            }
+          }
+        };
+
+        const handleEscape = (e) => {
+          if (e.key === 'Escape') setMobileOpen(false);
+        };
+
+        menu.addEventListener('keydown', handleTab);
+        window.addEventListener('keydown', handleEscape);
+
+        return () => {
+          menu.removeEventListener('keydown', handleTab);
+          window.removeEventListener('keydown', handleEscape);
+          document.body.style.overflow = "";
+          if (previousActiveElement) {
+            setTimeout(() => previousActiveElement.focus(), 100);
+          }
+        };
       }
-    };
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
+    } else {
+      document.body.style.overflow = "";
+    }
   }, [mobileOpen]);
 
   return (
     <nav className="w-full border-b border-primary-100 bg-white z-50">
       {/* Overlay for mobile menu */}
       {mobileOpen && (
-        <div
+        <button
+          type="button"
           className="fixed inset-0 bg-black bg-opacity-30 z-40 sm:hidden"
           onClick={() => setMobileOpen(false)}
           aria-label="Close navigation menu overlay"
+          aria-hidden="true"
+          tabIndex={-1}
         />
       )}
       <div className="max-w-7xl mx-auto px-2 sm:px-4 flex items-center justify-end sm:justify-between relative">
@@ -60,6 +109,10 @@ export default function Navbar() {
         </button>
         {/* Main nav links */}
         <ul
+          id="mobile-menu-container"
+          role={mobileOpen ? "dialog" : undefined}
+          aria-modal={mobileOpen ? "true" : undefined}
+          aria-label="Mobile Navigation Menu"
           className={`
             font-medium text-primary-700 whitespace-nowrap
             flex-col sm:flex-row sm:flex sm:space-x-8
@@ -99,6 +152,9 @@ export default function Navbar() {
                   `}
                   aria-current={location.pathname === item.href ? "page" : undefined}
                   onClick={() => setMobileOpen(false)}
+                  onFocus={() => item.submenu && setOpenDropdown(idx)}
+                  aria-expanded={item.submenu ? openDropdown === idx : undefined}
+                  aria-haspopup={item.submenu ? "true" : undefined}
                 >
                   {item.name}
                   {item.submenu && (
@@ -115,6 +171,9 @@ export default function Navbar() {
                   `}
                     aria-current={location.pathname === item.href ? "page" : undefined}
                     onClick={() => setMobileOpen(false)}
+                    onFocus={() => item.submenu && setOpenDropdown(idx)}
+                    aria-expanded={item.submenu ? openDropdown === idx : undefined}
+                    aria-haspopup={item.submenu ? "true" : undefined}
                   >
                     {item.name}
                     {item.submenu && (

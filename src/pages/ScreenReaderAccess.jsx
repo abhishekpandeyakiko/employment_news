@@ -54,17 +54,18 @@ const ScreenReaderAccess = () => {
 
                 <div className="overflow-x-auto">
                     <table className="min-w-full bg-white border border-gray-200">
+                        <caption className="sr-only">List of available Screen Readers and their details</caption>
                         <thead className="bg-primary-50">
                             <tr>
-                                <th className="px-6 py-3 border-b border-gray-200 text-left text-xs font-semibold text-primary-700 uppercase tracking-wider">Screen Reader</th>
-                                <th className="px-6 py-3 border-b border-gray-200 text-left text-xs font-semibold text-primary-700 uppercase tracking-wider">Website</th>
-                                <th className="px-6 py-3 border-b border-gray-200 text-left text-xs font-semibold text-primary-700 uppercase tracking-wider">Free / Commercial</th>
+                                <th scope="col" className="px-6 py-3 border-b border-gray-200 text-left text-xs font-semibold text-primary-700 uppercase tracking-wider">Screen Reader</th>
+                                <th scope="col" className="px-6 py-3 border-b border-gray-200 text-left text-xs font-semibold text-primary-700 uppercase tracking-wider">Website</th>
+                                <th scope="col" className="px-6 py-3 border-b border-gray-200 text-left text-xs font-semibold text-primary-700 uppercase tracking-wider">Free / Commercial</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
                             {screenReaders.map((reader, index) => (
                                 <tr key={index} className="hover:bg-gray-50">
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{reader.name}</td>
+                                    <th scope="row" className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-left">{reader.name}</th>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-600">
                                         <a href={reader.website} target="_blank" rel="noopener noreferrer" className="hover:underline italic">
                                             {reader.website}

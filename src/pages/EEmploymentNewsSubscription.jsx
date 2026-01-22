@@ -12,31 +12,28 @@ export default function EEmploymentNewsSubscription() {
         <RegisterPaySubscribeFlow />
         <div className="overflow-x-auto mb-8">
           <table className="min-w-[280px] w-full border border-primary-200 rounded-lg shadow text-center bg-white">
+            <caption className="sr-only">e-Employment News Subscription Plans and Prices</caption>
             <thead>
               <tr className="bg-primary-700 text-white">
-                <th className="py-2 px-2 sm:px-4 text-sm sm:text-base font-semibold">Subscription Plan</th>
-                <th className="py-2 px-2 sm:px-4 text-sm sm:text-base font-semibold">e-Version</th>
-              </tr>
-              <tr className="bg-primary-100">
-                <th className="py-1 px-2 sm:px-4 text-xs sm:text-sm font-normal"></th>
-                <th className="py-1 px-2 sm:px-4 text-xs sm:text-sm font-normal">Price</th>
+                <th scope="col" className="py-2 px-2 sm:px-4 text-sm sm:text-base font-semibold">Subscription Plan</th>
+                <th scope="col" className="py-2 px-2 sm:px-4 text-sm sm:text-base font-semibold">e-Version Price</th>
               </tr>
             </thead>
             <tbody>
               <tr className="odd:bg-primary-50">
-                <td className="py-2 px-2 sm:px-4 text-sm sm:text-base">6 Months</td>
+                <th scope="row" className="py-2 px-2 sm:px-4 text-sm sm:text-base font-normal">6 Months</th>
                 <td className="py-2 px-2 sm:px-4 text-sm sm:text-base">Rs 200/-</td>
               </tr>
               <tr className="odd:bg-primary-50">
-                <td className="py-2 px-2 sm:px-4 text-sm sm:text-base">1 Year</td>
+                <th scope="row" className="py-2 px-2 sm:px-4 text-sm sm:text-base font-normal">1 Year</th>
                 <td className="py-2 px-2 sm:px-4 text-sm sm:text-base">Rs 400/-</td>
               </tr>
               <tr className="odd:bg-primary-50">
-                <td className="py-2 px-2 sm:px-4 text-sm sm:text-base">2 Year</td>
+                <th scope="row" className="py-2 px-2 sm:px-4 text-sm sm:text-base font-normal">2 Year</th>
                 <td className="py-2 px-2 sm:px-4 text-sm sm:text-base">Rs 750/-</td>
               </tr>
               <tr className="odd:bg-primary-50">
-                <td className="py-2 px-2 sm:px-4 text-sm sm:text-base">3 Year</td>
+                <th scope="row" className="py-2 px-2 sm:px-4 text-sm sm:text-base font-normal">3 Year</th>
                 <td className="py-2 px-2 sm:px-4 text-sm sm:text-base">Rs 1050/-</td>
               </tr>
             </tbody>

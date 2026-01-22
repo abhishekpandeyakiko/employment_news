@@ -21,11 +21,10 @@ export default function CompanyLogoSlider({ advertis }) {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const [swiperReady, setSwiperReady] = useState(false);
-
-
+  const [swiperInstance, setSwiperInstance] = useState(null);
 
   useEffect(() => {
-    setSwiperReady(true); // ensures refs are attached
+    setSwiperReady(true);
   }, []);
 
   return (
@@ -58,52 +57,67 @@ export default function CompanyLogoSlider({ advertis }) {
 
       {/* Swiper Slider */}
       {swiperReady && (
-        <Swiper
-          modules={[Navigation, Autoplay]}
-          spaceBetween={20}
-          slidesPerView={2}
-          loop={true}
-          autoplay={{ delay: 3000 }}
-          navigation={{
-            prevEl: prevRef.current,
-            nextEl: nextRef.current,
-          }}
-          onBeforeInit={(swiper) => {
-            swiper.params.navigation.prevEl = prevRef.current;
-            swiper.params.navigation.nextEl = nextRef.current;
-          }}
-          breakpoints={{
-            340: { slidesPerView: 2 },
-            640: { slidesPerView: 3 },
-            768: { slidesPerView: 4 },
-            992: { slidesPerView: 4 },
-            1024: { slidesPerView: 5 },
-            1280: { slidesPerView: 6 },
+        <div
+          onMouseEnter={() => swiperInstance?.autoplay?.stop()}
+          onMouseLeave={() => swiperInstance?.autoplay?.start()}
+          onFocus={() => swiperInstance?.autoplay?.stop()}
+          onBlur={(e) => {
+            if (!e.currentTarget.contains(e.relatedTarget)) {
+              swiperInstance?.autoplay?.start();
+            }
           }}
         >
-          {advertis.map((company, index) => (
-            <SwiperSlide key={index}>
-              <a
-                href={company.pdf}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block group focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-[10px]"
-              >
-                <div className="bg-white border border-gray-200 h-32 rounded-[10px] overflow-hidden shadow-sm group-hover:shadow-lg transition-transform duration-300 group-hover:scale-105 flex items-center justify-center">
-                  <img
-                    src={company.image}
-                    alt=""
-                    aria-hidden="true"
-                    className="object-contain max-h-24 w-auto"
-                  />
-                </div>
-                <p className="text-center text-[14px] mt-2 text-gray-600 font-medium tracking-wide group-hover:text-primary-700">
-                  {company.title}
-                </p>
-              </a>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+          <Swiper
+            modules={[Navigation, Autoplay]}
+            spaceBetween={20}
+            slidesPerView={2}
+            loop={true}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true
+            }}
+            onSwiper={setSwiperInstance}
+            navigation={{
+              prevEl: prevRef.current,
+              nextEl: nextRef.current,
+            }}
+            onBeforeInit={(swiper) => {
+              swiper.params.navigation.prevEl = prevRef.current;
+              swiper.params.navigation.nextEl = nextRef.current;
+            }}
+            breakpoints={{
+              340: { slidesPerView: 2 },
+              640: { slidesPerView: 3 },
+              768: { slidesPerView: 4 },
+              992: { slidesPerView: 4 },
+              1024: { slidesPerView: 5 },
+              1280: { slidesPerView: 6 },
+            }}
+          >
+            {advertis.map((company, index) => (
+              <SwiperSlide key={index}>
+                <a
+                  href={company.pdf}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block group focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-[10px]"
+                >
+                  <div className="bg-white border border-gray-200 h-32 rounded-[10px] overflow-hidden shadow-sm group-hover:shadow-lg transition-transform duration-300 group-hover:scale-105 flex items-center justify-center">
+                    <img
+                      src={company.image}
+                      alt={company.name || "Advertisement"}
+                      className="object-contain max-h-24 w-auto"
+                    />
+                  </div>
+                  <p className="text-center text-[14px] mt-2 text-gray-600 font-medium tracking-wide group-hover:text-primary-700">
+                    {company.title}
+                  </p>
+                </a>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       )}
     </div>
   );

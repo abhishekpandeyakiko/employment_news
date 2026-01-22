@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaCircleExclamation } from "react-icons/fa6";
+import { FaNewspaper } from "react-icons/fa6";
 import { FaChevronRight } from "react-icons/fa";
 import Translate from "./Translate";
 import { useNavigate } from "react-router-dom";
@@ -16,7 +16,7 @@ const EditorialSection = ({ article, articleSpecial }) => {
                 {/* Left Editorial */}
                 <div className="p-2 sm:p-4">
                     <h2 className="flex items-center gap-2 text-base sm:text-xl font-semibold text-primary-700 mb-4">
-                        <span><FaCircleExclamation size={18} className="sm:w-6 sm:h-6" /></span> <Translate text={'editorial'} />
+                        <span><FaNewspaper size={18} className="sm:w-6 sm:h-6" aria-hidden="true" /></span> <Translate text={'editorial'} />
                     </h2>
                     {/* Tabs */}
                     <div className="flex border border-primary-700 mb-2">
@@ -64,7 +64,7 @@ const EditorialSection = ({ article, articleSpecial }) => {
                 {/* Right Editorial */}
                 <div className="p-2 sm:p-4">
                     <h2 className="flex items-center gap-2 text-base sm:text-xl font-semibold text-primary-700 mb-4">
-                        <span><FaCircleExclamation size={18} className="sm:w-6 sm:h-6" /></span> <Translate text={'editorial'} />
+                        <span><FaNewspaper size={18} className="sm:w-6 sm:h-6" aria-hidden="true" /></span> <Translate text={'editorial'} />
                     </h2>
                     {/* Tabs */}
                     <div className="flex border border-primary-700 mb-2">

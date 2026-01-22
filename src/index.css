@@ -35,7 +35,8 @@ body {
   animation: scroll-up 20s linear infinite;
 }
 
-.scroll-container:hover {
+.scroll-container:hover,
+.scroll-container:focus-within {
   animation-play-state: paused;
 }
 

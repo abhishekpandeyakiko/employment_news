@@ -17,35 +17,36 @@ export default function PrintEmploymentNewsSubscription() {
             <h2 className="text-sm sm:text-base font-semibold text-primary-700 mb-1 text-left">Q. What are the subscription charges for DPD's Journals?</h2>
             <div className="overflow-x-auto">
               <table className="min-w-[320px] w-full border border-primary-200 rounded-lg shadow text-center bg-white mb-2">
+                <caption className="sr-only">Subscription charges for Print and e-Version plans</caption>
                 <thead>
                   <tr className="bg-primary-700 text-white">
-                    <th className="py-2 px-1 sm:px-2 text-xs sm:text-sm font-semibold">Plan</th>
-                    <th className="py-2 px-1 sm:px-2 text-xs sm:text-sm font-semibold">Print<br />(Ordinary)</th>
-                    <th className="py-2 px-1 sm:px-2 text-xs sm:text-sm font-semibold">Print<br />(Tracking)</th>
-                    <th className="py-2 px-1 sm:px-2 text-xs sm:text-sm font-semibold">e-Version</th>
+                    <th scope="col" className="py-2 px-1 sm:px-2 text-xs sm:text-sm font-semibold">Plan</th>
+                    <th scope="col" className="py-2 px-1 sm:px-2 text-xs sm:text-sm font-semibold">Print<br />(Ordinary)</th>
+                    <th scope="col" className="py-2 px-1 sm:px-2 text-xs sm:text-sm font-semibold">Print<br />(Tracking)</th>
+                    <th scope="col" className="py-2 px-1 sm:px-2 text-xs sm:text-sm font-semibold">e-Version</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr className="odd:bg-primary-50">
-                    <td className="py-2 px-1 sm:px-2 text-xs sm:text-sm">6 Months</td>
+                    <th scope="row" className="py-2 px-1 sm:px-2 text-xs sm:text-sm font-normal">6 Months</th>
                     <td className="py-2 px-1 sm:px-2 text-xs sm:text-sm">Rs. 265/-</td>
                     <td className="py-2 px-1 sm:px-2 text-xs sm:text-sm">Rs. 650/-</td>
                     <td className="py-2 px-1 sm:px-2 text-xs sm:text-sm">Rs. 200/-</td>
                   </tr>
                   <tr className="odd:bg-primary-50">
-                    <td className="py-2 px-1 sm:px-2 text-xs sm:text-sm">1 Year</td>
+                    <th scope="row" className="py-2 px-1 sm:px-2 text-xs sm:text-sm font-normal">1 Year</th>
                     <td className="py-2 px-1 sm:px-2 text-xs sm:text-sm">Rs. 530/-</td>
                     <td className="py-2 px-1 sm:px-2 text-xs sm:text-sm">Rs. 1250/-</td>
                     <td className="py-2 px-1 sm:px-2 text-xs sm:text-sm">Rs. 400/-</td>
                   </tr>
                   <tr className="odd:bg-primary-50">
-                    <td className="py-2 px-1 sm:px-2 text-xs sm:text-sm">2 Years</td>
+                    <th scope="row" className="py-2 px-1 sm:px-2 text-xs sm:text-sm font-normal">2 Years</th>
                     <td className="py-2 px-1 sm:px-2 text-xs sm:text-sm">Rs. 1000/-</td>
                     <td className="py-2 px-1 sm:px-2 text-xs sm:text-sm">Rs. 2450/-</td>
                     <td className="py-2 px-1 sm:px-2 text-xs sm:text-sm">Rs. 750/-</td>
                   </tr>
                   <tr className="odd:bg-primary-50">
-                    <td className="py-2 px-1 sm:px-2 text-xs sm:text-sm">3 Years</td>
+                    <th scope="row" className="py-2 px-1 sm:px-2 text-xs sm:text-sm font-normal">3 Years</th>
                     <td className="py-2 px-1 sm:px-2 text-xs sm:text-sm">Rs. 1400/-</td>
                     <td className="py-2 px-1 sm:px-2 text-xs sm:text-sm">Rs. 3600/-</td>
                     <td className="py-2 px-1 sm:px-2 text-xs sm:text-sm">Rs. 1050/-</td>
