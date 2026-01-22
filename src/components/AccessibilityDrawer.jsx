@@ -30,18 +30,56 @@ export default function AccessibilityDrawer({ isOpen, onClose }) {
   const [keyboardNav, setKeyboardNav] = useState(false);
   const [focusVisible, setFocusVisible] = useState(false);
 
-  // Body scroll lock when drawer open
+  // Body scroll lock and Focus Trap
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
+
+      // Focus trap logic
+      const drawer = document.querySelector('.accessibility-drawer');
+      if (drawer) {
+        const focusableElements = drawer.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        // Focus first element on open
+        setTimeout(() => firstElement?.focus(), 100);
+
+        const handleTab = (e) => {
+          if (e.key === 'Tab') {
+            if (e.shiftKey) { /* shift + tab */
+              if (document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement.focus();
+              }
+            } else { /* tab */
+              if (document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement.focus();
+              }
+            }
+          }
+        };
+
+        const handleEscape = (e) => {
+          if (e.key === 'Escape') onClose();
+        };
+
+        drawer.addEventListener('keydown', handleTab);
+        window.addEventListener('keydown', handleEscape);
+
+        return () => {
+          drawer.removeEventListener('keydown', handleTab);
+          window.removeEventListener('keydown', handleEscape);
+          document.body.style.overflow = "";
+        };
+      }
     } else {
       document.body.style.overflow = "";
     }
-
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   // Apply accessibility settings
   useEffect(() => {

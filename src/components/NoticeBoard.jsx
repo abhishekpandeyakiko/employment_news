@@ -22,10 +22,7 @@ export default function CompanyLogoSlider({ advertis }) {
   const nextRef = useRef(null);
   const [swiperReady, setSwiperReady] = useState(false);
 
-  const handleNoticeLinkClick = (url) => {
-    // Redirect based on notice type
-    window.open(url, '_blank').focus();
-  };
+
 
   useEffect(() => {
     setSwiperReady(true); // ensures refs are attached
@@ -64,7 +61,7 @@ export default function CompanyLogoSlider({ advertis }) {
         <Swiper
           modules={[Navigation, Autoplay]}
           spaceBetween={20}
-          slidesPerView={5}
+          slidesPerView={2}
           loop={true}
           autoplay={{ delay: 3000 }}
           navigation={{
@@ -85,17 +82,25 @@ export default function CompanyLogoSlider({ advertis }) {
           }}
         >
           {advertis.map((company, index) => (
-            <SwiperSlide key={index} onClick={() => handleNoticeLinkClick(company.pdf)}>
-              <div className="bg-white border border-gray-200 h-32 rounded-[10px] overflow-hidden shadow-sm hover:shadow-lg transition-transform duration-300 hover:scale-105 flex items-center justify-center">
-                <img
-                  src={company.image}
-                  alt={company.title}
-                  className="object-contain max-h-24 w-auto"
-                />
-              </div>
-              <p className="text-center text-[14px] mt-2 text-gray-600 font-medium tracking-wide">
-                {company.title}
-              </p>
+            <SwiperSlide key={index}>
+              <a
+                href={company.pdf}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block group focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-[10px]"
+              >
+                <div className="bg-white border border-gray-200 h-32 rounded-[10px] overflow-hidden shadow-sm group-hover:shadow-lg transition-transform duration-300 group-hover:scale-105 flex items-center justify-center">
+                  <img
+                    src={company.image}
+                    alt=""
+                    aria-hidden="true"
+                    className="object-contain max-h-24 w-auto"
+                  />
+                </div>
+                <p className="text-center text-[14px] mt-2 text-gray-600 font-medium tracking-wide group-hover:text-primary-700">
+                  {company.title}
+                </p>
+              </a>
             </SwiperSlide>
           ))}
         </Swiper>

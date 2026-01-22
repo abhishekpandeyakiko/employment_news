@@ -11,7 +11,7 @@ export default function Announcements({ announcements }) {
       <div className="max-w-8xl mx-auto flex items-center px-2 sm:px-6 md:px-12 py-2 space-x-2 sm:space-x-3">
         <div className="hidden sm:flex items-center bg-primary-700 px-3 py-1 rounded text-xs font-semibold space-x-2">
           <FaExclamationTriangle className="w-3 h-3" aria-hidden="true" />
-          <span><Translate text={'announcements'} /></span>
+          <h2><Translate text={'announcements'} /></h2>
           <button
             onClick={() => setPaused(!paused)}
             aria-label={paused ? "Play announcements" : "Pause announcements"}

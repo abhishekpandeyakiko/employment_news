@@ -67,18 +67,18 @@ export default function TopBar({ data }) {
             </button>
             {langOpen && (
               <div className="absolute right-0 mt-1 bg-white border border-gray-200 rounded shadow z-20 min-w-[80px]">
-                <div
-                  className={`px-3 py-1 hover:bg-primary-50 cursor-pointer ${i18n.language === "en" ? "font-semibold" : ""}`}
+                <button
+                  className={`w-full text-left px-3 py-1 hover:bg-primary-50 cursor-pointer ${i18n.language === "en" ? "font-semibold" : ""}`}
                   onClick={() => handleLangSelect("en")}
                 >
                   English
-                </div>
-                <div
-                  className={`px-3 py-1 hover:bg-primary-50 cursor-pointer ${i18n.language === "hi" ? "font-semibold" : ""}`}
+                </button>
+                <button
+                  className={`w-full text-left px-3 py-1 hover:bg-primary-50 cursor-pointer ${i18n.language === "hi" ? "font-semibold" : ""}`}
                   onClick={() => handleLangSelect("hi")}
                 >
                   हिंदी
-                </div>
+                </button>
               </div>
             )}
           </div>
@@ -95,10 +95,11 @@ export default function TopBar({ data }) {
 
           {/* Search */}
           <div className="relative">
-            <FaSearch
-              className="w-4 h-4 cursor-pointer"
-              onClick={handleSearchClick}
-            />
+            <button onClick={handleSearchClick} aria-label="Toggle search">
+              <FaSearch
+                className="w-4 h-4 cursor-pointer"
+              />
+            </button>
             {searchOpen && (
               <input
                 ref={searchInputRef}

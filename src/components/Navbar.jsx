@@ -27,6 +27,16 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
 
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && mobileOpen) {
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [mobileOpen]);
+
   return (
     <nav className="w-full border-b border-primary-100 bg-white z-50">
       {/* Overlay for mobile menu */}
@@ -66,6 +76,15 @@ export default function Navbar() {
               className={`relative ${mobileOpen ? 'border-b border-primary-100 last:border-b-0' : ''}`}
               onMouseEnter={() => item.submenu && setOpenDropdown(idx)}
               onMouseLeave={() => item.submenu && setOpenDropdown(null)}
+              onKeyDown={(e) => {
+                if (e.key === 'Escape') setOpenDropdown(null);
+              }}
+              onBlur={(e) => {
+                // Close if focus leaves the entire li tree
+                if (!e.currentTarget.contains(e.relatedTarget)) {
+                  setOpenDropdown(null);
+                }
+              }}
             >
               {item.href.startsWith("/") ? (
 
@@ -103,17 +122,22 @@ export default function Navbar() {
                     )}
                   </Link>
               ) : (
-                <span
+                <button
+                  type="button"
                   className={`
-                    block px-4 py-2 sm:px-6 sm:py-3 transition text-base 
+                    block px-4 py-2 sm:px-6 sm:py-3 transition text-base w-full text-left
                     ${item.submenu ? "pr-8" : ""}
+                    ${openDropdown === idx ? "text-primary-600 font-semibold" : "hover:text-primary-700"}
                   `}
+                  aria-expanded={openDropdown === idx}
+                  aria-haspopup={item.submenu ? "true" : undefined}
+                  onClick={() => setOpenDropdown(openDropdown === idx ? null : idx)}
                 >
                   {item.name}
                   {item.submenu && (
                     <span className="ml-1 text-xs align-middle" aria-hidden="true">▼</span>
                   )}
-                </span>
+                </button>
               )}
               {item.submenu && openDropdown === idx && (
                 <ul

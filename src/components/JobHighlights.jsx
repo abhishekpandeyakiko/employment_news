@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight, FaPlay, FaPause } from "react-icons/fa";
 import { IoBagSharp } from "react-icons/io5";
 import Translate from "./Translate";
 
@@ -8,16 +8,19 @@ import Translate from "./Translate";
 export default function JobHighlights({ jobHighlight, carouselImages, sliderTime }) {
 
   const [current, setCurrent] = useState(0);
+  const [paused, setPaused] = useState(false);
 
   // Auto-change carousel every 5s
   useEffect(() => {
+    if (paused) return; // Stop auto-slide if paused
+
     const interval = setInterval(() => {
       setCurrent((prev) =>
         prev === carouselImages.length - 1 ? 0 : prev + 1
       );
     }, [sliderTime[current]]);
     return () => clearInterval(interval);
-  }, [carouselImages.length]);
+  }, [carouselImages.length, paused]);
 
   const prevSlide = () => {
     setCurrent((prev) =>
@@ -37,11 +40,22 @@ export default function JobHighlights({ jobHighlight, carouselImages, sliderTime
 
         {/* Carousel Section */}
         <div className="col-span-1 md:col-span-9 bg-white rounded-lg shadow-md relative overflow-hidden h-48 xs:h-64 sm:h-80 md:h-[500px]">
-          <img
-            src={carouselImages[current]}
-            alt="Carousel"
-            className="w-full h-full object-cover transition-all duration-700"
-          />
+          <div className="relative w-full h-full">
+            <img
+              src={carouselImages[current]}
+              alt=""
+              className="w-full h-full object-cover transition-all duration-700"
+            />
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <button
+                onClick={() => setPaused(!paused)}
+                aria-label={paused ? "Play slider" : "Pause slider"}
+                className="bg-black/40 hover:bg-black/60 text-white p-3 rounded-full backdrop-blur-sm transition-all pointer-events-auto"
+              >
+                {paused ? <FaPlay size={24} /> : <FaPause size={24} />}
+              </button>
+            </div>
+          </div>
           {/* Left Arrow */}
           <button
             onClick={prevSlide}

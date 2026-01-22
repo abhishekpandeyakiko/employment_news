@@ -6,7 +6,7 @@ export default function RegisterPaySubscribeFlow() {
       <div className="flex items-center justify-center space-x-2 sm:space-x-4 md:space-x-6 lg:space-x-8">
         {/* Register Step */}
         <div className="flex items-center">
-          <div className="bg-primary-50 border-2 border-primary-500 rounded-full px-3 py-2 sm:px-4 sm:py-2.5 md:px-6 md:py-3 min-w-[80px] sm:min-w-[100px] md:min-w-[120px] text-center">
+          <div className="bg-primary-50 border-2 border-primary-500 rounded-full px-3 py-2 sm:px-4 sm:py-2.5 md:px-6 md:py-3 min-w-20 sm:min-w-24 md:min-w-32 text-center">
             <span className="text-primary-600 font-semibold text-xs sm:text-sm md:text-base">Register</span>
           </div>
           {/* Arrow */}
