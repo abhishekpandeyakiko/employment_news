@@ -45,7 +45,7 @@ export default function LogoCarousel({ logos, footerUrl }) {
         <div
           className="flex gap-6 sm:gap-16 animate-scroll-left w-max"
           style={{
-            animationPlayState: userPaused ? "paused" : undefined
+            animationPlayState: userPaused ? "paused" : "running"
           }}
           onMouseEnter={() => { }} // Hover pause is handled by CSS
           onMouseLeave={() => { }}
@@ -57,8 +57,9 @@ export default function LogoCarousel({ logos, footerUrl }) {
             <div key={`original-${idx}`} className="shrink-0">
               <ExternalLinkOpener
                 url={footerUrl[idx]}
-                text={<img src={src} alt="" className="h-10 sm:h-14 object-contain grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer" />}
+                text={<img src={src} alt="" className="h-10 sm:h-14 object-contain  transition-all duration-500 cursor-pointer" />}
                 className="block"
+                ariaLabel={`Visit website: ${footerUrl[idx]}`}
               />
             </div>
           ))}
@@ -68,8 +69,9 @@ export default function LogoCarousel({ logos, footerUrl }) {
             <div key={`duplicate-${idx}`} className="shrink-0">
               <ExternalLinkOpener
                 url={footerUrl[idx]}
-                text={<img src={src} alt="" className="h-10 sm:h-14 object-contain grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer" />}
+                text={<img src={src} alt="" className="h-10 sm:h-14 object-contain  transition-all duration-500 cursor-pointer" />}
                 className="block"
+                ariaLabel={`Visit website: ${footerUrl[idx]}`}
               />
             </div>
           ))}

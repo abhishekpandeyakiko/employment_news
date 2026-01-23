@@ -30,18 +30,20 @@ export default function Announcements({ announcements }) {
           className="relative flex-1 overflow-hidden bg-white px-2 sm:px-3 py-1 rounded font-bold text-xs sm:text-sm text-[#6C4713]"
           role="region"
           aria-label="Announcements"
-          aria-live="polite"
         >
           <div
-            className={`flex gap-12 whitespace-nowrap ${paused ? "" : "animate-marquee"
-              }`}
+            className="flex gap-12 whitespace-nowrap animate-scroll-left w-max"
+            style={{ animationPlayState: paused ? "paused" : "running" }}
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
           >
+            {/* Original Content */}
             {announcements.map((item, index) => (
               item?.url ? (
                 <a
                   href={item.url}
-                  key={index}
-                  className="hover:underline"
+                  key={`orig-${index}`}
+                  className="hover:underline focus:outline-none focus:ring-2 focus:ring-primary-500"
                   target="_blank"
                   rel="noopener noreferrer"
                   onFocus={() => setPaused(true)}
@@ -50,7 +52,32 @@ export default function Announcements({ announcements }) {
                   {item.title}
                 </a>
               ) : (
-                <span key={index}>{item.title}</span>
+                <span key={`orig-${index}`}>{item.title}</span>
+              )
+            ))}
+
+            {/* Duplicate Content for seamless loop */}
+            {announcements.map((item, index) => (
+              item?.url ? (
+                <a
+                  href={item.url}
+                  key={`dup-${index}`}
+                  className="hover:underline focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onFocus={() => setPaused(true)}
+                  onBlur={() => setPaused(false)}
+                  aria-hidden="true" // Hide duplicate links from screen readers to avoid redundancy
+                  tabIndex="-1" // Prevent tab focus on duplicates if desired, or let them be valid targets? 
+                // If we hide them, we should set tabIndex -1. But continuous scroll usually means user expects access.
+                // However, for accessibility, creating infinite loops of focusable items is bad (keyboard trap).
+                // Best practice for infinite scroll accessibility is tricky.
+                // For now, I'll assume standard marquee behavior. Hiding duplicates is often safer for SR.
+                >
+                  {item.title}
+                </a>
+              ) : (
+                <span key={`dup-${index}`}>{item.title}</span>
               )
             ))}
           </div>

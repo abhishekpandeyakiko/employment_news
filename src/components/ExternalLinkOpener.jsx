@@ -1,4 +1,4 @@
-const ExternalLinkOpener = ({ url, text = "Open External Link", className }) => {
+const ExternalLinkOpener = ({ url, text = "Open External Link", className, ariaLabel }) => {
   const handleClick = (e) => {
     e.preventDefault();
     const confirmed = window.confirm(
@@ -17,6 +17,7 @@ const ExternalLinkOpener = ({ url, text = "Open External Link", className }) => 
       onClick={handleClick}
       className={className || "external-link"}
       rel="noopener noreferrer"
+      aria-label={ariaLabel}
     >
       {text}
     </a>
