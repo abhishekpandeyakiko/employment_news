@@ -7,7 +7,7 @@ export default function LogoCarousel({ logos, footerUrl }) {
 
   return (
     <div className="py-4 sm:py-8 bg-white group px-4 sm:px-6">
-      <div className="max-w-7xl mx-auto flex items-center justify-between mb-4 sm:mb-6">
+      <div className="mx-auto flex items-center justify-between mb-4 sm:mb-6">
         <h2 className="flex items-center gap-2 text-base sm:text-xl font-semibold text-primary-700">
           <span><FaGlobe size={18} className="sm:w-6 sm:h-6" aria-hidden="true" /></span>
           <span>Other Important Sites</span>
