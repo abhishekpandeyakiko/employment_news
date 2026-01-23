@@ -201,7 +201,7 @@ export default function Navbar() {
               {item.submenu && openDropdown === idx && (
                 <ul
                   className={`
-                    ${mobileOpen ? 'block absolute left-2 right-2 top-full mt-1 bg-white border border-primary-100 shadow-xl rounded-lg z-50 min-w-[11rem] py-2 space-y-1' : 'absolute left-0 top-full mt-1 w-max bg-white border border-gray-200 shadow-lg rounded z-50 min-w-[14rem]'}
+                    ${mobileOpen ? 'block absolute left-2 right-2 top-full mt-1 bg-white border border-primary-100 shadow-xl rounded-lg z-50 min-w-[11rem] py-2 space-y-1' : 'absolute left-0 top-full mt-1 w-max bg-white border border-gray-200 shadow-lg rounded z-50 min-w-[14rem] before:absolute before:-top-3 before:left-0 before:w-full before:h-4 before:content-[""]'}
                   `}
                 >
                   {item.submenu.map((sub, subIdx) => (
