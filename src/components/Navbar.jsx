@@ -89,17 +89,17 @@ export default function Navbar() {
       {mobileOpen && (
         <button
           type="button"
-          className="fixed inset-0 bg-black bg-opacity-30 z-40 sm:hidden"
+          className="fixed inset-0 bg-black bg-opacity-30 z-40 lg:hidden"
           onClick={() => setMobileOpen(false)}
           aria-label="Close navigation menu overlay"
           aria-hidden="true"
           tabIndex={-1}
         />
       )}
-      <div className="max-w-7xl mx-auto px-2 sm:px-4 flex items-center justify-end sm:justify-between relative">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 flex items-center justify-end lg:justify-between relative">
         {/* Hamburger for mobile */}
         <button
-          className="sm:hidden p-1 focus:outline-none z-50"
+          className="lg:hidden p-1 focus:outline-none z-50"
           aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
           onClick={() => setMobileOpen((v) => !v)}
         >
@@ -115,9 +115,9 @@ export default function Navbar() {
           aria-label="Mobile Navigation Menu"
           className={`
             font-medium text-primary-700 whitespace-nowrap
-            flex-col sm:flex-row sm:flex sm:space-x-8
+            flex-col lg:flex-row lg:flex lg:space-x-8
             ${mobileOpen ? 'flex animate-slide-down' : 'hidden'}
-            absolute sm:static left-0 right-0 top-full bg-white border-b border-primary-100 z-50 sm:bg-transparent sm:border-0 sm:relative
+            absolute lg:static left-0 right-0 top-full bg-white border-b border-primary-100 z-50 lg:bg-transparent lg:border-0 lg:relative
             transition-all duration-300
             text-base
           `}
@@ -129,6 +129,7 @@ export default function Navbar() {
               className={`relative ${mobileOpen ? 'border-b border-primary-100 last:border-b-0' : ''}`}
               onMouseEnter={() => item.submenu && setOpenDropdown(idx)}
               onMouseLeave={() => item.submenu && setOpenDropdown(null)}
+              // ... handlers ...
               onKeyDown={(e) => {
                 if (e.key === 'Escape') setOpenDropdown(null);
               }}
@@ -184,7 +185,7 @@ export default function Navbar() {
                 <button
                   type="button"
                   className={`
-                    block px-4 py-2 sm:px-6 sm:py-3 transition text-base w-full text-left
+                    block px-4 py-2 sm:px-6 sm:py-3 transition text-base w-full text-center lg:text-left
                     ${item.submenu ? "pr-8" : ""}
                     ${openDropdown === idx ? "text-primary-600 font-semibold" : "hover:text-primary-700"}
                   `}
@@ -233,7 +234,7 @@ export default function Navbar() {
       </div>
       {/* Mobile menu slide down animation */}
       <style>{`
-        @media (max-width: 639px) {
+        @media (max-width: 1023px) {
           .animate-slide-down {
             animation: slideDown 0.25s cubic-bezier(0.4,0,0.2,1);
           }

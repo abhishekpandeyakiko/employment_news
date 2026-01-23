@@ -15,8 +15,12 @@ module.exports = {
           700: "#005561",
           800: "#004049",
           900: "#002B31",
-        }
-      }
+        },
+      },
+      screens: {
+        'xs': '475px',
+        ...require('tailwindcss/defaultTheme').screens,
+      },
     },
   },
   plugins: [],
