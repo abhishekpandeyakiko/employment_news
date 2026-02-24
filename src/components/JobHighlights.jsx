@@ -43,34 +43,43 @@ export default function JobHighlights({ jobHighlight, carouselImages, sliderTime
         {/* Carousel Section */}
         <div className="col-span-1 md:col-span-9 bg-white rounded-lg shadow-md relative overflow-hidden h-48 xs:h-64 sm:h-80 md:h-[500px]">
           <div className="relative w-full h-full">
-            <img
-              src={carouselImages[current]}
-              alt=""
-              className="w-full h-full object-cover transition-all duration-700"
-            />
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <button
-                onClick={() => setPaused(!paused)}
-                aria-label={paused ? "Play job highlights slider" : "Pause job highlights slider"}
-                className="bg-black/40 hover:bg-black/60 text-white p-3 rounded-full backdrop-blur-sm transition-all pointer-events-auto"
-              >
-                {paused ? <FaPlay size={24} /> : <FaPause size={24} />}
-              </button>
-            </div>
+            {carouselImages && carouselImages.length > 0 ? (
+              <>
+                <img
+                  src={carouselImages[current]}
+                  alt={`Job Highlight Illustration ${current + 1}`}
+                  className="w-full h-full object-cover transition-all duration-700"
+                />
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <button
+                    onClick={() => setPaused(!paused)}
+                    aria-label={paused ? "Start job highlights animation" : "Stop job highlights animation"}
+                    className="bg-black/40 hover:bg-black/60 text-white p-3 rounded-full backdrop-blur-sm transition-all pointer-events-auto shadow-xl ring-1 ring-white/20"
+                    title={paused ? "Play" : "Pause"}
+                  >
+                    {paused ? <FaPlay size={24} /> : <FaPause size={24} />}
+                  </button>
+                </div>
+              </>
+            ) : (
+              <div className="w-full h-full flex items-center justify-center bg-gray-50 text-gray-400 italic">
+                No slide images available
+              </div>
+            )}
           </div>
           {/* Left Arrow */}
           <button
             onClick={prevSlide}
-            aria-label="Previous job highlight slide"
-            className="absolute top-1/2 left-2 sm:left-4 -translate-y-1/2 cursor-pointer p-1 sm:p-2 rounded-full text-white bg-gray-500 bg-opacity-50 hover:bg-opacity-75 transition"
+            aria-label="Previous image"
+            className="absolute top-1/2 left-2 sm:left-4 -translate-y-1/2 cursor-pointer p-1 sm:p-2 rounded-full text-white bg-black/30 hover:bg-black/50 transition-all shadow-lg focus:ring-2 focus:ring-white"
           >
             <FaChevronLeft size={18} className="sm:w-6 sm:h-6" />
           </button>
           {/* Right Arrow */}
           <button
             onClick={nextSlide}
-            aria-label="Next job highlight slide"
-            className="absolute top-1/2 right-2 sm:right-4 -translate-y-1/2 cursor-pointer p-1 sm:p-2 rounded-full text-white bg-gray-500 bg-opacity-50 hover:bg-opacity-75 transition"
+            aria-label="Next image"
+            className="absolute top-1/2 right-2 sm:right-4 -translate-y-1/2 cursor-pointer p-1 sm:p-2 rounded-full text-white bg-black/30 hover:bg-black/50 transition-all shadow-lg focus:ring-2 focus:ring-white"
           >
             <FaChevronRight size={18} className="sm:w-6 sm:h-6" />
           </button>
@@ -85,22 +94,28 @@ export default function JobHighlights({ jobHighlight, carouselImages, sliderTime
 
           {/* Auto-scrolling list */}
           <div className="relative h-32 xs:h-48 sm:h-[415px] overflow-hidden bg-primary-700 rounded-sm px-1 sm:px-2">
-            <div className="scroll-container">
-              {/* First copy */}
-              {jobHighlight.map((job, index) => (
-                <a
-                  key={`job-${index}`}
-                  href={`https://i5l.95d.mytemp.website/empnews/backend/members`}
-                  className="flex justify-between items-center p-1 sm:p-2 border-b border-primary-400 text-white text-xs sm:text-sm cursor-pointer hover:bg-primary-600 transition"
-                >
-                  <span className="text-white text-xs sm:text-sm mr-2">
-                    {job.last_date} | {job.post} | {job.method_of_appointment} |{" "}
-                    {job.organisation}
-                  </span>
-                  <FaChevronRight size={12} className="sm:w-4 sm:h-4" aria-hidden="true" />
-                </a>
-              ))}
-            </div>
+            {jobHighlight && jobHighlight.length > 0 ? (
+              <div className="scroll-container">
+                {/* First copy */}
+                {jobHighlight.map((job, index) => (
+                  <a
+                    key={`job-${index}`}
+                    href={`https://i5l.95d.mytemp.website/empnews/backend/members`}
+                    className="flex justify-between items-center p-1 sm:p-2 border-b border-primary-400 text-white text-xs sm:text-sm cursor-pointer hover:bg-primary-600 transition"
+                  >
+                    <span className="text-white text-xs sm:text-sm mr-2">
+                      {job.last_date} | {job.post} | {job.method_of_appointment} |{" "}
+                      {job.organisation}
+                    </span>
+                    <FaChevronRight size={12} className="sm:w-4 sm:h-4" aria-hidden="true" />
+                  </a>
+                ))}
+              </div>
+            ) : (
+              <div className="h-full flex items-center justify-center text-white font-medium text-sm sm:text-base">
+                Data Not Found
+              </div>
+            )}
           </div>
 
           {/* Button */}

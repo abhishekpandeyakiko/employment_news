@@ -60,9 +60,6 @@ export default function About() {
         <div className="bg-white rounded-[24px] border border-[#dadce0] p-8 md:p-12 mb-10 shadow-sm hover:shadow-md transition-shadow duration-300">
 
 
-          {/* Subtle Decorative Elements */}
-          <div className="absolute top-0 right-0 w-40 h-40 bg-primary-50 rounded-bl-full -mr-20 -mt-20 opacity-50"></div>
-          <div className="absolute bottom-0 left-0 w-24 h-24 bg-primary-50 rounded-tr-full -ml-12 -mb-12 opacity-50"></div>
 
           <div className="relative z-10">
             <div

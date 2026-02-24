@@ -1,6 +1,7 @@
 import { FaExclamationTriangle, FaPause, FaPlay } from "react-icons/fa";
 import { useState } from "react";
 import Translate from "./Translate";
+import { Link } from "react-router-dom";
 
 export default function Announcements({ announcements }) {
 
@@ -34,8 +35,6 @@ export default function Announcements({ announcements }) {
           <div
             className="flex gap-12 whitespace-nowrap animate-scroll-left w-max"
             style={{ animationPlayState: paused ? "paused" : "running" }}
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
           >
             {/* Original Content */}
             {announcements.map((item, index) => (
@@ -46,8 +45,6 @@ export default function Announcements({ announcements }) {
                   className="hover:underline focus:outline-none focus:ring-2 focus:ring-primary-500"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onFocus={() => setPaused(true)}
-                  onBlur={() => setPaused(false)}
                 >
                   {item.title}
                 </a>
@@ -65,14 +62,8 @@ export default function Announcements({ announcements }) {
                   className="hover:underline focus:outline-none focus:ring-2 focus:ring-primary-500"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onFocus={() => setPaused(true)}
-                  onBlur={() => setPaused(false)}
                   aria-hidden="true" // Hide duplicate links from screen readers to avoid redundancy
                   tabIndex="-1" // Prevent tab focus on duplicates if desired, or let them be valid targets? 
-                // If we hide them, we should set tabIndex -1. But continuous scroll usually means user expects access.
-                // However, for accessibility, creating infinite loops of focusable items is bad (keyboard trap).
-                // Best practice for infinite scroll accessibility is tricky.
-                // For now, I'll assume standard marquee behavior. Hiding duplicates is often safer for SR.
                 >
                   {item.title}
                 </a>
@@ -84,9 +75,12 @@ export default function Announcements({ announcements }) {
         </div>
 
         <div className="hidden sm:flex items-center space-x-3">
-          <button className="bg-white text-primary-600 text-xs font-semibold px-3 py-1 rounded shadow">
+          <Link
+            to="/all-announcements"
+            className="bg-white text-primary-600 text-xs font-semibold px-3 py-1 rounded shadow hover:bg-gray-100 transition-colors"
+          >
             <Translate text={'view-all'} />
-          </button>
+          </Link>
         </div>
       </div>
     </div>

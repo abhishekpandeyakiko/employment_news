@@ -91,7 +91,7 @@ const SocialMediaCard = ({ card }) => {
 
                 {hasError ? (
                     <div className="h-full flex items-center justify-center p-4">
-                        <p className="text-xs text-gray-500 text-center">
+                        <p className="text-xs text-gray-600 text-center">
                             Unable to load social media content. Please check the embed ID.
                         </p>
                     </div>

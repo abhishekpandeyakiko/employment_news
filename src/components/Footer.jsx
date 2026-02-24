@@ -1,131 +1,174 @@
-import { FaPhone } from "react-icons/fa6";
+import { FaPhone, FaMapMarkerAlt, FaGlobe, FaEnvelope, FaExternalLinkAlt } from "react-icons/fa";
 import Translate from "./Translate";
+import { Link } from "react-router-dom";
+import ExternalLinkOpener from "./ExternalLinkOpener";
 
 export default function Footer({ data }) {
 
-
-
   function PhoneNumber({ help_line }) {
-
     if (help_line != undefined) {
-      return (<>
-        {help_line.split(',').map((word, index) => (
-          <p key={index}>{word}</p>
-        ))}
-      </>
+      return (
+        <div className="flex flex-col gap-1">
+          {help_line.split(',').map((word, index) => (
+            <a key={index} href={`tel:${word.trim()}`} className="hover:text-primary-300 transition-colors">{word.trim()}</a>
+          ))}
+        </div>
       )
     }
     return '';
   }
+
   function RelatedSites({ related_sites }) {
     const sanitizeUrl = (url) => {
       if (!url) return "#";
-      // Prevent javascript: protocol
-      if (url.toLowerCase().startsWith('javascript:')) {
-        return "#";
-      }
+      if (url.toLowerCase().startsWith('javascript:')) return "#";
       return url;
     };
 
     if (related_sites != undefined) {
-      return (<>
-        {related_sites.map((word, index) => (
-          <li key={index}><a href={sanitizeUrl(word.url)} target="_blank" rel="noopener noreferrer">{word.title}</a></li>
-        ))}
-      </>
+      return (
+        <ul className="space-y-2 list-none text-xs sm:text-sm">
+          {related_sites.map((word, index) => (
+            <li key={index} className="flex items-center gap-2 group">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary-400 group-hover:bg-primary-300 transition-colors"></span>
+              <ExternalLinkOpener
+                url={sanitizeUrl(word.url)}
+                text={<span className="hover:underline flex items-center gap-1.5">{word.title} <FaExternalLinkAlt size={10} className="opacity-50" /></span>}
+                className="text-gray-100 hover:text-white transition-colors"
+                ariaLabel={`${word.title} - opens in a new window`}
+              />
+            </li>
+          ))}
+        </ul>
       )
     }
     return '';
   }
+
   function MapIframe({ src }) {
     const sanitizeUrl = (url) => {
       if (!url) return "";
-      if (url.toLowerCase().startsWith('javascript:')) {
-        return "";
-      }
+      if (url.toLowerCase().startsWith('javascript:')) return "";
       return url;
     };
 
     return (
-      <iframe
-        src={sanitizeUrl(src)}
-        width="200"
-        height="200"
-        style={{ border: 0 }}
-        allowFullScreen
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-        title="map"
-      />
+      <div className="rounded-xl overflow-hidden border border-primary-700 shadow-inner group relative">
+        <iframe
+          src={sanitizeUrl(src)}
+          width="100%"
+          height="150"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Office Location Map"
+          className="transition-all duration-500"
+        />
+        <div className="absolute inset-0 pointer-events-none border-2 border-primary-400/20 rounded-xl"></div>
+      </div>
     );
   }
+
   return (
-    <footer className="bg-primary-800 text-white text-sm text-left border-t border-primary-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 grid grid-cols-1 md:grid-cols-5 gap-4 sm:gap-6 md:gap-8">
+    <footer className="bg-primary-700 text-white border-t-4 border-primary-400 text-left">
+      {/* Main Footer Content */}
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-24 py-5 sm:py-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8">
 
-        {/* About Us - slightly more space */}
-        <div className="md:col-span-2 col-span-1 pb-4 md:pb-0">
-          <h3 className="font-semibold mb-3 text-base sm:text-lg"><Translate text="about_us" /></h3>
-          <p className="text-gray-100 leading-relaxed text-justify text-xs sm:text-sm md:text-base">
-            {data.about_us}
-          </p>
-        </div>
+          {/* About Us */}
+          <div className="lg:col-span-2 text-left">
+            <h3 className="text-lg font-bold mb-4 border-b-2 border-primary-300 pb-1 inline-block"><Translate text="about_us" /></h3>
+            <p className="text-primary-50 leading-relaxed text-xs sm:text-sm">
+              {data.about_us || "Your trusted gateway to authentic national employment news, empowering the youth through timely information and jobs."}
+            </p>
+          </div>
 
-        {/* Related Sites */}
-        <div>
-          <h3 className="font-semibold mb-3 text-base sm:text-lg"><Translate text="relatedsites" /></h3>
-          <ul className="space-y-0.5 sm:space-y-1 list-disc list-inside text-xs sm:text-sm">
+          {/* Related Sites */}
+          <div className="lg:col-span-1 text-left">
+            <h3 className="text-lg font-bold mb-4 border-b-2 border-primary-300 pb-1 inline-block"><Translate text="relatedsites" /></h3>
             <RelatedSites related_sites={data.related_sites} />
-          </ul>
-        </div>
+          </div>
 
-        {/* Information */}
-        <div>
-          <h3 className="font-semibold mb-3 text-base sm:text-lg"><Translate text="information" /></h3>
-          <ul className="space-y-0.5 sm:space-y-1 list-disc list-inside text-xs sm:text-sm">
-            <li>Photo Gallery</li>
-            <li>Events & Highlights</li>
-            {/* <li>Jobs through NCS</li> */}
-            {/* <li>AICTE Placement Portal</li> */}
-          </ul>
+          {/* Information & Helpline Combined */}
+          <div className="lg:col-span-1 text-left flex flex-col gap-3">
+            <div>
+              <h3 className="text-lg font-bold mb-3 border-b-2 border-primary-300 pb-1 inline-block"><Translate text="information" /></h3>
+              <ul className="space-y-2.5 text-xs sm:text-sm">
+                <li className="flex items-center gap-2 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary-400 group-hover:bg-white transition-colors"></span>
+                  <Link to="/gallery" className="hover:underline hover:text-white transition-colors">Photo Gallery</Link>
+                </li>
+                <li className="flex items-center gap-2 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary-400 group-hover:bg-white transition-colors"></span>
+                  <Link to="/events" className="hover:underline hover:text-white transition-colors">Events & Highlights</Link>
+                </li>
+              </ul>
+            </div>
 
+            <div>
+              <h3 className="text-lg font-bold mb-3 border-b-2 border-primary-300 pb-1 inline-block"><Translate text="helpline" /></h3>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary-800 p-2 rounded-lg text-white shadow-inner">
+                    <FaPhone className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <PhoneNumber help_line={data.help_line} />
+                  </div>
+                </div>
 
-
-          {/* Helpline */}
-          <div className="mt-4 sm:mt-5">
-            <h3 className="font-semibold mb-3 text-base sm:text-lg"><Translate text="helpline" /></h3>
-            <div className="flex items-center space-x-3 sm:space-x-3.5">
-              {/* Icon box */}
-              <div className="bg-gray-200 p-2 rounded-md flex items-center justify-center">
-                <FaPhone className="w-6 h-6 text-primary-800" />
-              </div>
-
-              {/* Numbers */}
-              <div className="flex flex-col">
-                <PhoneNumber help_line={data.help_line} />
-
-
-
+                <div className="pt-0">
+                  <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white mb-1 leading-none">
+                    <Translate text="website_last_updated" />
+                  </h4>
+                  <p className="text-xs font-medium text-white">
+                    24/02/2026 11:45:00
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-          <div className="mt-4 text-xs sm:text-sm text-gray-200">
-            <p className="font-medium">
-              <Translate text="website_last_updated" /> <br></br> 21/01/2026 17:38:30
-            </p>
-          </div>
-        </div>
 
-        {/* Locations */}
-        <div>
-          <h3 className="font-semibold mb-3 text-base sm:text-lg"><Translate text="locations" /></h3>
-          <div className="space-y-2 sm:space-y-2.5">
-            {/* {data.locations} */}
-            <MapIframe src={data.locations} />
+          {/* Location Map - Equal width */}
+          <div className="lg:col-span-1 text-left">
+            <h3 className="text-lg font-bold mb-4 border-b-2 border-primary-300 pb-1 inline-block"><Translate text="locations" /></h3>
+            <div className="space-y-3">
+              <div className="flex gap-2 text-[11px] text-white mb-2 leading-tight justify-start items-start">
+                <FaMapMarkerAlt className="text-white shrink-0 mt-0.5" />
+                <p>New Delhi, India - Head Office</p>
+              </div>
+              <MapIframe src={data.locations} />
+            </div>
           </div>
+
         </div>
       </div>
 
+      {/* GIGW 3.0 Policies Bar */}
+      <div className="bg-primary-800 border-t border-primary-600">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-24 py-2.5">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            {/* Standard Policy Links */}
+            <nav className="flex flex-wrap justify-center md:justify-start gap-x-5 gap-y-2 text-[11px] font-bold uppercase tracking-wider text-white text-center md:text-left">
+              <Link to="/help" className="hover:text-white transition-colors">Help</Link>
+              <Link to="/feedback" className="hover:text-white transition-colors">Feedback</Link>
+              <Link to="/sitemap" className="hover:text-white transition-colors">Sitemap</Link>
+              <Link to="/policies/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <Link to="/policies/hyperlinking" className="hover:text-white transition-colors">Hyperlinking Policy</Link>
+              <Link to="/policies/copyright" className="hover:text-white transition-colors">Copyright Policy</Link>
+              <Link to="/policies/terms" className="hover:text-white transition-colors">Terms & Conditions</Link>
+              <Link to="/policies/accessibility" className="hover:text-white transition-colors">Accessibility Statement</Link>
+            </nav>
+
+            {/* Copyright Info */}
+            <div className="text-[10px] text-primary-100 md:text-right font-medium leading-relaxed max-w-xs text-center md:text-left uppercase tracking-tighter">
+              Content owned by Publications Division, Ministry of Information & Broadcasting.
+              Designed and developed by NIC.
+            </div>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 }

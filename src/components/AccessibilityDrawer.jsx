@@ -350,8 +350,9 @@ export default function AccessibilityDrawer({ isOpen, onClose }) {
             </h3>
             <div className="space-y-3">
               <div>
-                <label className="block text-sm text-gray-700 mb-1">Line Height</label>
+                <label htmlFor="line-height-range" className="block text-sm text-gray-700 mb-1">Line Height</label>
                 <input
+                  id="line-height-range"
                   type="range"
                   min="1.2"
                   max="2.5"
@@ -367,8 +368,9 @@ export default function AccessibilityDrawer({ isOpen, onClose }) {
                 </div>
               </div>
               <div>
-                <label className="block text-sm text-gray-700 mb-1">Letter Spacing</label>
+                <label htmlFor="letter-spacing-range" className="block text-sm text-gray-700 mb-1">Letter Spacing</label>
                 <input
+                  id="letter-spacing-range"
                   type="range"
                   min="0"
                   max="3"
@@ -377,7 +379,7 @@ export default function AccessibilityDrawer({ isOpen, onClose }) {
                   onChange={(e) => updateTextSpacing('letterSpacing', parseFloat(e.target.value))}
                   className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
                 />
-                <div className="flex justify-between text-xs text-gray-500 mt-1">
+                <div className="flex justify-between text-xs text-gray-600 mt-1">
                   <span>Tight</span>
                   <span>{textSpacing.letterSpacing}px</span>
                   <span>Loose</span>

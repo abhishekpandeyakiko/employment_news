@@ -15,6 +15,8 @@ import EditorialList from "../pages/EditorialList";
 import ArticleDetail from "../pages/ArticleDetail";
 import AllarchivePage from "../pages/AllarchivePage";
 import ScreenReaderAccess from "../pages/ScreenReaderAccess";
+import AnnouncementsPage from "../pages/AnnouncementsPage";
+import Sitemap from "../pages/Sitemap";
 
 const AppRoutes = () => {
   return (
@@ -34,6 +36,8 @@ const AppRoutes = () => {
         <Route path="editorial-list" element={<EditorialList />} />
         <Route path="archives" element={<AllarchivePage />} />
         <Route path="screen-reader-access" element={<ScreenReaderAccess />} />
+        <Route path="all-announcements" element={<AnnouncementsPage />} />
+        <Route path="sitemap" element={<Sitemap />} />
       </Route>
     </Routes>
   );
