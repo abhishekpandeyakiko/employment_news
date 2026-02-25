@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { updateMetaTags } from "../utils/seo";
+import PageBanner from "../components/PageBanner";
 
 export default function PrintEmploymentNewsSubscription() {
   const { t, i18n } = useTranslation();
@@ -13,9 +14,13 @@ export default function PrintEmploymentNewsSubscription() {
     );
   }, [t, i18n.language]);
   return (
-    <section className="w-full min-h-[80vh] bg-primary-50 py-8 px-4 sm:px-6 md:px-8">
-      <div className="w-full max-w-4xl mx-auto">
-        <h1 className="text-2xl md:text-3xl font-bold text-primary-600 mb-4 text-center">Print Employment News Subscription – FAQs</h1>
+    <section className="w-full min-h-[80vh] bg-primary-50 pb-16">
+      <PageBanner
+        title="Print Subscription FAQs"
+        subtitle='"Everything you need to know about subscribing to the physical edition of Employment News."'
+        badgeText="Print Edition"
+      />
+      <div className="w-full max-w-5xl mx-auto px-4 mt-12">
         <div className="space-y-6">
           <div>
             <h2 className="text-sm sm:text-base font-semibold text-primary-700 mb-1 text-left">Q. How to subscribe print version of DPD's Employment News and Rozgar Samachar (Hindi & Urdu)?</h2>

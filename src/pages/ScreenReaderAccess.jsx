@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { updateMetaTags } from '../utils/seo';
+import PageBanner from '../components/PageBanner';
 
 const ScreenReaderAccess = () => {
     const { t, i18n } = useTranslation();
@@ -47,48 +48,54 @@ const ScreenReaderAccess = () => {
     ];
 
     return (
-        <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold text-primary-800 mb-6">
-                {t('screen_reader')}
-            </h1>
+        <section className="w-full min-h-screen bg-gray-50 pb-16">
+            <PageBanner
+                title={t('screen_reader')}
+                subtitle={'"Information on assistive technologies for enhanced website accessibility."'}
+                badgeText="Accessibility Support"
+            />
+            <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
 
-            <div className="prose prose-blue max-w-none">
-                <p className="text-lg text-gray-700 mb-6">
-                    The Employment News website complies with World Wide Web Consortium (W3C) Web Content Accessibility Guidelines (WCAG) 2.0 level AA. This will enable people with visual impairments access the website using assistive technologies, such as screen readers. The information of the website is accessible with different screen readers, such as JAWS, NVDA, SA, SuperNova and Window-Eyes.
-                </p>
+                <div className="prose prose-blue max-w-none">
+                    <p className="text-lg text-gray-700 mb-6">
+                        The Employment News website complies with World Wide Web Consortium (W3C) Web Content Accessibility Guidelines (WCAG) 2.0 level AA. This will enable people with visual impairments access the website using assistive technologies, such as screen readers. The information of the website is accessible with different screen readers, such as JAWS, NVDA, SA, SuperNova and Window-Eyes.
+                    </p>
 
-                <p className="text-lg text-gray-700 mb-6">
-                    Following table lists the information about different screen readers:
-                </p>
+                    <p className="text-lg text-gray-700 mb-6">
+                        Following table lists the information about different screen readers:
+                    </p>
 
-                <div className="overflow-x-auto">
-                    <table className="min-w-full bg-white border border-gray-200">
-                        <caption className="sr-only">List of available Screen Readers and their details</caption>
-                        <thead className="bg-primary-50">
-                            <tr>
-                                <th scope="col" className="px-6 py-3 border-b border-gray-200 text-left text-xs font-semibold text-primary-700 uppercase tracking-wider">Screen Reader</th>
-                                <th scope="col" className="px-6 py-3 border-b border-gray-200 text-left text-xs font-semibold text-primary-700 uppercase tracking-wider">Website</th>
-                                <th scope="col" className="px-6 py-3 border-b border-gray-200 text-left text-xs font-semibold text-primary-700 uppercase tracking-wider">Free / Commercial</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-200">
-                            {screenReaders.map((reader, index) => (
-                                <tr key={index} className="hover:bg-gray-50">
-                                    <th scope="row" className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-left">{reader.name}</th>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-600">
-                                        <a href={reader.website} target="_blank" rel="noopener noreferrer" className="hover:underline italic">
-                                            {reader.website}
-                                        </a>
-                                    </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{reader.type}</td>
+                    <div className="overflow-x-auto">
+                        <table className="min-w-full bg-white border border-gray-200">
+                            <caption className="sr-only">List of available Screen Readers and their details</caption>
+                            <thead className="bg-primary-50">
+                                <tr>
+                                    <th scope="col" className="px-6 py-3 border-b border-gray-200 text-left text-xs font-semibold text-primary-700 uppercase tracking-wider">Screen Reader</th>
+                                    <th scope="col" className="px-6 py-3 border-b border-gray-200 text-left text-xs font-semibold text-primary-700 uppercase tracking-wider">Website</th>
+                                    <th scope="col" className="px-6 py-3 border-b border-gray-200 text-left text-xs font-semibold text-primary-700 uppercase tracking-wider">Free / Commercial</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody className="divide-y divide-gray-200">
+                                {screenReaders.map((reader, index) => (
+                                    <tr key={index} className="hover:bg-gray-50">
+                                        <th scope="row" className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-left">{reader.name}</th>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-600">
+                                            <a href={reader.website} target="_blank" rel="noopener noreferrer" className="hover:underline italic">
+                                                {reader.website}
+                                            </a>
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{reader.type}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
+
+
 
 export default ScreenReaderAccess;

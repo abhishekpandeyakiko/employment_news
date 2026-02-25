@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import Translate from "../components/Translate";
 import { useTranslation } from "react-i18next";
 import { updateMetaTags } from "../utils/seo";
+import PageBanner from "../components/PageBanner";
 
 const initialValues = {
   name: "",
@@ -217,10 +218,14 @@ export default function GrievanceForm() {
   };
 
   return (
-    <section className="w-full min-h-[80vh] bg-primary-50 py-8 px-2 md:px-0">
+    <section className="w-full min-h-[80vh] bg-primary-50 pb-16">
       {loading && <Loader />}
-      <div className="w-full max-w-5xl mx-auto">
-        <h1 className="text-2xl md:text-3xl font-bold text-primary-600 mb-6 text-left"><Translate text={"grievance-form"} /> </h1>
+      <PageBanner
+        title={<Translate text={"grievance-form"} />}
+        subtitle={'"Public Grievance Redressal System - Speak up for better service."'}
+        badgeText="Grievance Cell"
+      />
+      <div className="w-full max-w-7xl mx-auto px-4 mt-12">
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}

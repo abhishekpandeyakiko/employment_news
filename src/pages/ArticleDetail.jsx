@@ -6,6 +6,7 @@ import Loader from "../components/Loader";
 
 import { useTranslation } from "react-i18next";
 import { updateMetaTags } from "../utils/seo";
+import PageBanner from "../components/PageBanner";
 
 const ArticleDetail = () => {
   const { t, i18n } = useTranslation();
@@ -42,14 +43,14 @@ const ArticleDetail = () => {
 
 
   return (
-    <section className="w-full min-h-[80vh] bg-primary-50 py-8 px-4 sm:px-6 md:px-8">
+    <section className="w-full min-h-[80vh] bg-primary-50 pb-16">
       {loading && <Loader />}
-      <div className="w-full max-w-5xl mx-auto">
-
-
-        <h4 className="text-[22px] mt-6 font-bold text-left text-gray-900 mb-4 leading-tight">
-          {articles.title}
-        </h4>
+      <PageBanner
+        title={articles.title || t('articles')}
+        subtitle={t('editorial-desc')}
+        badgeText="Article Content"
+      />
+      <div className="w-full max-w-7xl mx-auto px-4 md:px-8 mt-12">
         <div className="flex flex-wrap gap-4 md:gap-6 text-gray-600 mb-4">
           <div className="flex items-center gap-2">
             <FaCalendar className="text-primary-500" />

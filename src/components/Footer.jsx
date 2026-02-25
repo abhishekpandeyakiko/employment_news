@@ -118,19 +118,24 @@ export default function Footer({ data }) {
                   </div>
                 </div>
 
-                <button class="bg-[#004049] 
-               hover:bg-[#005c5c] 
-               text-white 
-               text-sm 
-               font-medium 
-               px-3 
-               py-2 
-               rounded-md 
-               shadow-sm 
-               hover:shadow-md 
-               transition-all duration-300 ease-in-out">
-                  Web Information Manager
-                </button>
+                <Link
+                  to="/web-information-manager"
+                  className="bg-[#004049] 
+                    hover:bg-[#005c5c] 
+                    text-white 
+                    text-sm 
+                    font-medium 
+                    px-3 
+                    py-2 
+                    rounded-md 
+                    shadow-sm 
+                    hover:shadow-md 
+                    transition-all duration-300 ease-in-out
+                    text-center
+                    inline-block"
+                >
+                  <Translate text="web_information_manager" />
+                </Link>
 
               </div>
             </div>
@@ -165,14 +170,15 @@ export default function Footer({ data }) {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Standard Policy Links */}
             <nav className="flex flex-wrap justify-center md:justify-start gap-x-5 gap-y-2 text-[11px] font-bold uppercase tracking-wider text-white text-center md:text-left">
-              <Link to="/help" className="hover:text-white transition-colors">Help</Link>
-              <Link to="/feedback" className="hover:text-white transition-colors">Feedback</Link>
-              <Link to="/sitemap" className="hover:text-white transition-colors">Sitemap</Link>
-              <Link to="/policies/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-              <Link to="/policies/hyperlinking" className="hover:text-white transition-colors">Hyperlinking Policy</Link>
-              <Link to="/policies/copyright" className="hover:text-white transition-colors">Copyright Policy</Link>
-              <Link to="/policies/terms" className="hover:text-white transition-colors">Terms & Conditions</Link>
-              <Link to="/policies/accessibility" className="hover:text-white transition-colors">Accessibility Statement</Link>
+              <Link to="/help" className="hover:text-white transition-colors"><Translate text="help" /></Link>
+              <Link to="/feedback" className="hover:text-white transition-colors"><Translate text="feedback" /></Link>
+              <Link to="/sitemap" className="hover:text-white transition-colors"><Translate text="sitemap" /></Link>
+              <Link to="/policies/privacy" className="hover:text-white transition-colors"><Translate text="privacy_policy" /></Link>
+              <Link to="/policies/hyperlinking" className="hover:text-white transition-colors"><Translate text="hyperlinking_policy" /></Link>
+              <Link to="/policies/copyright" className="hover:text-white transition-colors"><Translate text="copyright_policy" /></Link>
+              <Link to="/policies/terms" className="hover:text-white transition-colors"><Translate text="terms_conditions" /></Link>
+              <Link to="/policies/cmap" className="hover:text-white transition-colors"><Translate text="cmap" /></Link>
+              <Link to="/policies/security" className="hover:text-white transition-colors"><Translate text="security_policy" /></Link>
             </nav>
 
             {/* Copyright Info */}

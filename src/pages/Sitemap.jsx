@@ -5,6 +5,7 @@ import { FaSitemap, FaHome, FaChevronRight } from "react-icons/fa";
 
 import { useTranslation } from "react-i18next";
 import { updateMetaTags } from "../utils/seo";
+import PageBanner from "../components/PageBanner";
 
 export default function Sitemap() {
     const { t, i18n } = useTranslation();
@@ -41,24 +42,11 @@ export default function Sitemap() {
 
     return (
         <section className="w-full min-h-screen bg-gray-50 pb-16">
-            {/* Header */}
-            <div className="w-full py-12 px-4 bg-gradient-to-br from-primary-900 to-primary-800 text-white shadow-lg relative overflow-hidden">
-                <div className="max-w-7xl mx-auto relative z-10">
-                    <nav className="flex items-center space-x-2 text-xs md:text-sm text-primary-100/70 mb-6 uppercase tracking-wider font-semibold" aria-label="Breadcrumb">
-                        <Link to="/" className="hover:text-white flex items-center gap-1 transition-colors">
-                            <FaHome className="mb-0.5" />
-                            <span>Home</span>
-                        </Link>
-                        <FaChevronRight className="text-[10px] opacity-50" />
-                        <span className="text-white">Sitemap</span>
-                    </nav>
-
-                    <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight flex items-center gap-4">
-                        <FaSitemap className="text-primary-300" />
-                        Sitemap
-                    </h1>
-                </div>
-            </div>
+            <PageBanner
+                title={t('sitemap')}
+                subtitle={'"A comprehensive directory of all pages and sections available on this portal."'}
+                badgeText="Portal Directory"
+            />
 
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">

@@ -17,6 +17,15 @@ import AllarchivePage from "../pages/AllarchivePage";
 import ScreenReaderAccess from "../pages/ScreenReaderAccess";
 import AnnouncementsPage from "../pages/AnnouncementsPage";
 import Sitemap from "../pages/Sitemap";
+import HelpPage from "../pages/HelpPage";
+import FeedbackPage from "../pages/FeedbackPage";
+import PrivacyPolicyPage from "../pages/PrivacyPolicyPage";
+import HyperlinkingPolicyPage from "../pages/HyperlinkingPolicyPage";
+import CopyrightPolicyPage from "../pages/CopyrightPolicyPage";
+import TermsConditionsPage from "../pages/TermsConditionsPage";
+import CMAPPage from "../pages/CMAPPage";
+import SecurityPolicyPage from "../pages/SecurityPolicyPage";
+import WebInformationManagerPage from "../pages/WebInformationManagerPage";
 
 const AppRoutes = () => {
   return (
@@ -38,6 +47,15 @@ const AppRoutes = () => {
         <Route path="screen-reader-access" element={<ScreenReaderAccess />} />
         <Route path="all-announcements" element={<AnnouncementsPage />} />
         <Route path="sitemap" element={<Sitemap />} />
+        <Route path="help" element={<HelpPage />} />
+        <Route path="feedback" element={<FeedbackPage />} />
+        <Route path="policies/privacy" element={<PrivacyPolicyPage />} />
+        <Route path="policies/hyperlinking" element={<HyperlinkingPolicyPage />} />
+        <Route path="policies/copyright" element={<CopyrightPolicyPage />} />
+        <Route path="policies/terms" element={<TermsConditionsPage />} />
+        <Route path="policies/cmap" element={<CMAPPage />} />
+        <Route path="policies/security" element={<SecurityPolicyPage />} />
+        <Route path="web-information-manager" element={<WebInformationManagerPage />} />
       </Route>
     </Routes>
   );

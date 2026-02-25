@@ -4,6 +4,7 @@ import { getPosts } from "../utils/networkApi";
 import Loader from "../components/Loader";
 import { useTranslation } from "react-i18next";
 import { updateMetaTags } from "../utils/seo";
+import PageBanner from "../components/PageBanner";
 
 export default function AllarchivePage() {
   const { t, i18n } = useTranslation();
@@ -42,10 +43,14 @@ export default function AllarchivePage() {
   }, [])
 
   return (
-    <section className="w-full min-h-[80vh] bg-primary-50 py-8 px-4 sm:px-6 md:px-8">
+    <section className="w-full min-h-[80vh] bg-primary-50 pb-16">
       {loading && <Loader />}
-      <div className="w-full max-w-5xl mx-auto">
-        <h1 className="text-2xl md:text-3xl font-bold text-primary-600 mb-4 text-center"><Translate text="archive" /></h1>
+      <PageBanner
+        title={<Translate text="archive" />}
+        subtitle={'"Access our comprehensive archive of past publications and announcements."'}
+        badgeText="Extended Archive"
+      />
+      <div className="w-full max-w-7xl mx-auto px-4 mt-12">
         {/* Cards Grid */}
 
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">

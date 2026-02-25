@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { updateMetaTags } from "../utils/seo";
 import RegisterPaySubscribeFlow from "../components/RegisterPaySubscribeFlow";
+import PageBanner from "../components/PageBanner";
 
 export default function EEmploymentNewsSubscription() {
   const { t, i18n } = useTranslation();
@@ -14,9 +15,13 @@ export default function EEmploymentNewsSubscription() {
     );
   }, [t, i18n.language]);
   return (
-    <section className="w-full min-h-[80vh] bg-primary-50 py-8 px-4 sm:px-6 md:px-8">
-      <div className="w-full max-w-4xl mx-auto">
-        <h1 className="text-2xl md:text-3xl font-bold text-primary-600 mb-4 text-center">How To Subscribe: e-Employment News</h1>
+    <section className="w-full min-h-[80vh] bg-primary-50 pb-16">
+      <PageBanner
+        title="e-Employment News Subscription"
+        subtitle='"Subscribe to the digital edition of Employment News for instant access to career opportunities."'
+        badgeText="Digital Subscription"
+      />
+      <div className="w-full max-w-5xl mx-auto px-4 mt-12">
         <p className="text-base md:text-lg text-gray-600 mb-4 text-justify">
           Employment News is available in e-version as well as print version. You can subscribe to any of them or both.
         </p>

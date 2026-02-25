@@ -4,6 +4,7 @@ import Loader from "../components/Loader";
 import Translate from "../components/Translate";
 import { useTranslation } from "react-i18next";
 import { updateMetaTags } from "../utils/seo";
+import PageBanner from "../components/PageBanner";
 import { HiMegaphone } from "react-icons/hi2";
 
 export default function AdvertisementPage() {
@@ -40,25 +41,11 @@ export default function AdvertisementPage() {
     <section className="w-full min-h-screen bg-primary-50/30 pb-16">
       {loading && <Loader />}
 
-      {/* Dark & Compact Header */}
-      <div className="w-full py-8 px-4 relative overflow-hidden bg-gradient-to-br from-primary-900 to-primary-800 text-white border-b border-primary-950">
-        <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-2xl"></div>
-        <div className="max-w-5xl mx-auto flex flex-col items-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-md rounded-full border border-white/10 mb-4 shadow-sm">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary-300"></span>
-            </span>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-white/90">Promotion Hub</span>
-          </div>
-          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-center mb-2">
-            <Translate text={'advertisements'} />
-          </h1>
-          <p className="text-primary-100/70 text-xs md:text-sm font-medium max-w-lg text-center leading-relaxed italic">
-            "Your platform for reach and visibility across the recruitment landscape."
-          </p>
-        </div>
-      </div>
+      <PageBanner
+        title={<Translate text={'advertisements'} />}
+        subtitle={'"Your platform for reach and visibility across the recruitment landscape."'}
+        badgeText="Promotion Hub"
+      />
 
       {/* Content Wrapper with 15px spacing */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-[15px]">
@@ -104,8 +91,8 @@ export default function AdvertisementPage() {
             ))}
           </ul>
         </div>
-      </div>
-    </section>
+      </div >
+    </section >
   );
 }
 
