@@ -1,12 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Translate from "../components/Translate";
+import { useTranslation } from "react-i18next";
+import { updateMetaTags } from "../utils/seo";
 import { getPosts } from "../utils/networkApi";
 import Loader from "../components/Loader";
 import { HiUserGroup } from "react-icons/hi2";
 
 export default function About() {
+  const { t, i18n } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState("");
+
+  useEffect(() => {
+    updateMetaTags(
+      `${t('about_us')} | ${t('site-title')}`,
+      t('about-desc'),
+      t('about-keywords')
+    );
+  }, [t, i18n.language]);
 
   useEffect(() => {
     async function fetchData() {

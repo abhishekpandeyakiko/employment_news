@@ -9,9 +9,21 @@ import LogoCarousel from "../components/LogoCarousel";
 import { getPosts } from "../utils/networkApi";
 import Loader from "../components/Loader";
 
+import { useTranslation } from "react-i18next";
+import { updateMetaTags } from "../utils/seo";
+
 // Main HomePage Component
 const HomePage = () => {
+  const { t, i18n } = useTranslation();
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    updateMetaTags(
+      `${t('home')} | ${t('site-title')}`,
+      t('home-desc'),
+      t('home-keywords')
+    );
+  }, [t, i18n.language]);
   const [announcements, setAnnouncement] = useState([]);
   const [jobHighlight, setJobHighlight] = useState([]);
   const [slider, setSlider] = useState([]);

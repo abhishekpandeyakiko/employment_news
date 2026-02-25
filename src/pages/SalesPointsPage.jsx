@@ -1,11 +1,22 @@
 import React, { useEffect, useState } from "react";
 import Translate from "../components/Translate";
+import { useTranslation } from "react-i18next";
+import { updateMetaTags } from "../utils/seo";
 import { getPosts } from "../utils/networkApi";
 import Loader from "../components/Loader";
 import { HiMapPin } from "react-icons/hi2";
 
 export default function SalesPointsPage() {
+  const { t, i18n } = useTranslation();
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    updateMetaTags(
+      `${t('sales-points')} | ${t('site-title')}`,
+      t('sales-points-desc'),
+      t('sales-points-keywords')
+    );
+  }, [t, i18n.language]);
   const [data, setData] = useState([]);
   const [otherPdf, setOtherPdf] = useState([]);
 

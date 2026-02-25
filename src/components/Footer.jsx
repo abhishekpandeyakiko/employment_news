@@ -118,14 +118,20 @@ export default function Footer({ data }) {
                   </div>
                 </div>
 
-                <div className="pt-0">
-                  <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white mb-1 leading-none">
-                    <Translate text="website_last_updated" />
-                  </h4>
-                  <p className="text-xs font-medium text-white">
-                    24/02/2026 11:45:00
-                  </p>
-                </div>
+                <button class="bg-[#004049] 
+               hover:bg-[#005c5c] 
+               text-white 
+               text-sm 
+               font-medium 
+               px-3 
+               py-2 
+               rounded-md 
+               shadow-sm 
+               hover:shadow-md 
+               transition-all duration-300 ease-in-out">
+                  Web Information Manager
+                </button>
+
               </div>
             </div>
           </div>
@@ -139,6 +145,14 @@ export default function Footer({ data }) {
                 <p>New Delhi, India - Head Office</p>
               </div>
               <MapIframe src={data.locations} />
+            </div>
+            <div className="pt-2">
+              <h4 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white mb-1 leading-none">
+                <Translate text="website_last_updated" />
+              </h4>
+              <p className="text-xs font-medium text-white">
+                24/02/2026 11:45:00
+              </p>
             </div>
           </div>
 

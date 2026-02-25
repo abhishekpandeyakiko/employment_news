@@ -3,10 +3,18 @@ import Translate from "../components/Translate";
 import { Link } from "react-router-dom";
 import { FaSitemap, FaHome, FaChevronRight } from "react-icons/fa";
 
+import { useTranslation } from "react-i18next";
+import { updateMetaTags } from "../utils/seo";
+
 export default function Sitemap() {
+    const { t, i18n } = useTranslation();
     useEffect(() => {
-        document.title = "Sitemap | Employment News";
-    }, []);
+        updateMetaTags(
+            `${t('sitemap')} | ${t('site-title')}`,
+            t('sitemap-desc'),
+            t('sitemap-keywords')
+        );
+    }, [t, i18n.language]);
 
     const sitemapLinks = [
         { title: "Home", path: "/" },

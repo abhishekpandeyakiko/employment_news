@@ -2,10 +2,21 @@ import React, { useEffect, useState } from "react";
 import Translate from "../components/Translate";
 import { getPosts } from "../utils/networkApi";
 import Loader from "../components/Loader";
+import { useTranslation } from "react-i18next";
+import { updateMetaTags } from "../utils/seo";
 import { useSearchParams, useNavigate } from "react-router-dom";
 
 export default function ArchivePage() {
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    updateMetaTags(
+      `${t('archive')} | ${t('site-title')}`,
+      t('archive-desc'),
+      t('archive-keywords')
+    );
+  }, [t, i18n.language]);
   const [loading, setLoading] = useState(false);
   const [oldData, setOldData] = useState([]);
   const [newData, setNewData] = useState([]);

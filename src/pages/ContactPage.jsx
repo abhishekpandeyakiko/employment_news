@@ -3,10 +3,21 @@ import React, { useEffect, useState } from "react";
 import { getPosts } from "../utils/networkApi";
 import Translate from "../components/Translate";
 import Loader from "../components/Loader";
+import { useTranslation } from "react-i18next";
+import { updateMetaTags } from "../utils/seo";
 import { HiPhone, HiEnvelope, HiMapPin, HiUser } from "react-icons/hi2";
 
 export default function ContactPage() {
+  const { t, i18n } = useTranslation();
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    updateMetaTags(
+      `${t('contact-us')} | ${t('site-title')}`,
+      t('contact-desc'),
+      t('contact-keywords')
+    );
+  }, [t, i18n.language]);
   const [contacts, setContacts] = useState([]);
   const [help, setHelp] = useState([]);
 

@@ -2,11 +2,22 @@ import React, { useEffect, useState } from "react";
 import { getPosts } from "../utils/networkApi";
 import Loader from "../components/Loader";
 import Translate from "../components/Translate";
+import { useTranslation } from "react-i18next";
+import { updateMetaTags } from "../utils/seo";
 
 export default function RTIPage() {
+  const { t, i18n } = useTranslation();
   const savedLang = localStorage.getItem("appLang") || "en";
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
+
+  useEffect(() => {
+    updateMetaTags(
+      `${t('rti')} | ${t('site-title')}`,
+      t('rti-desc'),
+      t('rti-keywords')
+    );
+  }, [t, i18n.language]);
 
   useEffect(() => {
     async function fetchData() {

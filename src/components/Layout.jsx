@@ -7,11 +7,19 @@ import { Outlet, useLocation } from "react-router-dom";
 import { getPosts } from "../utils/networkApi";
 import Translate from "../components/Translate";
 
+import { useTranslation } from "react-i18next";
+
 const Layout = () => {
+  const { i18n } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [header, setData] = useState([]);
   const [footer, setFooter] = useState([]);
   const location = useLocation();
+
+  useEffect(() => {
+    document.documentElement.lang = i18n.language || "en";
+  }, [i18n.language]);
+
   useEffect(() => {
     async function fetchData() {
       try {

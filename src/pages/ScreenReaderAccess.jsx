@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { updateMetaTags } from '../utils/seo';
 
 const ScreenReaderAccess = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+
+    useEffect(() => {
+        updateMetaTags(
+            `${t('screen_reader')} | ${t('site-title')}`,
+            t('screen-reader-desc'),
+            t('screen-reader-keywords')
+        );
+    }, [t, i18n.language]);
 
     const screenReaders = [
         {

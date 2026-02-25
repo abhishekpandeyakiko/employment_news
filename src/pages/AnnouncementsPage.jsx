@@ -4,13 +4,23 @@ import { getPosts } from "../utils/networkApi";
 import Loader from "../components/Loader";
 import { FaExclamationTriangle, FaExternalLinkAlt } from "react-icons/fa";
 import ExternalLinkOpener from "../components/ExternalLinkOpener";
+import { useTranslation } from "react-i18next";
+import { updateMetaTags } from "../utils/seo";
 
 export default function AnnouncementsPage() {
+    const { t, i18n } = useTranslation();
     const [loading, setLoading] = useState(false);
     const [announcements, setAnnouncements] = useState([]);
 
     useEffect(() => {
-        document.title = "Announcements | Employment News";
+        updateMetaTags(
+            `${t('announcements')} | ${t('site-title')}`,
+            t('announcements-desc'),
+            t('announcements-keywords')
+        );
+    }, [t, i18n.language]);
+
+    useEffect(() => {
         async function fetchData() {
             try {
                 setLoading(true);

@@ -5,12 +5,33 @@ import { getPosts } from "../utils/networkApi";
 import Loader from "../components/Loader";
 
 
+import { useTranslation } from "react-i18next";
+import { updateMetaTags } from "../utils/seo";
+
+
 const EditorialList = () => {
+  const { t, i18n } = useTranslation();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const tab = searchParams.get("tab");
   const [loading, setLoading] = useState(false);
   const [articles, setData] = useState([]);
+
+  useEffect(() => {
+    let tabName = "";
+    switch (tab) {
+      case "lead": tabName = t('lead-articles'); break;
+      case "career": tabName = t('career-articles'); break;
+      case "special": tabName = t('special-articles'); break;
+      case "success": tabName = t('success-stories'); break;
+      default: tabName = t('editorial');
+    }
+    updateMetaTags(
+      `${tabName} | ${t('site-title')}`,
+      t('editorial-desc'),
+      t('editorial-keywords')
+    );
+  }, [tab, t, i18n.language]);
   useEffect(() => {
     async function fetchData() {
       try {

@@ -2,10 +2,21 @@ import React, { useEffect, useState } from "react";
 import { getPosts } from "../utils/networkApi";
 import Loader from "../components/Loader";
 import Translate from "../components/Translate";
+import { useTranslation } from "react-i18next";
+import { updateMetaTags } from "../utils/seo";
 import { HiMegaphone } from "react-icons/hi2";
 
 export default function AdvertisementPage() {
+  const { t, i18n } = useTranslation();
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    updateMetaTags(
+      `${t('advertisements')} | ${t('site-title')}`,
+      t('advertisement-desc'),
+      t('advertisement-keywords')
+    );
+  }, [t, i18n.language]);
   const [data, setData] = useState([]);
 
   useEffect(() => {

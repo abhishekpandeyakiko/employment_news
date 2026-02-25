@@ -1,7 +1,18 @@
-
+import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { updateMetaTags } from "../utils/seo";
 import RegisterPaySubscribeFlow from "../components/RegisterPaySubscribeFlow";
 
 export default function EEmploymentNewsSubscription() {
+  const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    updateMetaTags(
+      `${t('e-subscription')} | ${t('site-title')}`,
+      t('subscription-desc'),
+      t('subscription-keywords')
+    );
+  }, [t, i18n.language]);
   return (
     <section className="w-full min-h-[80vh] bg-primary-50 py-8 px-4 sm:px-6 md:px-8">
       <div className="w-full max-w-4xl mx-auto">

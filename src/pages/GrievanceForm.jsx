@@ -6,6 +6,7 @@ import Loader from "../components/Loader";
 import Swal from 'sweetalert2';
 import Translate from "../components/Translate";
 import { useTranslation } from "react-i18next";
+import { updateMetaTags } from "../utils/seo";
 
 const initialValues = {
   name: "",
@@ -95,11 +96,19 @@ const validationSchema = Yup.object({
 
 
 export default function GrievanceForm() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const canvasRef = useRef(null);
 
   const [captcha, setCaptcha] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    updateMetaTags(
+      `${t('grievance-form')} | ${t('site-title')}`,
+      t('grievance-desc'),
+      t('grievance-keywords')
+    );
+  }, [t, i18n.language]);
 
 
   const generateCaptchaText = (length = 5) => {
