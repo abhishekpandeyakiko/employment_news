@@ -18,7 +18,9 @@ const HomePage = () => {
   const [sliderTime, setSliderTime] = useState([]);
   const [advertis, setAdvertis] = useState([]);
   const [articleLead, setArticleLead] = useState([]);
+  const [articleCareer, setArticleCareer] = useState([]);
   const [articleSpecial, setArticleSpecial] = useState([]);
+  const [articleSuccess, setArticleSuccess] = useState([]);
   const [footerLogo, setFooterLogo] = useState([]);
   const [footerUrl, setFooterUrl] = useState([]);
   const [social, setSocial] = useState([]);
@@ -28,14 +30,25 @@ const HomePage = () => {
         setLoading(true);
         const savedLang = await localStorage.getItem("appLang") || "en";
         const response = await getPosts(`home-api?lang=${savedLang}`)
+
+        // Fetch different editorial types to ensure tabs work
+        const [leadRes, careerRes, specialRes, successRes] = await Promise.all([
+          getPosts(`article-api?lang=${savedLang}&type=lead`),
+          getPosts(`article-api?lang=${savedLang}&type=career`),
+          getPosts(`article-api?lang=${savedLang}&type=special`),
+          getPosts(`article-api?lang=${savedLang}&type=success`)
+        ]);
+
         setLoading(false);
         setAnnouncement(response.announcement.data)
         setJobHighlight(response.jobHighlight)
         setSlider(response.slider)
         setSliderTime(response.sliderTime)
         setAdvertis(response.advertisement)
-        setArticleLead(response.articleLead)
-        setArticleSpecial(response.articleSpecial)
+        setArticleLead(leadRes.data || [])
+        setArticleCareer(careerRes.data || [])
+        setArticleSpecial(specialRes.data || [])
+        setArticleSuccess(successRes.data || [])
         setFooterLogo(response.footerLogo)
         setFooterUrl(response.footerUrl)
         setSocial(response.social)
@@ -54,7 +67,12 @@ const HomePage = () => {
           <JobHighlights jobHighlight={jobHighlight} carouselImages={slider} sliderTime={sliderTime} />
           <Announcements announcements={announcements} />
           <NoticeBoard advertis={advertis} />
-          <Editorial article={articleLead} articleSpecial={articleSpecial} />
+          <Editorial
+            leadArticles={articleLead}
+            careerArticles={articleCareer}
+            specialArticles={articleSpecial}
+            successArticles={articleSuccess}
+          />
           <SocialMediaSection data={social} />
           <LogoCarousel logos={footerLogo} footerUrl={footerUrl} />
         </>

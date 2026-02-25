@@ -4,11 +4,19 @@ import { FaChevronRight } from "react-icons/fa";
 import Translate from "./Translate";
 import { useNavigate } from "react-router-dom";
 
-const EditorialSection = ({ article, articleSpecial }) => {
+const EditorialSection = ({
+    leadArticles = [],
+    careerArticles = [],
+    specialArticles = [],
+    successArticles = []
+}) => {
     const [activeTabLeft, setActiveTabLeft] = useState("lead");
     const [activeTabRight, setActiveTabRight] = useState("special");
     const navigate = useNavigate();
 
+    // Data for active tabs
+    const leftArticles = activeTabLeft === "lead" ? leadArticles : careerArticles;
+    const rightArticles = activeTabRight === "special" ? specialArticles : successArticles;
 
     return (
         <section className="bg-primary-100 p-2 sm:p-6">
@@ -39,16 +47,20 @@ const EditorialSection = ({ article, articleSpecial }) => {
 
                     {/* Article List */}
                     <ul className="space-y-1 sm:space-y-2 text-xs sm:text-base">
-                        {article.map((item, idx) => (
-                            <li
-                                key={idx}
-                                onClick={() => navigate(`/article/${item.id}`)}
-                                className="flex justify-between items-center p-2 sm:p-4 bg-gray-50 cursor-pointer hover:bg-gray-100"
-                            >
-                                <span>{item.title}</span>
-                                <span className="text-primary"><FaChevronRight size={12} className="sm:w-4 sm:h-4 text-primary-700" /></span>
-                            </li>
-                        ))}
+                        {leftArticles && leftArticles.length > 0 ? (
+                            leftArticles.slice(0, 5).map((item, idx) => (
+                                <li
+                                    key={idx}
+                                    onClick={() => navigate(`/article/${item.id}`)}
+                                    className="flex justify-between items-center p-2 sm:p-4 bg-gray-50 cursor-pointer hover:bg-gray-100"
+                                >
+                                    <span className="line-clamp-1">{item.title}</span>
+                                    <span className="text-primary flex-shrink-0"><FaChevronRight size={12} className="sm:w-4 sm:h-4 text-primary-700" /></span>
+                                </li>
+                            ))
+                        ) : (
+                            <li className="p-4 text-center text-gray-500 bg-gray-50">No articles available</li>
+                        )}
                     </ul>
 
 
@@ -87,16 +99,20 @@ const EditorialSection = ({ article, articleSpecial }) => {
 
                     {/* Article List */}
                     <ul className="space-y-1 sm:space-y-2 text-xs sm:text-base">
-                        {articleSpecial.map((item, idx) => (
-                            <li
-                                key={idx}
-                                onClick={() => navigate(`/article/${item.id}`)}
-                                className="flex justify-between items-center p-2 sm:p-4 bg-gray-50 cursor-pointer hover:bg-gray-100"
-                            >
-                                <span>{item.title}</span>
-                                <span className="text-primary"><FaChevronRight size={12} className="sm:w-4 sm:h-4 text-primary-700" /></span>
-                            </li>
-                        ))}
+                        {rightArticles && rightArticles.length > 0 ? (
+                            rightArticles.slice(0, 5).map((item, idx) => (
+                                <li
+                                    key={idx}
+                                    onClick={() => navigate(`/article/${item.id}`)}
+                                    className="flex justify-between items-center p-2 sm:p-4 bg-gray-50 cursor-pointer hover:bg-gray-100"
+                                >
+                                    <span className="line-clamp-1">{item.title}</span>
+                                    <span className="text-primary flex-shrink-0"><FaChevronRight size={12} className="sm:w-4 sm:h-4 text-primary-700" /></span>
+                                </li>
+                            ))
+                        ) : (
+                            <li className="p-4 text-center text-gray-500 bg-gray-50">No articles available</li>
+                        )}
                     </ul>
 
 

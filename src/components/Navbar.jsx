@@ -115,7 +115,7 @@ export default function Navbar() {
           aria-label="Mobile Navigation Menu"
           className={`
             font-medium text-primary-700 whitespace-nowrap
-            flex-col lg:flex-row lg:flex lg:space-x-8
+            flex-col lg:flex-row lg:flex w-full lg:justify-between
             ${mobileOpen ? 'flex animate-slide-down' : 'hidden'}
             absolute lg:static left-0 right-0 top-full bg-white border-b border-primary-100 z-50 lg:bg-transparent lg:border-0 lg:relative
             transition-all duration-300

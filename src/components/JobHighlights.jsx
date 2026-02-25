@@ -89,7 +89,7 @@ export default function JobHighlights({ jobHighlight, carouselImages, sliderTime
         <div id="skip-target" tabIndex="-1" className="col-span-1 md:col-span-3 mt-2 md:mt-0 focus:outline-none scroll-mt-32">
           <a href="https://i5l.95d.mytemp.website/empnews/backend/members" className="flex items-center mb-2 text-primary-700">
             <IoBagSharp size={18} className="sm:w-6 sm:h-6" aria-hidden="true" />
-            <h2 className="text-base sm:text-lg font-semibold ml-2"><Translate text={'job-highlights'} /></h2>
+            <h2 className="text-sm lg:text-lg font-semibold ml-2"><Translate text={'job-highlights'} /></h2>
           </a>
 
           {/* Auto-scrolling list */}
