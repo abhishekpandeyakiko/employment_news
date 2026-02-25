@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import Translate from "../components/Translate";
 import { useTranslation } from "react-i18next";
 import { updateMetaTags } from "../utils/seo";
+import { HiPhone, HiEnvelope, HiMapPin, HiUser } from "react-icons/hi2";
 import PageBanner from "../components/PageBanner";
 
 export default function WebInformationManagerPage() {
@@ -30,7 +31,6 @@ export default function WebInformationManagerPage() {
                     {/* Clause Title */}
                     <div>
                         <h2 className="text-2xl font-bold text-primary-800">1. Web Information Manager (clause 5.4.1)</h2>
-                        <p className="text-gray-400 text-sm font-medium mt-1 italic">(Sample Content)</p>
                     </div>
 
                     <div className="space-y-6 text-gray-700 leading-relaxed text-justify">
@@ -49,33 +49,58 @@ export default function WebInformationManagerPage() {
                         </ul>
                     </div>
 
-                    {/* Contact Detail Section */}
-                    <div className="pt-8 border-t border-gray-100">
-                        <h3 className="text-xl font-bold text-primary-700 mb-6 flex items-center gap-2">
-                            <span className="w-2 h-6 bg-primary-600 rounded-full"></span>
-                            Contact Detail of WIM is as follows:
-                        </h3>
+                    {/* Redesigned Contact Detail Section - Original Screenshot Colors (Compact) */}
+                    <div className="pt-12 border-t-2 border-primary-50">
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 bg-primary-50/30 p-8 rounded-xl border border-primary-100">
-                            <div className="space-y-1">
-                                <p className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Name</p>
-                                <p className="text-lg font-bold text-gray-800">Vikas Gulia</p>
+                        {/* Small Left-Aligned Section Heading */}
+                        <div className="text-left mb-6 border-l-4 border-primary-600 pl-4">
+                            <h2 className="text-xl md:text-2xl font-bold text-primary-900">
+                                Web Information Manager (WIM) Contact Detail
+                            </h2>
+                            <p className="text-gray-500 text-[10px] font-black uppercase tracking-[0.2em] mt-1">Official Channel</p>
+                        </div>
+
+                        <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row border border-gray-100">
+
+                            {/* Left Side: Gradient Sidebar - Updated to Portal Theme */}
+                            <div className="md:w-1/3 bg-gradient-to-br from-primary-800 to-primary-600 p-6 flex flex-col items-center justify-center text-center text-white">
+                                <div className="w-24 h-24 rounded-full border-4 border-white/20 bg-white/10 flex items-center justify-center mb-4 backdrop-blur-sm overflow-hidden">
+                                    <HiUser className="text-6xl text-white/90" />
+                                </div>
+                                <h3 className="text-xl font-bold leading-tight mb-1 uppercase tracking-wide">
+                                    Web Information Manager
+                                </h3>
+                                <p className="text-white/70 text-[10px] font-medium">Official Contact Details</p>
                             </div>
-                            <div className="space-y-1">
-                                <p className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Designation</p>
-                                <p className="text-lg font-bold text-gray-800">SO</p>
-                            </div>
-                            <div className="space-y-1 md:col-span-1">
-                                <p className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Email ID</p>
-                                <a href="mailto:gulia.vikas006@gov.in" className="text-lg font-bold text-primary-700 hover:text-primary-800 transition-colors">
-                                    gulia.vikas006@gov.in
-                                </a>
-                            </div>
-                            <div className="space-y-1 md:col-span-2">
-                                <p className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Contact Address</p>
-                                <p className="text-lg text-gray-700 font-medium">
-                                    Soochna Bhawan, CGO Complex, Lodhi Road, New Delhi (110003)
-                                </p>
+
+                            {/* Right Side: Information Blocks - Portal Theme Aligned */}
+                            <div className="md:w-2/3 p-6 bg-primary-50/10 flex flex-col gap-2 justify-center">
+
+                                {/* Name Block */}
+                                <div className="bg-primary-50/40 rounded-xl p-3 border border-primary-100/50 shadow-sm transition-transform hover:translate-x-1">
+                                    <p className="text-[9px] text-primary-600 font-black uppercase tracking-[0.2em]">NAME</p>
+                                    <p className="text-primary-900 font-bold text-sm leading-tight">Vikas Gulia</p>
+                                </div>
+
+                                {/* Designation Block */}
+                                <div className="bg-primary-50/40 rounded-xl p-3 border border-primary-100/50 shadow-sm transition-transform hover:translate-x-1">
+                                    <p className="text-[9px] text-primary-600 font-black uppercase tracking-[0.2em]">DESIGNATION</p>
+                                    <p className="text-primary-900 font-bold text-sm leading-tight">SO</p>
+                                </div>
+
+                                {/* Email Block */}
+                                <div className="bg-primary-50/40 rounded-xl p-3 border border-primary-100/50 shadow-sm transition-transform hover:translate-x-1">
+                                    <p className="text-[9px] text-primary-600 font-black uppercase tracking-[0.2em]">EMAIL</p>
+                                    <p className="text-primary-900 font-bold text-sm leading-tight">gulia[dot]vikas006[at]gov[dot]in</p>
+                                </div>
+
+                                {/* Address Block */}
+                                <div className="bg-primary-50/40 rounded-xl p-3 border border-primary-100/50 shadow-sm transition-transform hover:translate-x-1">
+                                    <p className="text-[9px] text-primary-600 font-black uppercase tracking-[0.2em]">CONTACT ADDRESS</p>
+                                    <p className="text-primary-900 font-bold text-sm leading-tight">
+                                        Soochna Bhawan, CGO Complex, New Delhi (110003)
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
