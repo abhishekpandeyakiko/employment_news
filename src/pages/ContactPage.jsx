@@ -53,7 +53,7 @@ export default function ContactPage() {
 
       {/* Content Wrapper with 15px spacing */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-[15px]">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        <div className="grid grid-cols-1  gap-4 mb-8">
           {/* Help Desk Specialized Card */}
           <div className="bg-white rounded-xl shadow-md border border-primary-100 p-6 flex flex-col gap-3 hover:shadow-lg transition">
             <h2 className="text-xl font-semibold text-primary-600 mb-2 text-left border-l-4 border-primary-400 pl-2">Help Desk</h2>
@@ -65,7 +65,7 @@ export default function ContactPage() {
           </div>
 
           {/* Web Information Manager Card */}
-          <div className="bg-gradient-to-br from-primary-600 to-primary-800 rounded-xl shadow-md p-6 flex flex-col gap-3 hover:shadow-xl transition text-white">
+          {/* <div className="bg-gradient-to-br from-primary-600 to-primary-800 rounded-xl shadow-md p-6 flex flex-col gap-3 hover:shadow-xl transition text-white">
             <div className="flex justify-between items-start">
               <h2 className="text-xl font-semibold mb-2 text-left border-l-4 border-white/50 pl-2">Web Information Manager</h2>
               <span className="bg-white/20 text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full border border-white/30">GIGW 3.0</span>
@@ -78,7 +78,7 @@ export default function ContactPage() {
             <Link to="/web-information-manager" className="mt-2 text-xs font-bold uppercase tracking-widest bg-white/10 hover:bg-white/20 py-2 rounded text-center border border-white/10 transition">
               Full Responsibilities Details
             </Link>
-          </div>
+          </div> */}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

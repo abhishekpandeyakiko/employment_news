@@ -17,12 +17,12 @@ const PageBanner = ({ title, subtitle, badgeText = "Official Portal" }) => {
                     <span className="text-[10px] font-bold uppercase tracking-widest text-white/90">{badgeText}</span>
                 </div>
 
-                <h1 className="text-2xl md:text-5xl font-extrabold tracking-tight text-center mb-2 md:mb-4 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80">
+                <h1 className="text-2xl md:text-5xl font-extrabold tracking-tight text-center mb-1 md:mb-2 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/80 pt-[7px] pb-[10px]">
                     {title}
                 </h1>
 
                 {subtitle && (
-                    <p className="text-primary-100/70 text-xs md:text-base font-medium max-w-2xl text-center leading-relaxed italic transition-all duration-500">
+                    <p className="text-primary-100/70 text-xs md:text-base font-medium max-w-2xl text-center leading-relaxed italic transition-all duration-500 pt-[7px] pb-[7px]">
                         {subtitle}
                     </p>
                 )}
