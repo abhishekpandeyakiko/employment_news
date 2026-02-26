@@ -53,7 +53,7 @@ export default function SalesPointsPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* data box */}
           {data.map((item, index) => (
-            <div key={index} className="bg-white rounded-xl shadow-md border border-primary-200 p-6 mb-2 flex flex-col gap-3 hover:shadow-lg transition">
+            <div key={index} className="bg-white rounded-xl shadow-md border border-primary-500 p-6 mb-2 flex flex-col gap-3 hover:shadow-lg transition">
               {/* FAIL: text-primary-600 -> PASS: text-primary-800 (Contrast > 4.5:1 on white background) */}
               <h2 className="text-xl font-semibold text-primary-800 mb-2 text-left border-l-4 border-primary-600 pl-2">{item.state_name}</h2>
               <div className="mb-2 text-left">
@@ -73,7 +73,7 @@ export default function SalesPointsPage() {
             </div>
           ))}
         </div>
-        <div className="bg-white rounded-xl shadow-md border border-primary-200 p-6 mb-2 mt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 hover:shadow-lg transition">
+        <div className="bg-white rounded-xl shadow-md border border-primary-500 p-6 mb-2 mt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 hover:shadow-lg transition">
           {/* FAIL: text-primary-600 -> PASS: text-primary-800 (Contrast > 4.5:1 on white background) */}
           <h2 className="text-xl font-semibold text-primary-800 border-l-4 border-primary-600 pl-2 text-left">
             <Translate text="otherSellers" />
@@ -83,7 +83,7 @@ export default function SalesPointsPage() {
             <a
               href={otherPdf}
               target="_blank"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-primary-700 text-white font-semibold shadow hover:bg-primary-800 transition focus:outline-none focus:ring-4 focus:ring-primary-300 focus:ring-offset-2"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-primary-700 text-white font-semibold shadow hover:bg-primary-800 transition outline-none focus:ring-4 focus:ring-primary-800 focus:ring-offset-2 focus:ring-offset-white"
               aria-label={<Translate text="download-pdf-new-delhi" />}
             >
               <Translate text="viewPDF" />

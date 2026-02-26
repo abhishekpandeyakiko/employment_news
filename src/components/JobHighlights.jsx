@@ -45,19 +45,26 @@ export default function JobHighlights({ jobHighlight, carouselImages, sliderTime
           <div className="relative w-full h-full">
             {carouselImages && carouselImages.length > 0 ? (
               <>
+                {/* Background blurred image to fill empty space */}
+                <div
+                  className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat blur-[20px] scale-110 opacity-60 transition-all duration-700"
+                  style={{ backgroundImage: `url(${carouselImages[current]})` }}
+                  aria-hidden="true"
+                ></div>
+                {/* Foreground fully visible image */}
                 <img
                   src={carouselImages[current]}
                   alt={`Job Highlight Illustration ${current + 1}`}
-                  className="w-full h-full object-cover transition-all duration-700"
+                  className="relative z-10 w-full h-full object-contain drop-shadow-lg transition-all duration-700"
                 />
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="absolute z-20 inset-0 flex items-center justify-center pointer-events-none">
                   <button
                     onClick={() => setPaused(!paused)}
                     aria-label={paused ? "Start job highlights animation" : "Stop job highlights animation"}
-                    className="bg-black/40 hover:bg-black/60 text-white p-3 rounded-full backdrop-blur-sm transition-all pointer-events-auto shadow-xl ring-1 ring-white/20"
+                    className="bg-black/20 hover:bg-black/40 text-white p-2 rounded-full backdrop-blur-md transition-all pointer-events-auto shadow-md ring-1 ring-white/10"
                     title={paused ? "Play" : "Pause"}
                   >
-                    {paused ? <FaPlay size={24} /> : <FaPause size={24} />}
+                    {paused ? <FaPlay size={18} /> : <FaPause size={18} />}
                   </button>
                 </div>
               </>
@@ -71,7 +78,7 @@ export default function JobHighlights({ jobHighlight, carouselImages, sliderTime
           <button
             onClick={prevSlide}
             aria-label="Previous image"
-            className="absolute top-1/2 left-2 sm:left-4 -translate-y-1/2 cursor-pointer p-1 sm:p-2 rounded-full text-white bg-black/30 hover:bg-black/50 transition-all shadow-lg focus:ring-2 focus:ring-white"
+            className="absolute z-30 top-1/2 left-2 sm:left-4 -translate-y-1/2 cursor-pointer p-1 sm:p-2 rounded-full text-white bg-black/30 hover:bg-black/50 transition-all shadow-lg focus:ring-2 focus:ring-white"
           >
             <FaChevronLeft size={18} className="sm:w-6 sm:h-6" />
           </button>
@@ -79,7 +86,7 @@ export default function JobHighlights({ jobHighlight, carouselImages, sliderTime
           <button
             onClick={nextSlide}
             aria-label="Next image"
-            className="absolute top-1/2 right-2 sm:right-4 -translate-y-1/2 cursor-pointer p-1 sm:p-2 rounded-full text-white bg-black/30 hover:bg-black/50 transition-all shadow-lg focus:ring-2 focus:ring-white"
+            className="absolute z-30 top-1/2 right-2 sm:right-4 -translate-y-1/2 cursor-pointer p-1 sm:p-2 rounded-full text-white bg-black/30 hover:bg-black/50 transition-all shadow-lg focus:ring-2 focus:ring-white"
           >
             <FaChevronRight size={18} className="sm:w-6 sm:h-6" />
           </button>
@@ -101,13 +108,13 @@ export default function JobHighlights({ jobHighlight, carouselImages, sliderTime
                   <a
                     key={`job-${index}`}
                     href={`https://i5l.95d.mytemp.website/empnews/backend/members`}
-                    className="flex justify-between items-center p-1 sm:p-2 border-b border-primary-400 text-white text-xs sm:text-sm cursor-pointer hover:bg-primary-600 transition"
+                    className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-2 sm:p-3 border-b border-primary-400 text-white text-sm cursor-pointer hover:bg-primary-600 transition break-words"
                   >
-                    <span className="text-white text-xs sm:text-sm mr-2">
+                    <span className="text-white text-sm mr-2 mb-2 sm:mb-0">
                       {job.last_date} | {job.post} | {job.method_of_appointment} |{" "}
                       {job.organisation}
                     </span>
-                    <FaChevronRight size={12} className="sm:w-4 sm:h-4" aria-hidden="true" />
+                    <FaChevronRight size={12} className="w-4 h-4 hidden sm:block self-end sm:self-auto" aria-hidden="true" />
                   </a>
                 ))}
               </div>

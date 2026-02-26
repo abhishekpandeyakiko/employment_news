@@ -169,8 +169,8 @@ export default function Footer({ data }) {
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-24 py-2.5">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Standard Policy Links */}
-            <nav className="flex flex-wrap justify-center md:justify-start gap-x-5 gap-y-2 text-[11px] font-bold uppercase tracking-wider text-white text-center md:text-left">
-              <Link to="/help" className="hover:text-white transition-colors"><Translate text="help" /></Link>
+            <nav className="flex flex-row flex-wrap justify-center gap-x-3 sm:gap-x-5 gap-y-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-white text-center md:text-left w-full md:w-auto overflow-hidden">
+              <Link to="/help" className="hover:text-white transition-colors whitespace-normal"><Translate text="help" /></Link>
               <Link to="/feedback" className="hover:text-white transition-colors"><Translate text="feedback" /></Link>
               <Link to="/sitemap" className="hover:text-white transition-colors"><Translate text="sitemap" /></Link>
               <Link to="/policies/privacy" className="hover:text-white transition-colors"><Translate text="privacy_policy" /></Link>
@@ -184,7 +184,7 @@ export default function Footer({ data }) {
             </nav>
 
             {/* Copyright Info */}
-            <div className="text-[10px] text-primary-100 md:text-right font-medium leading-relaxed max-w-xs text-center md:text-left uppercase tracking-tighter">
+            <div className="text-[10px] text-primary-100 font-medium leading-relaxed w-full md:w-auto text-center md:text-right uppercase tracking-tighter mt-2 md:mt-0 break-words">
               Content owned by Publications Division, Ministry of Information & Broadcasting.
               Designed and developed by NIC.
             </div>

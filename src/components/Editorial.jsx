@@ -27,10 +27,10 @@ const EditorialSection = ({
                         <span><FaNewspaper size={18} className="sm:w-6 sm:h-6" aria-hidden="true" /></span> <Translate text={'editorial'} />
                     </h2>
                     {/* Tabs */}
-                    <div className="flex border border-primary-700 mb-2">
+                    <div className="flex flex-row flex-wrap items-stretch sm:items-center border border-primary-700 mb-2">
                         <button
                             onClick={() => setActiveTabLeft("lead")}
-                            className={`flex-1 p-1 sm:p-2 text-center font-medium ${activeTabLeft === "lead" ? "bg-primary-700 text-white" : "bg-gray-50"
+                            className={`flex-[1_1_50%] p-1 sm:p-2 text-center text-sm sm:text-base font-medium break-words ${activeTabLeft === "lead" ? "bg-primary-700 text-white" : "bg-gray-50"
                                 }`}
                         >
                             <Translate text={'lead-articles'} />
@@ -38,7 +38,7 @@ const EditorialSection = ({
                         </button>
                         <button
                             onClick={() => setActiveTabLeft("career")}
-                            className={`flex-1 p-1 sm:p-2 text-center font-medium ${activeTabLeft === "career" ? "bg-primary-700 text-white" : "bg-gray-50"
+                            className={`flex-[1_1_50%] p-1 sm:p-2 text-center text-sm sm:text-base font-medium break-words ${activeTabLeft === "career" ? "bg-primary-700 text-white" : "bg-gray-50"
                                 }`}
                         >
                             <Translate text={'career-articles'} />
@@ -52,10 +52,10 @@ const EditorialSection = ({
                                 <li
                                     key={idx}
                                     onClick={() => navigate(`/article/${item.id}`)}
-                                    className="flex justify-between items-center p-2 sm:p-4 bg-gray-50 cursor-pointer hover:bg-gray-100"
+                                    className="flex justify-between items-start sm:items-center p-2 sm:p-4 bg-gray-50 cursor-pointer hover:bg-gray-100"
                                 >
-                                    <span className="line-clamp-1">{item.title}</span>
-                                    <span className="text-primary flex-shrink-0"><FaChevronRight size={12} className="sm:w-4 sm:h-4 text-primary-700" /></span>
+                                    <span className="line-clamp-2 break-words pr-2">{item.title}</span>
+                                    <span className="text-primary flex-shrink-0 mt-1 sm:mt-0"><FaChevronRight size={12} className="sm:w-4 sm:h-4 text-primary-700" /></span>
                                 </li>
                             ))
                         ) : (
@@ -79,17 +79,17 @@ const EditorialSection = ({
                         <span><FaNewspaper size={18} className="sm:w-6 sm:h-6" aria-hidden="true" /></span> <Translate text={'editorial'} />
                     </h2>
                     {/* Tabs */}
-                    <div className="flex border border-primary-700 mb-2">
+                    <div className="flex flex-row flex-wrap items-stretch sm:items-center border border-primary-700 mb-2">
                         <button
                             onClick={() => setActiveTabRight("special")}
-                            className={`flex-1 p-1 sm:p-2 text-center font-medium ${activeTabRight === "special" ? "bg-primary-700 text-white" : "bg-gray-50"
+                            className={`flex-[1_1_50%] p-1 sm:p-2 text-center text-sm sm:text-base font-medium break-words ${activeTabRight === "special" ? "bg-primary-700 text-white" : "bg-gray-50"
                                 }`}
                         >
                             <Translate text={'special-articles'} />
                         </button>
                         <button
                             onClick={() => setActiveTabRight("success")}
-                            className={`flex-1 p-1 sm:p-2 text-center font-medium ${activeTabRight === "success" ? "bg-primary-700 text-white" : "bg-gray-50"
+                            className={`flex-[1_1_50%] p-1 sm:p-2 text-center text-sm sm:text-base font-medium break-words ${activeTabRight === "success" ? "bg-primary-700 text-white" : "bg-gray-50"
                                 }`}
                         >
                             <Translate text={'success-stories'} />
@@ -104,10 +104,10 @@ const EditorialSection = ({
                                 <li
                                     key={idx}
                                     onClick={() => navigate(`/article/${item.id}`)}
-                                    className="flex justify-between items-center p-2 sm:p-4 bg-gray-50 cursor-pointer hover:bg-gray-100"
+                                    className="flex justify-between items-start sm:items-center p-2 sm:p-4 bg-gray-50 cursor-pointer hover:bg-gray-100"
                                 >
-                                    <span className="line-clamp-1">{item.title}</span>
-                                    <span className="text-primary flex-shrink-0"><FaChevronRight size={12} className="sm:w-4 sm:h-4 text-primary-700" /></span>
+                                    <span className="line-clamp-2 break-words pr-2">{item.title}</span>
+                                    <span className="text-primary flex-shrink-0 mt-1 sm:mt-0"><FaChevronRight size={12} className="sm:w-4 sm:h-4 text-primary-700" /></span>
                                 </li>
                             ))
                         ) : (

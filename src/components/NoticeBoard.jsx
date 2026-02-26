@@ -20,9 +20,9 @@ export default function CompanyLogoSlider({ advertis }) {
   return (
     <div className="bg-white py-6 sm:py-8 px-4 sm:px-6">
       {/* Header + Buttons */}
-      <div className=" mx-auto flex items-center justify-between sm:px-4 mb-4">
+      <div className="mx-auto flex flex-col sm:flex-row items-center justify-between sm:px-4 mb-4 gap-2">
         {/* Left: Header */}
-        <h2 className="text-xl sm:text-2xl font-bold text-primary-700">
+        <h2 className="text-xl sm:text-2xl font-bold text-primary-700 text-center sm:text-left w-full sm:w-auto">
           <Translate text="web-advertisement" />
         </h2>
 
@@ -66,7 +66,7 @@ export default function CompanyLogoSlider({ advertis }) {
                   className="object-contain max-h-24 w-auto p-2"
                 />
               </div>
-              <p className="text-center text-[14px] mt-2 text-gray-600 font-medium tracking-wide group-hover:text-primary-700 truncate px-1">
+              <p className="text-center text-sm mt-2 text-gray-600 font-medium tracking-wide group-hover:text-primary-700 px-1 break-words">
                 {company.title}
               </p>
             </a>

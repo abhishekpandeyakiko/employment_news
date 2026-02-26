@@ -8,7 +8,7 @@ export default function Header({ data }) {
   return (
     <header className="w-full border-b border-primary-100 shadow-sm">
 
-      <div className="max-w-7xl mx-auto flex flex-row items-center justify-center gap-x-2 xs:gap-x-4 md:gap-x-28 px-1 xs:px-2 md:px-8 py-2 md:py-4">
+      <div className="max-w-7xl mx-auto flex flex-row flex-wrap items-center justify-center gap-y-2 gap-x-2 xs:gap-x-4 md:gap-x-28 px-1 xs:px-2 md:px-8 py-2 md:py-4">
         {/* Left Logo */}
         <a
           href="https://www.india.gov.in/"
@@ -21,7 +21,7 @@ export default function Header({ data }) {
           <img
             src={data.national_logo}
             alt="State Emblem of India"
-            className="h-6 xs:h-8 sm:h-10 md:h-12 lg:h-20 object-contain filter-black"
+            className="h-8 xs:h-8 sm:h-10 md:h-12 lg:h-20 object-contain filter-black"
           />
         </a>
 
@@ -35,7 +35,7 @@ export default function Header({ data }) {
           <img
             src={data.logo}
             alt="Employment News Logo"
-            className="h-6 xs:h-8 sm:h-10 md:h-12 lg:h-20 object-contain"
+            className="h-8 xs:h-8 sm:h-10 md:h-12 lg:h-20 object-contain"
           />
         </div>
 

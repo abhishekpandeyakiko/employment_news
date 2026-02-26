@@ -145,7 +145,7 @@ export default function Navbar() {
                 idx == 2 ? <a
                   href="https://i5l.95d.mytemp.website/empnews/backend/members"
                   className={`
-                    block px-4 py-2 sm:px-6 sm:py-3 transition text-base ${idx == 2 ? `text-red-900` : ``}
+                    block px-4 py-2 sm:px-1 sm:py-3 transition text-base ${idx == 2 ? `text-red-900` : ``}
                     ${location.pathname === item.href
                       ? "text-primary-600 font-semibold after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full bg-primary-50 after:bg-primary-600"
                       : "hover:text-primary-700"}
@@ -164,7 +164,7 @@ export default function Navbar() {
                 </a> :
                   <Link
                     to={item.href}
-                    className={`block px-4 py-2 sm:px-6 sm:py-3 transition text-base ${idx == 2 ? `text-red-900` : ``}
+                    className={`block px-4 py-2 sm:px-1 sm:py-3 transition text-base ${idx == 2 ? `text-red-900` : ``}
                     ${location.pathname === item.href
                         ? "text-primary-600 font-semibold after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-full bg-primary-50 after:bg-primary-600"
                         : "hover:text-primary-700"}
@@ -185,7 +185,7 @@ export default function Navbar() {
                 <button
                   type="button"
                   className={`
-                    block px-4 py-2 sm:px-6 sm:py-3 transition text-base w-full text-center lg:text-left
+                    block px-4 py-2 sm:px-1 sm:py-3 transition text-base w-full text-center lg:text-left
                     ${item.submenu ? "pr-8" : ""}
                     ${openDropdown === idx ? "text-primary-600 font-semibold" : "hover:text-primary-700"}
                   `}

@@ -9,10 +9,10 @@ export default function Announcements({ announcements }) {
 
   return (
     <div className="w-full bg-primary-700 text-white text-sm">
-      <div className="max-w-8xl mx-auto flex items-center px-2 sm:px-6 md:px-12 py-2 space-x-2 sm:space-x-3">
-        <div className="hidden sm:flex items-center bg-primary-700 px-3 py-1 rounded text-xs font-semibold space-x-2">
-          <FaExclamationTriangle className="w-3 h-3" aria-hidden="true" />
-          <h2><Translate text={'announcements'} /></h2>
+      <div className="max-w-8xl mx-auto flex flex-col sm:flex-row items-start sm:items-center px-2 sm:px-6 md:px-12 py-2 gap-2 sm:gap-3">
+        <div className="flex items-center w-full sm:w-auto justify-center sm:justify-start bg-primary-700 px-2 sm:px-3 py-1 rounded text-[10px] sm:text-xs font-semibold shrink-0 gap-1 sm:gap-2">
+          <FaExclamationTriangle className="w-3 h-3 shrink-0" aria-hidden="true" />
+          <h2 className="whitespace-nowrap"><Translate text={'announcements'} /></h2>
           <button
             onClick={() => setPaused(!paused)}
             aria-label={paused ? "Play announcements" : "Pause announcements"}
@@ -28,7 +28,7 @@ export default function Announcements({ announcements }) {
 
         {/* Marquee Wrapper */}
         <div
-          className="relative flex-1 overflow-hidden bg-white px-2 sm:px-3 py-1 rounded font-bold text-xs sm:text-sm text-[#6C4713]"
+          className="relative flex-1 w-full overflow-hidden bg-white px-2 sm:px-3 py-1 rounded font-bold text-xs sm:text-sm text-[#6C4713]"
           role="region"
           aria-label="Announcements"
         >

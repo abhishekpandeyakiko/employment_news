@@ -72,14 +72,14 @@ const SocialMediaCard = ({ card }) => {
 
     return (
         <article className="bg-white w-56 xs:w-64 sm:w-80 rounded-lg shadow flex-shrink-0 relative">
-            <div className="flex justify-between items-center mb-1 sm:mb-2 px-2 sm:px-4 pb-0 pt-2">
-                <div className="flex items-center gap-1 sm:gap-2 text-primary-700 font-semibold">
-                    <span className="flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-primary-700 text-white">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-1 sm:mb-2 px-2 sm:px-4 pb-0 pt-2 break-words">
+                <div className="flex items-center gap-1 sm:gap-2 text-primary-700 font-semibold mb-1 sm:mb-0">
+                    <span className="flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-primary-700 text-white shrink-0">
                         {getIcon()}
                     </span>
-                    <span className="text-xs sm:text-sm">{card.platform}</span>
+                    <span className="text-sm">{card.platform}</span>
                 </div>
-                <span className="text-primary-700 text-[10px] sm:text-sm">{card.account}</span>
+                <span className="text-primary-700 text-xs sm:text-sm max-w-full break-all">{card.account}</span>
             </div>
 
             <div className="h-32 xs:h-44 sm:h-72 overflow-hidden border-t-2 border-primary-700 rounded-lg mb-1 sm:mb-2 relative">

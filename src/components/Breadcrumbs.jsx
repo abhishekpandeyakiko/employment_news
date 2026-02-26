@@ -13,7 +13,7 @@ const Breadcrumbs = () => {
     return (
         <nav
             aria-label="Breadcrumb"
-            className="flex items-center space-x-2 md:space-x-3 text-[10px] md:text-[11px] uppercase tracking-[0.15em] font-bold"
+            className="flex flex-wrap items-center space-x-2 md:space-x-3 gap-y-1 text-[10px] md:text-[11px] uppercase tracking-[0.15em] font-bold"
         >
             <Link
                 to="/"
