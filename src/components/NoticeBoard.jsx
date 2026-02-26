@@ -31,14 +31,14 @@ export default function CompanyLogoSlider({ advertis }) {
           <button
             onClick={scrollLeft}
             aria-label="Previous advertisement"
-            className="bg-gray-500 bg-opacity-40 hover:bg-opacity-70 text-white p-2 rounded-full shadow-md transition"
+            className="bg-gray-500 bg-opacity-40 hover:bg-opacity-70 text-white p-2 rounded-full shadow-md transition min-w-[44px] min-h-[44px] flex items-center justify-center shrink-0"
           >
             <FaChevronLeft size={16} aria-hidden="true" />
           </button>
           <button
             onClick={scrollRight}
             aria-label="Next advertisement"
-            className="bg-gray-500 bg-opacity-40 hover:bg-opacity-70 text-white p-2 rounded-full shadow-md transition"
+            className="bg-gray-500 bg-opacity-40 hover:bg-opacity-70 text-white p-2 rounded-full shadow-md transition min-w-[44px] min-h-[44px] flex items-center justify-center shrink-0"
           >
             <FaChevronRight size={16} aria-hidden="true" />
           </button>
@@ -57,7 +57,7 @@ export default function CompanyLogoSlider({ advertis }) {
               href={company.pdf}
               target="_blank"
               rel="noopener noreferrer"
-              className="block group focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-[10px]"
+              className="block group focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-[10px] min-h-[44px] p-1"
             >
               <div className="bg-white border border-gray-200 h-32 rounded-[10px] overflow-hidden shadow-sm group-hover:shadow-lg transition-transform duration-300 group-hover:scale-105 flex items-center justify-center">
                 <img

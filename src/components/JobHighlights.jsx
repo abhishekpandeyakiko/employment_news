@@ -9,6 +9,7 @@ export default function JobHighlights({ jobHighlight, carouselImages, sliderTime
 
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [listPaused, setListPaused] = useState(false);
 
   // Auto-change carousel every 5s
   // Auto-change carousel every 5s
@@ -61,7 +62,7 @@ export default function JobHighlights({ jobHighlight, carouselImages, sliderTime
                   <button
                     onClick={() => setPaused(!paused)}
                     aria-label={paused ? "Start job highlights animation" : "Stop job highlights animation"}
-                    className="bg-black/20 hover:bg-black/40 text-white p-2 rounded-full backdrop-blur-md transition-all pointer-events-auto shadow-md ring-1 ring-white/10"
+                    className="bg-black/20 hover:bg-black/40 text-white p-2 rounded-full backdrop-blur-md transition-all pointer-events-auto shadow-md ring-1 ring-white/10 min-w-[44px] min-h-[44px] flex items-center justify-center"
                     title={paused ? "Play" : "Pause"}
                   >
                     {paused ? <FaPlay size={18} /> : <FaPause size={18} />}
@@ -78,7 +79,7 @@ export default function JobHighlights({ jobHighlight, carouselImages, sliderTime
           <button
             onClick={prevSlide}
             aria-label="Previous image"
-            className="absolute z-30 top-1/2 left-2 sm:left-4 -translate-y-1/2 cursor-pointer p-1 sm:p-2 rounded-full text-white bg-black/30 hover:bg-black/50 transition-all shadow-lg focus:ring-2 focus:ring-white"
+            className="absolute z-30 top-1/2 left-2 sm:left-4 -translate-y-1/2 cursor-pointer p-1 sm:p-2 rounded-full text-white bg-black/30 hover:bg-black/50 transition-all shadow-lg focus:ring-2 focus:ring-white min-w-[44px] min-h-[44px] flex items-center justify-center"
           >
             <FaChevronLeft size={18} className="sm:w-6 sm:h-6" />
           </button>
@@ -86,7 +87,7 @@ export default function JobHighlights({ jobHighlight, carouselImages, sliderTime
           <button
             onClick={nextSlide}
             aria-label="Next image"
-            className="absolute z-30 top-1/2 right-2 sm:right-4 -translate-y-1/2 cursor-pointer p-1 sm:p-2 rounded-full text-white bg-black/30 hover:bg-black/50 transition-all shadow-lg focus:ring-2 focus:ring-white"
+            className="absolute z-30 top-1/2 right-2 sm:right-4 -translate-y-1/2 cursor-pointer p-1 sm:p-2 rounded-full text-white bg-black/30 hover:bg-black/50 transition-all shadow-lg focus:ring-2 focus:ring-white min-w-[44px] min-h-[44px] flex items-center justify-center"
           >
             <FaChevronRight size={18} className="sm:w-6 sm:h-6" />
           </button>
@@ -94,21 +95,34 @@ export default function JobHighlights({ jobHighlight, carouselImages, sliderTime
 
         {/* Job Highlights Section */}
         <div id="skip-target" tabIndex="-1" className="col-span-1 md:col-span-3 mt-2 md:mt-0 focus:outline-none scroll-mt-32">
-          <a href="https://i5l.95d.mytemp.website/empnews/backend/members" className="flex items-center mb-2 text-primary-700">
-            <IoBagSharp size={18} className="sm:w-6 sm:h-6" aria-hidden="true" />
-            <h2 className="text-sm lg:text-lg font-semibold ml-2"><Translate text={'job-highlights'} /></h2>
-          </a>
+          <div className="flex items-center justify-between mb-2">
+            <a href="https://i5l.95d.mytemp.website/empnews/backend/members" className="flex items-center text-primary-700 hover:text-primary-800 transition-colors">
+              <IoBagSharp size={18} className="sm:w-6 sm:h-6" aria-hidden="true" />
+              <h2 className="text-sm lg:text-lg font-semibold ml-2"><Translate text={'job-highlights'} /></h2>
+            </a>
+            <button
+              onClick={() => setListPaused(!listPaused)}
+              aria-label={listPaused ? "Start job highlights scrolling" : "Stop job highlights scrolling"}
+              className="p-1.5 sm:p-2 rounded-full border bg-gray-100 hover:bg-gray-200 text-primary-700 shadow-sm min-w-[30px] min-h-[30px] flex items-center justify-center transition focus:outline-none focus:ring-2 focus:ring-primary-500"
+              title={listPaused ? "Play List" : "Pause List"}
+            >
+              {listPaused ? <FaPlay size={12} aria-hidden="true" /> : <FaPause size={12} aria-hidden="true" />}
+            </button>
+          </div>
 
           {/* Auto-scrolling list */}
-          <div className="relative h-32 xs:h-48 sm:h-[415px] overflow-hidden bg-primary-700 rounded-sm px-1 sm:px-2">
+          <div className="relative h-32 xs:h-48 sm:h-[415px] overflow-hidden bg-primary-700 rounded-sm px-1 sm:px-2" aria-live={listPaused ? "polite" : "off"}>
             {jobHighlight && jobHighlight.length > 0 ? (
-              <div className="scroll-container">
+              <div
+                className="scroll-container"
+                style={{ animationPlayState: listPaused ? 'paused' : 'running' }}
+              >
                 {/* First copy */}
                 {jobHighlight.map((job, index) => (
                   <a
                     key={`job-${index}`}
                     href={`https://i5l.95d.mytemp.website/empnews/backend/members`}
-                    className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-2 sm:p-3 border-b border-primary-400 text-white text-sm cursor-pointer hover:bg-primary-600 transition break-words"
+                    className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-3 px-2 sm:px-3 border-b border-primary-400 text-white text-sm cursor-pointer hover:bg-primary-600 transition break-words min-h-[44px]"
                   >
                     <span className="text-white text-sm mr-2 mb-2 sm:mb-0">
                       {job.last_date} | {job.post} | {job.method_of_appointment} |{" "}
@@ -127,7 +141,7 @@ export default function JobHighlights({ jobHighlight, carouselImages, sliderTime
 
           {/* Button */}
           <div className="pt-1">
-            <button className="w-full bg-white text-primary-700 font-semibold py-1 sm:py-2 px-2 sm:px-4 rounded-sm shadow-md border border-primary-400 text-xs sm:text-base" aria-label="See more job highlights">
+            <button className="w-full bg-white text-primary-700 font-semibold py-2 px-2 sm:px-4 rounded-sm shadow-md border border-primary-400 text-xs sm:text-base min-h-[44px] flex items-center justify-center leading-normal" aria-label="See more job highlights">
               <Translate text={'see-more'} />
             </button>
           </div>

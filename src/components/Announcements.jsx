@@ -16,7 +16,7 @@ export default function Announcements({ announcements }) {
           <button
             onClick={() => setPaused(!paused)}
             aria-label={paused ? "Play announcements" : "Pause announcements"}
-            className="border border-white rounded-full p-1 hover:bg-primary-800 transition"
+            className="border border-white rounded-full p-1 hover:bg-primary-800 transition min-w-[30px] min-h-[30px] flex items-center justify-center shrink-0"
           >
             {paused ? (
               <FaPlay className="w-2.5 h-2.5" aria-hidden="true" />
@@ -77,7 +77,7 @@ export default function Announcements({ announcements }) {
         <div className="hidden sm:flex items-center space-x-3">
           <Link
             to="/all-announcements"
-            className="bg-white text-primary-600 text-xs font-semibold px-3 py-1 rounded shadow hover:bg-gray-100 transition-colors"
+            className="bg-white text-primary-600 text-xs font-semibold px-3 py-1 rounded shadow hover:bg-gray-100 transition-colors  flex items-center justify-center shrink-0 whitespace-nowrap"
           >
             <Translate text={'view-all'} />
           </Link>

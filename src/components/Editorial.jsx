@@ -30,7 +30,7 @@ const EditorialSection = ({
                     <div className="flex flex-row flex-wrap items-stretch sm:items-center border border-primary-700 mb-2">
                         <button
                             onClick={() => setActiveTabLeft("lead")}
-                            className={`flex-[1_1_50%] p-1 sm:p-2 text-center text-sm sm:text-base font-medium break-words ${activeTabLeft === "lead" ? "bg-primary-700 text-white" : "bg-gray-50"
+                            className={`flex-[1_1_50%] p-1 sm:p-2 text-center text-sm sm:text-base font-medium break-words min-h-[44px] ${activeTabLeft === "lead" ? "bg-primary-700 text-white" : "bg-gray-50"
                                 }`}
                         >
                             <Translate text={'lead-articles'} />
@@ -38,7 +38,7 @@ const EditorialSection = ({
                         </button>
                         <button
                             onClick={() => setActiveTabLeft("career")}
-                            className={`flex-[1_1_50%] p-1 sm:p-2 text-center text-sm sm:text-base font-medium break-words ${activeTabLeft === "career" ? "bg-primary-700 text-white" : "bg-gray-50"
+                            className={`flex-[1_1_50%] p-1 sm:p-2 text-center text-sm sm:text-base font-medium break-words min-h-[44px] ${activeTabLeft === "career" ? "bg-primary-700 text-white" : "bg-gray-50"
                                 }`}
                         >
                             <Translate text={'career-articles'} />
@@ -52,7 +52,7 @@ const EditorialSection = ({
                                 <li
                                     key={idx}
                                     onClick={() => navigate(`/article/${item.id}`)}
-                                    className="flex justify-between items-start sm:items-center p-2 sm:p-4 bg-gray-50 cursor-pointer hover:bg-gray-100"
+                                    className="flex justify-between items-start sm:items-center py-3 px-2 sm:px-4 bg-gray-50 cursor-pointer hover:bg-gray-100 min-h-[44px]"
                                 >
                                     <span className="line-clamp-2 break-words pr-2">{item.title}</span>
                                     <span className="text-primary flex-shrink-0 mt-1 sm:mt-0"><FaChevronRight size={12} className="sm:w-4 sm:h-4 text-primary-700" /></span>
@@ -66,7 +66,7 @@ const EditorialSection = ({
 
                     {/* See More */}
                     <div className="text-right mt-2 sm:mt-3">
-                        <button className="text-primary-700 font-semibold border-2 border-primary-700 px-2 sm:px-4 py-1 rounded hover:bg-primary-700 hover:text-white text-xs sm:text-base" onClick={() => navigate(`/editorial-list?tab=${activeTabLeft}`)}>
+                        <button className="text-primary-700 font-semibold border-2 border-primary-700 px-2 sm:px-4 py-2 rounded hover:bg-primary-700 hover:text-white text-xs sm:text-base min-h-[44px] inline-flex items-center justify-center" onClick={() => navigate(`/editorial-list?tab=${activeTabLeft}`)}>
                             <Translate text={'see-more'} />
                         </button>
                     </div>
@@ -82,14 +82,14 @@ const EditorialSection = ({
                     <div className="flex flex-row flex-wrap items-stretch sm:items-center border border-primary-700 mb-2">
                         <button
                             onClick={() => setActiveTabRight("special")}
-                            className={`flex-[1_1_50%] p-1 sm:p-2 text-center text-sm sm:text-base font-medium break-words ${activeTabRight === "special" ? "bg-primary-700 text-white" : "bg-gray-50"
+                            className={`flex-[1_1_50%] p-1 sm:p-2 text-center text-sm sm:text-base font-medium break-words min-h-[44px] ${activeTabRight === "special" ? "bg-primary-700 text-white" : "bg-gray-50"
                                 }`}
                         >
                             <Translate text={'special-articles'} />
                         </button>
                         <button
                             onClick={() => setActiveTabRight("success")}
-                            className={`flex-[1_1_50%] p-1 sm:p-2 text-center text-sm sm:text-base font-medium break-words ${activeTabRight === "success" ? "bg-primary-700 text-white" : "bg-gray-50"
+                            className={`flex-[1_1_50%] p-1 sm:p-2 text-center text-sm sm:text-base font-medium break-words min-h-[44px] ${activeTabRight === "success" ? "bg-primary-700 text-white" : "bg-gray-50"
                                 }`}
                         >
                             <Translate text={'success-stories'} />
@@ -104,7 +104,7 @@ const EditorialSection = ({
                                 <li
                                     key={idx}
                                     onClick={() => navigate(`/article/${item.id}`)}
-                                    className="flex justify-between items-start sm:items-center p-2 sm:p-4 bg-gray-50 cursor-pointer hover:bg-gray-100"
+                                    className="flex justify-between items-start sm:items-center py-3 px-2 sm:px-4 bg-gray-50 cursor-pointer hover:bg-gray-100 min-h-[44px]"
                                 >
                                     <span className="line-clamp-2 break-words pr-2">{item.title}</span>
                                     <span className="text-primary flex-shrink-0 mt-1 sm:mt-0"><FaChevronRight size={12} className="sm:w-4 sm:h-4 text-primary-700" /></span>
@@ -118,7 +118,7 @@ const EditorialSection = ({
 
                     {/* See More */}
                     <div className="text-right mt-2 sm:mt-3">
-                        <button className="text-primary-700 font-semibold border-2 border-primary-700 px-2 sm:px-4 py-1 rounded hover:bg-primary-700 hover:text-white text-xs sm:text-base" onClick={() => navigate(`/editorial-list?tab=${activeTabRight}`)}>
+                        <button className="text-primary-700 font-semibold border-2 border-primary-700 px-2 sm:px-4 py-2 rounded hover:bg-primary-700 hover:text-white text-xs sm:text-base min-h-[44px] inline-flex items-center justify-center" onClick={() => navigate(`/editorial-list?tab=${activeTabRight}`)}>
                             <Translate text={'see-more'} />
                         </button>
                     </div>
