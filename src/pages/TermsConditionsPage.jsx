@@ -31,12 +31,7 @@ export default function TermsConditionsPage() {
                         <p>
                             This website is designed, developed and maintained by Employment News, Publications Division, Ministry of Information and Broadcasting, Government of India.
                         </p>
-                        <p>
-                            Though all efforts have been made to ensure the accuracy and currency of the content on this website, the same should not be construed as a statement of law or used for any legal purposes.
-                        </p>
-                        <p>
-                            In no event will Employment News be liable for any expense, loss or damage including, without limitation, indirect or consequential loss or damage, or any expense, loss or damage whatsoever arising from use, or loss of use, of data, arising out of or in connection with the use of this website.
-                        </p>
+                        <h4>Provide a data</h4>
                     </div>
                 </div>
             </div>

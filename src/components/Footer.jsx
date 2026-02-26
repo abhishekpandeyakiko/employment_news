@@ -179,6 +179,8 @@ export default function Footer({ data }) {
               <Link to="/policies/terms" className="hover:text-white transition-colors"><Translate text="terms_conditions" /></Link>
               <Link to="/policies/cmap" className="hover:text-white transition-colors"><Translate text="cmap" /></Link>
               <Link to="/policies/security" className="hover:text-white transition-colors"><Translate text="security_policy" /></Link>
+              <Link to="/policies/archival" className="hover:text-white transition-colors"><Translate text="archival_policy" /></Link>
+              <Link to="/policies/review" className="hover:text-white transition-colors"><Translate text="review_policy" /></Link>
             </nav>
 
             {/* Copyright Info */}

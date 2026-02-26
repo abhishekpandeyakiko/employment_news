@@ -115,5 +115,11 @@
     "wim-keywords": "web information manager, contact person, portal maintenance",
     "help-desc": "Find help and guidance on using the Employment News portal and its various features.",
     "help-keywords": "help, support, navigation, FAQ",
-    "feedback-desc": "Provide your valuable feedback and suggestions to help us improve the Employment News portal."
+    "feedback-desc": "Provide your valuable feedback and suggestions to help us improve the Employment News portal.",
+    "archival_policy": "Archival Policy",
+    "archival-desc": "Archival Policy for Employment News records.",
+    "archival-keywords": "archival policy, records, old editions",
+    "review_policy": "Review Policy",
+    "review-desc": "Review Policy for Employment News content review.",
+    "review-keywords": "review policy, content review, GIGW"
 }

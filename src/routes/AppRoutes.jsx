@@ -26,6 +26,8 @@ import TermsConditionsPage from "../pages/TermsConditionsPage";
 import CMAPPage from "../pages/CMAPPage";
 import SecurityPolicyPage from "../pages/SecurityPolicyPage";
 import WebInformationManagerPage from "../pages/WebInformationManagerPage";
+import ArchivalPolicyPage from "../pages/ArchivalPolicyPage";
+import ReviewPolicyPage from "../pages/ReviewPolicyPage";
 
 const AppRoutes = () => {
   return (
@@ -55,6 +57,8 @@ const AppRoutes = () => {
         <Route path="policies/terms" element={<TermsConditionsPage />} />
         <Route path="policies/cmap" element={<CMAPPage />} />
         <Route path="policies/security" element={<SecurityPolicyPage />} />
+        <Route path="policies/archival" element={<ArchivalPolicyPage />} />
+        <Route path="policies/review" element={<ReviewPolicyPage />} />
         <Route path="web-information-manager" element={<WebInformationManagerPage />} />
       </Route>
     </Routes>
