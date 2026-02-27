@@ -216,19 +216,16 @@ export default function GrievanceForm() {
   };
 
   return (
-    <main id="main-content" className="w-full min-h-[80vh] bg-primary-50 pb-16">
+    <div className="w-full min-h-[80vh] bg-primary-50 pb-16">
       {/* Accessibility Fix: Convert non-semantic <div> wrapping layouts to semantic <main> tag */}
       {loading && <Loader />}
 
-      {/* Accessibility Fix: Convert wrapper of banner to <header> */}
-      <header>
-        {/* Note: PageBanner handles our primary H1 */}
-        <PageBanner
-          title={<Translate text={"grievance-form"} />}
-          subtitle={'"Public Grievance Redressal System - Speak up for better service."'}
-          badgeText="Grievance Cell"
-        />
-      </header>
+      {/* Note: PageBanner handles our primary H1 */}
+      <PageBanner
+        title={<Translate text={"grievance-form"} />}
+        subtitle={'"Public Grievance Redressal System - Speak up for better service."'}
+        badgeText="Grievance Cell"
+      />
 
       {/* Accessibility Fix: Use <section> with aria-labelledby associating with <h2 id="form-heading"> */}
       <section aria-labelledby="form-heading" className="w-full max-w-7xl mx-auto px-4 mt-12">
@@ -499,6 +496,6 @@ export default function GrievanceForm() {
           )}
         </Formik>
       </section>
-    </main >
+    </div>
   );
 }
