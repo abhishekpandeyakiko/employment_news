@@ -21,7 +21,7 @@ export default function Header({ data }) {
           <img
             src={data.national_logo}
             alt="State Emblem of India"
-            className="h-8 xs:h-8 sm:h-10 md:h-12 lg:h-20 object-contain filter-black"
+            className="h-8 xs:h-8 sm:h-10 md:h-12 lg:h-20 object-contain"
           />
         </a>
 

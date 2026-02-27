@@ -36,6 +36,7 @@ export default function TopBar({ data }) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [accessibilityOpen, setAccessibilityOpen] = useState(false);
   const searchInputRef = useRef(null);
+  const searchContainerRef = useRef(null);
   const langDropdownRef = useRef(null);
 
   // Close Language Dropdown on Click Outside or Escape
@@ -43,6 +44,9 @@ export default function TopBar({ data }) {
     const handleClickOutside = (event) => {
       if (langDropdownRef.current && !langDropdownRef.current.contains(event.target)) {
         setLangOpen(false);
+      }
+      if (searchContainerRef.current && !searchContainerRef.current.contains(event.target)) {
+        setSearchOpen(false);
       }
     };
     const handleEscape = (event) => {
@@ -101,9 +105,27 @@ export default function TopBar({ data }) {
           </div>
           {/* Right Side */}
           <div className="flex items-center space-x-2 xs:space-x-3 sm:space-x-4 text-primary-700 relative text-base">
-            <a href={data.facebook_url} aria-label="Visit our Facebook page"><FaFacebookF className="w-3 h-3 xs:w-4 xs:h-4" aria-hidden="true" /></a>
+            <ExternalLinkOpener
+              url={data.facebook_url}
+              ariaLabel="Visit our Facebook page"
+              text={<FaFacebookF className="w-3 h-3 xs:w-4 xs:h-4" aria-hidden="true" />}
+            />
+            <ExternalLinkOpener
+              url={data.twitter_url}
+              ariaLabel="Visit our X (Twitter) page"
+              text={<RiTwitterXLine className="w-3 h-3 xs:w-4 xs:h-4" aria-hidden="true" />}
+            />
+            {/* <ExternalLinkOpener
+              url={data.instagram_url}
+              ariaLabel="Visit our Instagram page"
+              text={<FaInstagram className="w-3 h-3 xs:w-4 xs:h-4" aria-hidden="true" />}
+            /> */}
+
+            {/* <a href={data.facebook_url} aria-label="Visit our Facebook page"><FaFacebookF className="w-3 h-3 xs:w-4 xs:h-4" aria-hidden="true" /></a>
             <a href={data.twitter_url} aria-label="Visit our X (Twitter) page"><RiTwitterXLine className="w-3 h-3 xs:w-4 xs:h-4" aria-hidden="true" /></a>
-            {/* <a href={data.instagram_url} aria-label="Visit our Instagram page"><FaInstagram className="w-3 h-3 xs:w-4 xs:h-4" aria-hidden="true" /></a> */}
+            <a href={data.instagram_url} aria-label="Visit our Instagram page"><FaInstagram className="w-3 h-3 xs:w-4 xs:h-4" aria-hidden="true" /></a>  */}
+
+
             <span className="text-primary-700" aria-hidden="true">|</span>
 
             {/* Language Dropdown */}
@@ -148,28 +170,44 @@ export default function TopBar({ data }) {
             </button>
             <span className="text-gray-600" aria-hidden="true">|</span>
 
-            {/* Search */}
-            <div className="relative">
-              <button onClick={handleSearchClick} aria-label="Toggle search">
-                <FaSearch
-                  className="w-4 h-4 cursor-pointer"
-                />
+            {/* Search Bar */}
+            <div className="relative" ref={searchContainerRef}>
+              <button
+                onClick={handleSearchClick}
+                className={`p-1.5 rounded-full transition-all duration-300 flex items-center justify-center ${searchOpen ? 'bg-primary-100 text-primary-800' : 'hover:bg-primary-50 text-primary-700'}`}
+                aria-label="Toggle search"
+              >
+                <FaSearch className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </button>
+
               {searchOpen && (
-                <input
-                  ref={searchInputRef}
-                  type="text"
-                  placeholder="Search..."
-                  aria-label="Search content"
-                  className="absolute right-0 top-6 w-32 xs:w-40 sm:w-48 px-2 py-1 border border-gray-300 rounded shadow focus:outline-none text-xs bg-white z-30"
-                  onBlur={() => {
-                    // Just delay slightly to allow click to register if needed, 
-                    // or better yet, rely on the global click outside
-                  }}
-                />
+                <div className="absolute right-0 top-10 w-48 xs:w-56 sm:w-72 bg-white border border-primary-100 rounded-lg shadow-xl p-1.5 z-50 flex items-center animate-slide-down">
+                  <div className="relative w-full">
+                    <input
+                      ref={searchInputRef}
+                      type="text"
+                      placeholder="Type and search..."
+                      className="w-full pl-3 pr-10 py-1.5 bg-gray-50 border border-primary-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:bg-white text-xs sm:text-sm transition-all text-primary-900"
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          const query = e.target.value;
+                          if (query) console.log("Search query:", query);
+                        }
+                      }}
+                    />
+                    <button
+                      className="absolute right-1 top-1/2 -translate-y-1/2 p-1.5 text-primary-600 hover:text-primary-800 transition-colors"
+                      aria-label="Submit search"
+                      onClick={() => {
+                        const val = searchInputRef.current?.value;
+                        if (val) console.log("Search query:", val);
+                      }}
+                    >
+                      <FaSearch className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
               )}
-
-
             </div>
             <div className="ml-auto text-primary-700 text-xs sm:text-sm pl-3">
               <ExternalLinkOpener

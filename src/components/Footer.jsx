@@ -169,7 +169,7 @@ export default function Footer({ data }) {
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-24 py-2.5">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             {/* Standard Policy Links */}
-            <nav className="flex flex-row flex-wrap justify-center gap-x-3 sm:gap-x-5 gap-y-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-white text-center md:text-left w-full md:w-auto overflow-hidden">
+            <nav className="flex flex-row flex-wrap  gap-x-3 sm:gap-x-5 gap-y-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-white text-center md:text-left w-full md:w-auto overflow-hidden">
               <Link to="/help" className="hover:text-white transition-colors whitespace-normal"><Translate text="help" /></Link>
               <Link to="/feedback" className="hover:text-white transition-colors"><Translate text="feedback" /></Link>
               <Link to="/sitemap" className="hover:text-white transition-colors"><Translate text="sitemap" /></Link>
