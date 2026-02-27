@@ -176,6 +176,7 @@ export default function TopBar({ data }) {
                 url="https://en.eversion.in/"
                 text={<Translate text="eversion" />}
                 className="hover:underline"
+                ariaLabel="Open e-version of Employment News in a new tab"
               />
             </div>
           </div>

@@ -103,7 +103,7 @@ const EditorialList = () => {
 
               {/* Bottom Section (always stays at bottom) */}
               <div className="mt-4 border-t border-gray-200 pt-3 text-right">
-                <button className="text-primary-700 font-semibold hover:underline">
+                <button className="text-primary-700 font-semibold hover:underline" aria-label={`Read more about ${item.title}`}>
                   <Translate text={'see-more'} /> →
                 </button>
               </div>

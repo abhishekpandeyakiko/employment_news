@@ -66,7 +66,7 @@ const EditorialSection = ({
 
                     {/* See More */}
                     <div className="text-right mt-2 sm:mt-3">
-                        <button className="text-primary-700 font-semibold border-2 border-primary-700 px-2 sm:px-4 py-2 rounded hover:bg-primary-700 hover:text-white text-xs sm:text-base min-h-[44px] inline-flex items-center justify-center" onClick={() => navigate(`/editorial-list?tab=${activeTabLeft}`)}>
+                        <button className="text-primary-700 font-semibold border-2 border-primary-700 px-2 sm:px-4 py-2 rounded hover:bg-primary-700 hover:text-white text-xs sm:text-base min-h-[44px] inline-flex items-center justify-center" onClick={() => navigate(`/editorial-list?tab=${activeTabLeft}`)} aria-label={`View all ${activeTabLeft === 'lead' ? 'lead articles' : 'career articles'}`}>
                             <Translate text={'see-more'} />
                         </button>
                     </div>
@@ -118,7 +118,7 @@ const EditorialSection = ({
 
                     {/* See More */}
                     <div className="text-right mt-2 sm:mt-3">
-                        <button className="text-primary-700 font-semibold border-2 border-primary-700 px-2 sm:px-4 py-2 rounded hover:bg-primary-700 hover:text-white text-xs sm:text-base min-h-[44px] inline-flex items-center justify-center" onClick={() => navigate(`/editorial-list?tab=${activeTabRight}`)}>
+                        <button className="text-primary-700 font-semibold border-2 border-primary-700 px-2 sm:px-4 py-2 rounded hover:bg-primary-700 hover:text-white text-xs sm:text-base min-h-[44px] inline-flex items-center justify-center" onClick={() => navigate(`/editorial-list?tab=${activeTabRight}`)} aria-label={`View all ${activeTabRight === 'special' ? 'special articles' : 'success stories'}`}>
                             <Translate text={'see-more'} />
                         </button>
                     </div>

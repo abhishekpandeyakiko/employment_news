@@ -123,6 +123,7 @@ export default function JobHighlights({ jobHighlight, carouselImages, sliderTime
                     key={`job-${index}`}
                     href={`https://i5l.95d.mytemp.website/empnews/backend/members`}
                     className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-3 px-2 sm:px-3 border-b border-primary-400 text-white text-sm cursor-pointer hover:bg-primary-600 transition break-words min-h-[44px]"
+                    aria-label={`View details for ${job.post}`}
                   >
                     <span className="text-white text-sm mr-2 mb-2 sm:mb-0">
                       {job.last_date} | {job.post} | {job.method_of_appointment} |{" "}

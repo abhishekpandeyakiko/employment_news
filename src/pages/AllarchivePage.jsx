@@ -74,7 +74,9 @@ export default function AllarchivePage() {
                   Date: {job.date}
                 </span>
                 <a target="_blank" href={job.free_pdf}
-                  className="inline-block text-sm font-medium px-3 py-1 rounded-full border border-primary-600 text-primary-600 hover:bg-primary-50 transition" >
+                  className="inline-block text-sm font-medium px-3 py-1 rounded-full border border-primary-600 text-primary-600 hover:bg-primary-50 transition"
+                  aria-label={`View PDF for ${job.title}`}
+                  rel="noopener noreferrer">
                   View PDF
                 </a>
               </div>

@@ -78,6 +78,7 @@ export default function Announcements({ announcements }) {
           <Link
             to="/all-announcements"
             className="bg-white text-primary-600 text-xs font-semibold px-3 py-1 rounded shadow hover:bg-gray-100 transition-colors  flex items-center justify-center shrink-0 whitespace-nowrap"
+            aria-label="View all announcements"
           >
             <Translate text={'view-all'} />
           </Link>

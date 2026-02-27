@@ -81,6 +81,7 @@ export default function ArchivePage() {
                     rel="noopener noreferrer"
                     href={job.free_pdf}
                     className="inline-flex items-center px-4 py-1.5 rounded-full bg-primary-50 text-primary-700 text-xs font-bold hover:bg-primary-600 hover:text-white transition duration-300 border border-primary-100"
+                    aria-label={`View PDF for ${job.title}`}
                   >
                     View PDF
                   </a>

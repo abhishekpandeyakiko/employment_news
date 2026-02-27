@@ -58,6 +58,7 @@ export default function CompanyLogoSlider({ advertis }) {
               target="_blank"
               rel="noopener noreferrer"
               className="block group focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-[10px] min-h-[44px] p-1"
+              aria-label={`View advertisement: ${company.title || company.name || "Advertisement"}`}
             >
               <div className="bg-white border border-gray-200 h-32 rounded-[10px] overflow-hidden shadow-sm group-hover:shadow-lg transition-transform duration-300 group-hover:scale-105 flex items-center justify-center">
                 <img
