@@ -28,10 +28,30 @@ export default function TermsConditionsPage() {
                 <div className="bg-white rounded-xl shadow-md border border-primary-100 p-8">
                     <h2 className="text-2xl font-bold text-primary-700 mb-6 border-b pb-2">Terms & Conditions</h2>
                     <div className="space-y-6 text-gray-700 leading-relaxed text-left">
-                        <p>
-                            This website is designed, developed and maintained by Employment News, Publications Division, Ministry of Information and Broadcasting, Government of India.
-                        </p>
-                        <h4>Provide a data</h4>
+                        <section>
+                            <p className="text-gray-600">
+                                Access to the full weekly publication is available only to users with a valid paid subscription. While every effort is made to ensure the accuracy of the job notifications published on the website, users are advised to verify the details from the official notifications issued by the concerned recruiting organizations. The subscription fee, once paid and the e-paper access is activated, is generally non-refundable.
+                            </p>
+                        </section>
+
+                        <section>
+                            <p className="text-gray-600">
+                                Digital access (e-version) is typically activated within 48 hours of successful payment confirmation.
+                            </p>
+                        </section>
+
+                        <section>
+                            <h3 className="text-xl font-bold text-primary-700 mb-2">Refunds/Cancellations</h3>
+                            <p className="text-gray-600">
+                                Subscription fees are generally non-refundable once the e-version access is activated.
+                            </p>
+                        </section>
+
+                        <section>
+                            <p className="text-gray-600">
+                                One subscription is intended for a single user; sharing credentials or mass-distributing the PDF/Flipbook is a violation of the copyright policy.
+                            </p>
+                        </section>
                     </div>
                 </div>
             </div>

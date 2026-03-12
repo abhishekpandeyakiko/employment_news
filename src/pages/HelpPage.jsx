@@ -28,22 +28,23 @@ export default function HelpPage() {
                 <div className="bg-white rounded-xl shadow-md border border-primary-100 p-8">
                     <h2 className="text-2xl font-bold text-primary-700 mb-6 border-b pb-2">Help</h2>
                     <div className="space-y-6 text-gray-700 leading-relaxed text-left">
-                        <section>
-                            <h3 className="text-xl font-semibold text-primary-600 mb-3">Navigating the Portal</h3>
-                            <p>
-                                The Employment News portal is categorized into various sections to provide easy access to job highlights, announcements, career articles, and subscription services.
+                        <section className="mb-8">
+                            <p className="text-gray-700 leading-relaxed italic border-l-4 border-primary-500 pl-4 bg-primary-50/30 py-2">
+                                This website serves as a primary resource for government job listings and career-related content. Users can navigate through various categories, view job headlines, and read detailed articles.
                             </p>
                         </section>
-                        <section>
-                            <h3 className="text-xl font-semibold text-primary-600 mb-3">Subscription Queries</h3>
-                            <p>
-                                For any issues related to e-Employment News or Print subscription, please visit our <a href="/empnews/contact" className="text-primary-700 font-bold hover:underline">Contact page</a> or refer to the subscription section for detailed instructions.
+
+                        <section className="mb-8">
+                            <h3 className="text-xl font-bold text-primary-700 mb-2">Subscription Access</h3>
+                            <p className="text-gray-600">
+                                Subscribed users can access the full weekly edition in digital formats.
                             </p>
                         </section>
+
                         <section>
-                            <h3 className="text-xl font-semibold text-primary-600 mb-3">Viewing Documents</h3>
-                            <p>
-                                Most of the documents on this portal are available in HTML and PDF formats. To view PDF files, you will need a PDF reader installed on your system.
+                            <h3 className="text-xl font-bold text-primary-700 mb-2">Support</h3>
+                            <p className="text-gray-600">
+                                For assistance regarding account registration, subscription renewals, or technical navigation, please refer to our FAQ or contact the administrator via the Feedback section.
                             </p>
                         </section>
                     </div>

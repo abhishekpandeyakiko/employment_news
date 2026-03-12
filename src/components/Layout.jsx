@@ -47,7 +47,7 @@ const Layout = () => {
       <div className="sticky top-0 z-50 bg-white shadow">
         <TopBar data={header} />
         <Header data={header} />
-        <Navbar />
+        <Navbar data={header} />
       </div>
       <main id="main-content" className="flex-1 focus:outline-none scroll-mt-32" tabIndex="-1">
         {location.pathname !== "/" && <div id="skip-target" className="scroll-mt-32" />}

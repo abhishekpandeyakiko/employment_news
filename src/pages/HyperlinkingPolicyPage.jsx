@@ -38,69 +38,22 @@ export default function HyperlinkingPolicyPage() {
             />
 
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 font-sans">
-                <div className="bg-white rounded-xl shadow-lg border border-primary-100 p-8 md:p-12 space-y-12">
-
-                    {/* Clause Title */}
-                    <div>
-                        <h2 className="text-2xl font-bold text-primary-800">Hyper Linking policy (clause 5.4.4)</h2>
-                    </div>
-
-                    <div className="space-y-10">
-                        {/* External Links Policy */}
-                        <div className="space-y-4">
-                            <h3 className="text-xl font-bold text-gray-800 underline decoration-primary-300 underline-offset-8">
-                                • Links to external websites/portals
-                            </h3>
-                            <p className="text-gray-700 leading-relaxed text-justify">
-                                At many places in this website Employment News website, you shall find links to other websites, portals, web applications, or mobile apps. This links have been placed for your convenience. Publications Division is not responsible for the contents and reliability of the linked websites and does not necessarily endorse the views expressed in them. Mere presence of the link or its listing on this Employment News website should not be assumed as endorsement of any kind. We cannot guarantee that these links will work all the time and we have no control over availability of linked pages. The website hyperlinks policy will be reviewed on yearly basis.
+                <div className="bg-white rounded-xl shadow-md border border-primary-100 p-8">
+                    <h2 className="text-2xl font-bold text-center text-primary-700 mb-6 border-b pb-2">Hyperlinking Policy</h2>
+                    <div className="space-y-6 text-gray-700 leading-relaxed text-left">
+                        <section>
+                            <h3 className="text-xl font-bold text-primary-700 mb-2">Links to External Websites</h3>
+                            <p className="text-gray-600">
+                                This portal includes links to other Government and non-Government websites (e.g., recruitment boards). Employment News is not responsible for the content or reliability of these external sites.
                             </p>
-                        </div>
+                        </section>
 
-                        {/* Internal Links Policy */}
-                        <div className="space-y-4 pt-4 border-t border-gray-50">
-                            <h3 className="text-xl font-bold text-gray-800 underline decoration-primary-300 underline-offset-8">
-                                • Links to Employment News website by other websites
-                            </h3>
-                            <p className="text-gray-700 leading-relaxed text-justify">
-                                We do not object to you linking directly to the information that is hosted on this Employment News website and no prior permission is required for the same. However, we would like you to inform us about any links provided to this Employment News website so that you can be informed of any changes or updates in that. Also, we do not permit our pages to be loaded into frames on your site. The pages belonging to this Employment News website must load into a newly opened browser window of the User.
+                        <section>
+                            <h3 className="text-xl font-bold text-primary-700 mb-2">Links to This Website</h3>
+                            <p className="text-gray-600">
+                                Prior permission is not required to link to this site. However, we do not permit our pages to be loaded into frames on your site; the pages must load into a newly opened browser window of the user.
                             </p>
-                        </div>
-
-                        {/* External Links Table */}
-                        <div className="pt-8">
-                            <h3 className="text-lg font-bold text-primary-700 mb-6 flex items-center gap-2 italic">
-                                These are following external links available on Employment News website:
-                            </h3>
-                            <div className="overflow-hidden rounded-lg border border-gray-200">
-                                <table className="w-full text-sm text-left">
-                                    <thead className="bg-gray-50 border-b border-gray-200">
-                                        <tr>
-                                            <th className="px-6 py-4 font-bold text-gray-700">S. No.</th>
-                                            <th className="px-6 py-4 font-bold text-gray-700">External Links</th>
-                                            <th className="px-6 py-4 font-bold text-gray-700">Website URL</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="divide-y divide-gray-100">
-                                        {externalLinks.map((link) => (
-                                            <tr key={link.id} className="hover:bg-primary-50/30 transition-colors">
-                                                <td className="px-6 py-4 text-gray-500">{link.id}</td>
-                                                <td className="px-6 py-4 font-medium text-gray-800">{link.name}</td>
-                                                <td className="px-6 py-4">
-                                                    <a
-                                                        href={link.url}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="text-primary-600 hover:text-primary-800 hover:underline break-all"
-                                                    >
-                                                        {link.url}
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                        </section>
                     </div>
                 </div>
             </div>

@@ -30,7 +30,7 @@ export default function WebInformationManagerPage() {
 
                     {/* Clause Title */}
                     <div>
-                        <h2 className="text-2xl font-bold text-primary-800">1. Web Information Manager (clause 5.4.1)</h2>
+                        <h2 className="text-2xl font-bold text-center text-primary-800">Web Information Manager</h2>
                     </div>
 
                     <div className="space-y-6 text-gray-700 leading-relaxed text-justify">

@@ -50,96 +50,21 @@ export default function CMAPPage() {
                 subtitle="Content Contribution, Moderation & Approval policy"
                 badgeText="Standard"
             />
-
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 text-left">
-                <div className="bg-white rounded-xl shadow-lg border border-primary-100 p-8 md:p-12 space-y-12">
-
-                    <div>
-                        <h2 className="text-2xl font-bold text-primary-800">Content Contribution, Moderation & Approval policy (CMAP) (clause 5.4.3)</h2>
-                    </div>
-
-                    <div className="space-y-10">
-                        {/* 2-Tiered Section */}
-                        <div className="space-y-6 text-gray-700 leading-relaxed text-justify">
-                            <h3 className="text-xl font-bold text-gray-800 underline decoration-primary-300 underline-offset-8 decoration-2">
-                                • Policy Statement for 2-tiered CMAP structure (for small websites)
-                            </h3>
-                            <p>
-                                The Office of Publications Division, Ministry of Information & Broadcasting (MIB) represents a single department where most content is contributed by a single set of sources. We hereby adopt a 2-tiered structure to implement CMAP requiring minimum 2 officials to execute the CMAP roles, viz.,
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-[15px]">
+                <div className="bg-white rounded-xl shadow-md border border-primary-100 p-8">
+                    <h2 className="text-2xl text-center font-bold text-primary-700 mb-6 border-b pb-2">CMAP (Content Management & Archival Policy)</h2>
+                    <div className="space-y-6 text-gray-700 leading-relaxed text-left">
+                        <section>
+                            <p className="text-gray-600 font-medium">
+                                All content published on the Employment News website, including job headlines and the weekly digital edition, is verified and approved by authorized officials before being uploaded to the subscription portal. The website uses a robust Content Management System (CMS) to manage and publish content efficiently.
                             </p>
-                            <ul className="space-y-4 list-disc pl-5 font-medium text-gray-800">
-                                <li><strong>Contributor (User Admin 1):</strong> The Contributor is responsible for creating, sourcing, or uploading content for the website. Contributors typically belong to specific departments (e.g., Corporate Communications, HR, and Project Management) and are responsible for providing accurate, timely information related to their respective domains.</li>
-                                <li><strong>Moderator (User Admin 2):</strong> The Moderator is responsible for reviewing and verifying the content submitted by the Contributor. The Moderator ensures that the content is accurate, relevant, and complies with the internal content policies and the Guidelines for Indian Government Websites (GIGW) before it is forwarded for approval.</li>
-                                <li><strong>Approver (Master Admin):</strong> The Approver provides the final review and approval of the content. Approvers ensure that the content aligns with Publications Division overall business objectives, legal compliance, and regulatory standards. Once approved by the Master Admin, the content is published on the website.</li>
-                            </ul>
+                        </section>
 
-                            <h4 className="font-bold text-primary-700 mt-8 mb-4 italic">Template to implement 2-tiered CMAP structure for small websites:</h4>
-                            <div className="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
-                                <table className="w-full text-sm text-left">
-                                    <thead>
-                                        <tr className="bg-primary-700 text-white">
-                                            <th rowSpan="2" className="px-6 py-4 font-bold uppercase tracking-wider border-r border-primary-600 w-1/4 text-center align-middle">SECTIONS</th>
-                                            <th className="px-6 py-4 font-bold uppercase tracking-wider text-center" colSpan="2">ROLES</th>
-                                        </tr>
-                                        <tr className="bg-primary-50 text-primary-900 border-b border-primary-100">
-                                            <th className="px-6 py-3 font-bold uppercase text-[11px] tracking-widest text-center border-r border-primary-100">CONTRIBUTOR</th>
-                                            <th className="px-6 py-3 font-bold uppercase text-[11px] tracking-widest text-center">MODERATOR & APPROVER</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="divide-y divide-gray-100">
-                                        {smallWebsiteRoles.map((role, idx) => (
-                                            <tr key={idx} className="hover:bg-primary-50/20 transition-colors">
-                                                <td className="px-6 py-4 font-bold text-gray-800 border-r border-gray-50">{role.section}</td>
-                                                <td className="px-6 py-4 text-[12px] text-gray-600 border-r border-gray-50 text-center">{role.contributor}</td>
-                                                <td className="px-6 py-4 text-[12px] text-gray-600 text-center">{role.moderator}</td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        {/* 3-Tiered Section */}
-                        <div className="space-y-6 text-gray-700 leading-relaxed text-justify pt-12 border-t-2 border-primary-50">
-                            <h3 className="text-xl font-bold text-gray-800 underline decoration-primary-300 underline-offset-8 decoration-2">
-                                • Policy Statement for 3-tiered CMAP structure (for large websites)
-                            </h3>
-                            <p>
-                                The Employment News website represents a single department where most content is contributed by a single set of sources. We hereby adopt a 3-tiered structure to implement CMAP requiring minimum 3 officials to execute the CMAP roles, viz.,
+                        <section>
+                            <p className="text-gray-600">
+                                The website is updated regularly, and the weekly Employment News edition is uploaded every Friday for subscribed users. Outdated or time-sensitive content is reviewed periodically and archived in accordance with the website’s archival policy.
                             </p>
-                            <ul className="space-y-3 list-disc pl-8 font-bold text-primary-800">
-                                <li>Contributor</li>
-                                <li>Moderator</li>
-                                <li>Approver</li>
-                            </ul>
-
-                            <h4 className="font-bold text-primary-700 mt-8 mb-4 italic">Template to implement 3-tiered CMAP structure for large websites:</h4>
-                            <div className="overflow-x-auto rounded-lg border border-gray-100 shadow-sm">
-                                <table className="w-full text-sm text-left">
-                                    <thead>
-                                        <tr className="bg-primary-800 text-white">
-                                            <th rowSpan="2" className="px-6 py-4 font-bold uppercase tracking-wider border-r border-primary-700 w-1/4 text-center align-middle">SECTIONS</th>
-                                            <th className="px-6 py-4 font-bold uppercase tracking-wider text-center" colSpan="3">ROLES</th>
-                                        </tr>
-                                        <tr className="bg-primary-50 text-primary-900 border-b border-primary-100 font-sans">
-                                            <th className="px-6 py-3 font-bold uppercase text-[10px] tracking-widest text-center border-r border-primary-100">CONTRIBUTOR</th>
-                                            <th className="px-6 py-3 font-bold uppercase text-[10px] tracking-widest text-center border-r border-primary-100">MODERATOR</th>
-                                            <th className="px-6 py-3 font-bold uppercase text-[10px] tracking-widest text-center">APPROVER</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="divide-y divide-gray-100">
-                                        {largeWebsiteRoles.map((role, idx) => (
-                                            <tr key={idx} className="hover:bg-primary-50/20 transition-colors">
-                                                <td className="px-6 py-4 font-bold text-gray-800 border-r border-gray-50">{role.section}</td>
-                                                <td className="px-6 py-4 text-[11px] text-gray-600 border-r border-gray-50 text-center">{role.contributor}</td>
-                                                <td className="px-6 py-4 text-[11px] text-gray-600 border-r border-gray-50 text-center">{role.moderator}</td>
-                                                <td className="px-6 py-4 text-[11px] text-gray-600 text-center">{role.approver}</td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                        </section>
                     </div>
                 </div>
             </div>

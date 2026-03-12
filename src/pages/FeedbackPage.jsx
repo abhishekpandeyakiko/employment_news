@@ -28,15 +28,11 @@ export default function FeedbackPage() {
                 <div className="bg-white rounded-xl shadow-md border border-primary-100 p-8">
                     <h2 className="text-2xl font-bold text-primary-700 mb-6 border-b pb-2">Feedback</h2>
                     <div className="space-y-6 text-gray-700 leading-relaxed text-left">
-                        <p>
-                            We value your feedback and suggestions to help us improve our services and provide a better experience for our users.
-                        </p>
-                        <p>
-                            Please feel free to share your thoughts, comments, or report any issues you encounter while using the Employment News portal.
-                        </p>
-                        <div className="p-6 bg-primary-50 rounded-lg border border-primary-100 italic">
-                            <p>For formal grievances, please use our <a href="/empnews/grievance" className="text-primary-700 font-bold hover:underline">Grievance Form</a>.</p>
-                        </div>
+                        <section className="mb-8">
+                            <p className="text-gray-700 leading-relaxed italic border-l-4 border-primary-500 pl-4 bg-primary-50/30 py-2">
+                                We value your input to enhance the user experience of the Employment News portal. We encourage users to submit suggestions, report technical bugs, or provide comments on our content through the online feedback form. All submissions are reviewed by our technical team, and necessary improvements are implemented periodically.
+                            </p>
+                        </section>
                     </div>
                 </div>
             </div>
